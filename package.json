@@ -10,5 +10,8 @@
     "wordpress-setup": "robo wordpress:setup",
     "start": "wp server",
     "lint": "phpcs -v wordpress/wp-content/themes/daniel-faria-gallery-headless/. RoboFile.php"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.5.1"
   }
 }
