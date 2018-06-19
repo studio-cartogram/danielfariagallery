@@ -29,13 +29,13 @@ export default class ArtistIndex extends Component {
       <section>
         <h3>Artist Archive</h3>
         <ul>
-        {artists.map(artist => (
-          <li key={artist.id}>
+        {artists.map(post => (
+          <li key={post.id}>
             <Link 
-            href={`/artist?slug=${artist.slug}&apiRoute=artist`}
-            as={`/artist/${artist.slug}`}
+            href={`/post?slug=${post.slug}&apiRoute=post`}
+            as={`/post/${post.slug}`}
             >
-              <a>{artist.title.rendered}</a>
+              <a>{post.title.rendered}</a>
             </Link>
           </li>
         ))}
