@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import PageWrapper from "../components/PageWrapper.js";
-import Menu from "../components/Menu.js";
+import Menu from "../components/Menu/Menu.js";
 import Slider from "../components/Slider";
 import { Config } from "../config.js";
 
@@ -43,7 +43,7 @@ class Index extends Component {
             );
         });
         return (
-            <Layout { ... this.props}> 
+            <Layout {... this.props}>
 
                 <h1>{this.props.page.title.rendered}</h1>
                 <Slider />
