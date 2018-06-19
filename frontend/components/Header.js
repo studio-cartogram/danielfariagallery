@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Menu from "./Menu.js";
+import Menu from "./Menu/Menu";
 import Logo from './Logo';
 import { Config } from "../config.js";
 import stylesheet from '../src/styles/style.scss'
