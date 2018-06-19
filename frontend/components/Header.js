@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Menu from "./Menu.js";
+import Logo from './Logo';
 import { Config } from "../config.js";
 import stylesheet from '../src/styles/style.scss'
+
+console.log(Logo)
 class Header extends Component {
     constructor() {
         super();
@@ -25,9 +28,7 @@ class Header extends Component {
                     </title>
                 </Head>
                 <header>
-                    <Link href="/">
-                        <a><h1>Logo</h1></a>
-                    </Link>
+                    <Logo />
                     <Menu menu={this.props.mainNav} />
                 </header>
             </div>
