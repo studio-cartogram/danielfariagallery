@@ -18,7 +18,7 @@ export default class PostIndex extends Component {
     const { limit } = this.props
     const postsRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/posts?per_page=${limit}`)
     const posts = await postsRes.json();
-    this.setState( {
+    this.setState({
       posts
     });
   }
