@@ -1,14 +1,13 @@
 import Link from 'next/link'
-import { StyledLogo, StyledLogoLink } from './styles'
+import { StyledLogo, StyledLogoText } from './styles'
 
 function Logo() {
   return (
     <StyledLogo>
-      <Link href="/">
-        <StyledLogoLink>Logo</StyledLogoLink>
+      <Link href="https://github.com/postlight/headless-wp-starter">
+        <a><StyledLogoText>Logo</StyledLogoText></a>
       </Link>
     </StyledLogo>
-
   )
 }
 

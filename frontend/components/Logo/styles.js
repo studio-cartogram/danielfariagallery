@@ -4,6 +4,6 @@ export const StyledLogo = styled.h1`
   background: blue;
 `
 
-export const StyledLogoLink = styled.a`
+export const StyledLogoText = styled.a`
   color: white;
 `
