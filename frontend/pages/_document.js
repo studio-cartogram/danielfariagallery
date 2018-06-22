@@ -1,5 +1,7 @@
 import NextDocument, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/theme";
 import "../styles/global";
 
 export default class Document extends NextDocument {
@@ -14,18 +16,23 @@ export default class Document extends NextDocument {
 
   render() {
     return (
-      <html>
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta charSet="utf-8" />
-          <title>Daniel Faria Gallery, Toronto Canada</title>
-          {this.props.styleTags}
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </html>
+      <ThemeProvider theme={theme}>
+        <html>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+            <meta charSet="utf-8" />
+            <title>Daniel Faria Gallery, Toronto Canada</title>
+            {this.props.styleTags}
+          </Head>
+          <body>
+            <Main />
+            <NextScript />
+          </body>
+        </html>
+      </ThemeProvider>
     );
   }
 }

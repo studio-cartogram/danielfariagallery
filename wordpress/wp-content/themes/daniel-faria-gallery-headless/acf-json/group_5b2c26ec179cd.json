@@ -33,9 +33,9 @@
     "location": [
         [
             {
-                "param": "options_page",
+                "param": "page",
                 "operator": "==",
-                "value": "homepage-information"
+                "value": "85"
             }
         ]
     ],
@@ -47,5 +47,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1529620321
+    "modified": 1529705916
 }
