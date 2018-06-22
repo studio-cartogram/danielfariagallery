@@ -12,13 +12,6 @@ class Header extends Component {
   render() {
     return (
       <div>
-        {/* remove this and put it in documnt */}
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta charSet="utf-8" />
-          <title>Daniel Faria Gallery, Toronto Canada</title>
-        </Head>
-
         <header>
           <StyledHeader>
             <Logo />
