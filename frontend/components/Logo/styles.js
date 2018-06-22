@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledLogo = styled.h1`
+export const StyledLogo = styled.span`
   background: blue;
 `
 

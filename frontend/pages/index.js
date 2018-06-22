@@ -7,10 +7,7 @@ import Menu from "../components/Menu/Menu.js";
 import Slider from "../components/Slider";
 import { Config } from "../config.js";
 
-const headerImageStyle = {
-    marginTop: 50,
-    marginBottom: 50
-};
+
 class Index extends Component {
     static async getInitialProps(context) {
         const pageRes = await fetch(
@@ -46,7 +43,6 @@ class Index extends Component {
             <Layout {... this.props}>
 
                 <h1>{this.props.page.title.rendered}</h1>
-                <Slider />
                 <div
                     dangerouslySetInnerHTML={{
                         __html: this.props.page.content.rendered

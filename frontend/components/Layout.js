@@ -3,8 +3,7 @@ import Footer from "./Footer";
 import PostIndex from "./PostIndex"
 
 const layoutStyle = {
-    margin: 20,
-    padding: 20
+    padding: 40
 };
 
 const mainLayout = {
@@ -14,8 +13,8 @@ const mainLayout = {
 
 const Layout = props => (
     <div style={layoutStyle}>
-        <Header mainNav={props.mainNav}/>
-        <main style={mainLayout}>  
+        <Header mainNav={props.mainNav} />
+        <main style={mainLayout}>
             <section>
                 {props.children}
             </section>
@@ -23,7 +22,7 @@ const Layout = props => (
                 {props.index && <PostIndex />}
             </aside>
         </main>
-        <Footer footerNav={props.footerNav}/>
+        <Footer footerNav={props.footerNav} />
     </div>
 );
 

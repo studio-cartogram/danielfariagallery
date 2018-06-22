@@ -1,2 +1,5 @@
-export { default } from './Logo';
-export { default } from './Menu';
+export { default as Logo } from "./Logo";
+export { default as Menu } from "./Menu";
+export { default as Header } from "./Header";
+export { default as Icon } from "./Icon";
+export { default as CurrentExhibition } from "./CurrentExhibition";
