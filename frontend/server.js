@@ -22,6 +22,12 @@ app
       app.render(req, res, actualPage, queryParams);
     });
 
+    server.get("/exhibition/:slug", (req, res) => {
+      const actualPage = "/exhibition";
+      const queryParams = { slug: req.params.slug, apiRoute: "exhibitions" };
+      app.render(req, res, actualPage, queryParams);
+    });
+
     server.get("/category/:slug", (req, res) => {
       const actualPage = "/category";
       const queryParams = { slug: req.params.slug };

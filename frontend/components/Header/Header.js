@@ -4,23 +4,13 @@ import Menu from "../Menu/Menu";
 import Logo from "../Logo/Logo";
 import { StyledHeader } from "./styles";
 
-class Header extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return (
-      <div>
-        <header>
-          <StyledHeader>
-            <Logo />
-            <Menu menu={this.props.mainNav} />
-          </StyledHeader>
-        </header>
-      </div>
-    );
-  }
+function Header({ items }) {
+  return (
+    <StyledHeader>
+      <Logo />
+      <Menu items={items} />
+    </StyledHeader>
+  );
 }
 
 export default Header;
