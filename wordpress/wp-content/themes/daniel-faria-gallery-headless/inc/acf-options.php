@@ -10,4 +10,13 @@ if ( function_exists( 'acf_add_options_page' ) ) {
         'post_id'    => 'contact-information',
         'redirect'   => false,
     ] );
+
+    acf_add_options_page( [
+        'page_title' => 'Homepage Information',
+        'menu_title' => 'Home',
+        'menu_slug'  => 'homepage-information',
+        'capability' => 'manage_options',
+        'post_id'    => 'homepage-information',
+        'redirect'   => false,
+    ] );
 }

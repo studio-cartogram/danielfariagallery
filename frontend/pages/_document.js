@@ -1,19 +1,24 @@
-import Document, { Head, Main, NextScript } from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
+import NextDocument, { Head, Main, NextScript } from "next/document";
+import { ServerStyleSheet } from "styled-components";
+import "../styles/global";
 
-export default class MyDocument extends Document {
+export default class Document extends NextDocument {
   static getInitialProps({ renderPage }) {
-    const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
-    const styleTags = sheet.getStyleElement()
-    return { ...page, styleTags }
+    const sheet = new ServerStyleSheet();
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />)
+    );
+    const styleTags = sheet.getStyleElement();
+    return { ...page, styleTags };
   }
 
   render() {
     return (
       <html>
         <Head>
-          <title>My page</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta charSet="utf-8" />
+          <title>Daniel Faria Gallery, Toronto Canada</title>
           {this.props.styleTags}
         </Head>
         <body>
@@ -21,6 +26,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </html>
-    )
+    );
   }
 }
