@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-
 import Link from "next/link";
+import { StyledImage, StyledImageContainer } from "./styles";
 
 function CurrentExhibition({ url, image, title }) {
   return (
-    <Link href={url}>
-      <a>
-        <img key={title} alt={title} src={image} />
-      </a>
-    </Link>
+    <StyledImageContainer>
+      <Link href={url}>
+        <a>
+          <StyledImage key={title} alt={title} src={image} />
+        </a>
+      </Link>
+    </StyledImageContainer>
   );
 }
 
