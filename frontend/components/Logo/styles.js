@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
 export const StyledLogo = styled.span`
-  height: 120px;
+  height: auto;
+  padding-bottom: 40px;
 `;

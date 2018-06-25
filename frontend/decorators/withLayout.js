@@ -9,6 +9,9 @@ import { Config } from "../config.js";
 
 const mainNavEndpoint = `${Config.apiUrl}/wp-json/menus/v1/menus/main-nav`;
 const footerNavEndpoint = `${Config.apiUrl}/wp-json/menus/v1/menus/footer-nav`;
+const footerInfoEndpoint = `${
+  Config.apiUrl
+}/wp-json/acf/v2/options?option_id=contact-information`;
 
 function withLayout(Component) {
   return class extends React.Component {
@@ -16,7 +19,9 @@ function withLayout(Component) {
       const mainNavRes = await fetch(mainNavEndpoint);
       const main = await mainNavRes.json();
       const footerNavRes = await fetch(footerNavEndpoint);
-      const footer = await footerNavRes.json();
+      const footerNav = await footerNavRes.json();
+      const footerInfoRes = await fetch(footerInfoEndpoint);
+      const footerInfo = await footerInfoRes.json();
       const componentProps = Component.getInitialProps
         ? await Component.getInitialProps(args)
         : null;
