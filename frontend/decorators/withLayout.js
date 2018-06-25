@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 import Main from "../components/Main";
 import { Config } from "../config.js";
 
-console.log(theme);
 const mainNavEndpoint = `${Config.apiUrl}/wp-json/menus/v1/menus/main-nav`;
 const footerNavEndpoint = `${Config.apiUrl}/wp-json/menus/v1/menus/footer-nav`;
 
