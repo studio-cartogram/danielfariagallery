@@ -6,9 +6,7 @@ function Logo() {
   return (
     <StyledLogo>
       <Link href="/">
-        <a>
-          <Icon icon={"LOGO"} />
-        </a>
+        <a>Daniel Faria Gallery</a>
       </Link>
     </StyledLogo>
   );

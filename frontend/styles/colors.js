@@ -1,5 +1,3 @@
-import { css } from "styled-components";
-
 const colors = {
   blue: "#003468",
   grey: "#616262",
