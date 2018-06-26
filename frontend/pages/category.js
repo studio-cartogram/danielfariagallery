@@ -28,7 +28,7 @@ class Category extends Component {
   render() {
     if (this.props.categories.length == 0) return <Error statusCode={404} />;
 
-    const posts = this.props.posts.map((post, index) => {
+    const postsMarkup = this.props.posts.map((post, index) => {
       return (
         <ul key={index}>
           <li>
@@ -46,7 +46,7 @@ class Category extends Component {
       <Layout {...this.props}>
         <Menu menu={this.props.headerMenu} />
         <h1>{this.props.categories[0].name} Posts</h1>
-        {posts}
+        {postsMarkup}
       </Layout>
     );
   }
