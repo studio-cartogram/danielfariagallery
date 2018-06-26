@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import Link from "next/link";
 import { StyledMenuText, StyledMenu } from "./styles";
 
-const linkStyle = {
-  marginRight: 15
-};
-
 function Menu({ items }) {
   const itemsMarkup = items.map((item, index) => {
     return item.object === "custom" ? (

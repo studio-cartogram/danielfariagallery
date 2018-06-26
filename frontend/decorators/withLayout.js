@@ -17,7 +17,7 @@ function withLayout(Component) {
   return class extends React.Component {
     static async getInitialProps(args) {
       const mainNavRes = await fetch(mainNavEndpoint);
-      const main = await mainNavRes.json();
+      const mainNav = await mainNavRes.json();
       const footerNavRes = await fetch(footerNavEndpoint);
       const footer = await footerNavRes.json();
       const contactInfoRes = await fetch(contactInfoEndpoint);
@@ -31,7 +31,7 @@ function withLayout(Component) {
           contactInfo,
           navs: {
             footer,
-            main
+            mainNav
           }
         },
         ...componentProps
@@ -42,7 +42,7 @@ function withLayout(Component) {
       return (
         <ThemeProvider theme={theme}>
           <Layout>
-            <Header items={this.props.globalData.navs.main.items} />
+            <Header items={this.props.globalData.navs.mainNav.items} />
             <Main>
               <Component {...this.props} />
             </Main>

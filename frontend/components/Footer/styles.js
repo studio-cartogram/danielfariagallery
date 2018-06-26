@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { scale } from "../../styles/scale";
+import { breakpoints } from "../../styles/breakpoints";
 import theme from "../../styles/theme";
 
 export const StyledFooter = styled.footer`
   color: ${theme.LinkSecondary.color};
+  grid-column: span 3;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: ${scale.scaleSex};
   position: relative;
   font-size: ${scale.scaleDuo};
-  justify-content: space-between;
-  padding-top: ${scale.scaleQuin};
   a {
     display: inline-flex;
     position: relative;
@@ -43,4 +43,11 @@ export const StyledFooterItem = styled.div`
   position: relative;
   justify-content: space-between;
   flex-wrap: wrap;
+  grid-column: span 3;
+  padding-top: ${scale.scaleSex};
+
+  ${breakpoints.bpTablet} {
+    grid-column: span 1;
+    padding-top: 0;
+  }
 `;
