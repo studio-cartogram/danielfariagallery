@@ -1,5 +1,6 @@
 import styled from "styled-components";
+import { scale } from "../../styles/scale";
 
 export const StyledLayout = styled.section`
-  padding: 40px 80px;
+  padding: ${scale.scaleQuin} ${scale.scaleDec};
 `;

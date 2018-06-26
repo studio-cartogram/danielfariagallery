@@ -39,8 +39,6 @@ function withLayout(Component) {
     }
 
     render() {
-      console.log(this.props.globalData.contactInfo.acf);
-
       return (
         <ThemeProvider theme={theme}>
           <Layout>
