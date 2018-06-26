@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import scale from "../../styles/scale";
 
 const iconSizes = {
-  sm: "16px",
-  md: "24px",
-  lg: "40px"
+  sm: scale.scaleDuo,
+  md: scale.scaleTrio,
+  lg: scale.scaleQuin
 };
 
 export const StyledIcon = styled.i`
