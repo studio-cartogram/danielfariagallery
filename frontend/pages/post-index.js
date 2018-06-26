@@ -8,12 +8,12 @@ import PageWrapper from "../components/PageWrapper.js";
 class PostIndexPage extends Component {
   render() {
     return (
-      <Layout index={false} {...this.props}>
+      <div>
         <h1>Post Index</h1>
         <PostIndex limit={20} />
-      </Layout>
+      </div>
     );
   }
 }
 
-export default PageWrapper(PostIndexPage);
+export default withLayout(PostIndexPage);

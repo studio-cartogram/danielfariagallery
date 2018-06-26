@@ -43,11 +43,11 @@ class Category extends Component {
       );
     });
     return (
-      <Layout {...this.props}>
-        <Menu menu={this.props.headerMenu} />
-        <h1>{this.props.categories[0].name} Posts</h1>
+      <Menu menu={this.props.headerMenu} />
+      <h1>{this.props.categories[0].name} Posts</h1>
+      <div>
         {postsMarkup}
-      </Layout>
+      </div>
     );
   }
 }
