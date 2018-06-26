@@ -46,7 +46,16 @@ function withLayout(Component) {
             <Main>
               <Component {...this.props} />
             </Main>
-            <Footer email={this.props.globalData.contactInfo.acf.email} />
+
+            <Footer
+              email={this.props.globalData.contactInfo.acf.email}
+              address={this.props.globalData.contactInfo.acf.address}
+              map={this.props.globalData.contactInfo.acf.map}
+              twitter={this.props.globalData.contactInfo.acf.twitter}
+              facebook={this.props.globalData.contactInfo.acf.facebook}
+              instagram={this.props.globalData.contactInfo.acf.instagram}
+              phone={this.props.globalData.contactInfo.acf.phone}
+            />
           </Layout>
         </ThemeProvider>
       );
