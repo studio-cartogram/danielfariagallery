@@ -9,7 +9,7 @@ import { Config } from "../config.js";
 
 const mainNavEndpoint = `${Config.apiUrl}/wp-json/menus/v1/menus/main-nav`;
 const footerNavEndpoint = `${Config.apiUrl}/wp-json/menus/v1/menus/footer-nav`;
-const footerInfoEndpoint = `${
+const contactInfoEndpoint = `${
   Config.apiUrl
 }/wp-json/acf/v2/options?option_id=contact-information`;
 
@@ -19,15 +19,16 @@ function withLayout(Component) {
       const mainNavRes = await fetch(mainNavEndpoint);
       const main = await mainNavRes.json();
       const footerNavRes = await fetch(footerNavEndpoint);
-      const footerNav = await footerNavRes.json();
-      const footerInfoRes = await fetch(footerInfoEndpoint);
-      const footerInfo = await footerInfoRes.json();
+      const footer = await footerNavRes.json();
+      const contactInfoRes = await fetch(contactInfoEndpoint);
+      const contactInfo = await contactInfoRes.json();
       const componentProps = Component.getInitialProps
         ? await Component.getInitialProps(args)
         : null;
 
       return {
         globalData: {
+          contactInfo,
           navs: {
             footer,
             main
@@ -38,6 +39,8 @@ function withLayout(Component) {
     }
 
     render() {
+      console.log(this.props.globalData.contactInfo.acf);
+
       return (
         <ThemeProvider theme={theme}>
           <Layout>
@@ -45,7 +48,7 @@ function withLayout(Component) {
             <Main>
               <Component {...this.props} />
             </Main>
-            <Footer />
+            <Footer email={this.props.globalData.contactInfo.acf.email} />
           </Layout>
         </ThemeProvider>
       );
