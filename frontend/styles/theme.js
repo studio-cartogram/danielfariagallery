@@ -1,11 +1,4 @@
-import { css } from "styled-components";
-
-const colors = {
-  blue: "#003468",
-  grey: "#616262",
-  ink: "#1F2123",
-  white: "#FFFFFF"
-};
+import { colors } from "./colors";
 
 const theme = {
   Body: {
@@ -13,6 +6,14 @@ const theme = {
   },
   LinkPrimary: {
     color: colors.blue,
+    hover: colors.grey
+  },
+  LinkSecondary: {
+    color: colors.grey,
+    hover: colors.greyLight
+  },
+  LinkTertiary: {
+    color: colors.greyLightest,
     hover: colors.grey
   }
 };

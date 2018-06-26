@@ -1,22 +1,23 @@
-import Layout from "../components/Layout.js";
-import Link from 'next/link'
+import Layout from "../components/Layout";
+import Link from "next/link";
 import fetch from "isomorphic-unfetch";
-import React, { Component } from 'react';
-import { Config } from '../config';
+import React, { Component } from "react";
+import { Config } from "../config";
 
 export default class ExhibitionIndex extends Component {
-
   static defaultProps = {
     limit: 2
-  }
+  };
 
   state = {
     exhibitions: []
-  }
+  };
 
   async componentWillMount() {
-    const { limit } = this.props
-    const exhibitionsRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/exhibitions?per_page=${limit}`)
+    const { limit } = this.props;
+    const exhibitionsRes = await fetch(
+      `${Config.apiUrl}/wp-json/wp/v2/exhibitions?per_page=${limit}`
+    );
     const exhibitions = await exhibitionsRes.json();
     this.setState({
       exhibitions
@@ -41,6 +42,6 @@ export default class ExhibitionIndex extends Component {
           ))}
         </ul>
       </section>
-    )
+    );
   }
-};
+}

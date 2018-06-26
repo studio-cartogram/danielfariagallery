@@ -1,4 +1,4 @@
-import Layout from "../components/Layout.js";
+import Layout from "../components/Layout";
 import fetch from "isomorphic-unfetch";
 import React, { Component } from "react";
 import { Config } from "../config";

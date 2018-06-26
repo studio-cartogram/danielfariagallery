@@ -9,8 +9,7 @@ const StyledImage = styled.img`
 const StyledImageContainer = styled.div`
   display: flex;
   height: 640px;
-  object-fit: cover;
-  justify-content: space-around;
+  overflow: hidden;
 `;
 
 export { StyledImage, StyledImageContainer };

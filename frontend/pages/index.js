@@ -1,4 +1,4 @@
-import Layout from "../components/Layout.js";
+import Layout from "../components/Layout";
 import React, { Component } from "react";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
@@ -21,13 +21,11 @@ class Index extends Component {
   render() {
     const currentExhibition = getCurrentExhibitionFromData(this.props.data);
     return (
-      <Layout>
-        <CurrentExhibition
-          url={`/exhibition/${currentExhibition.post_name}`}
-          title={currentExhibition.post_title}
-          image={currentExhibition.acf.feature}
-        />
-      </Layout>
+      <CurrentExhibition
+        url={`/exhibition/${currentExhibition.post_name}`}
+        title={currentExhibition.post_title}
+        image={currentExhibition.acf.feature}
+      />
     );
   }
 }

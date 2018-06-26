@@ -1,1 +1,3 @@
-export { default } from './CurrentExhibition.js'
+import CurrentExhibition from "./CurrentExhibition";
+
+export default CurrentExhibition;

@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import { scale } from "../../styles/scale";
 
 export const StyledLogo = styled.span`
-  height: 120px;
+  height: auto;
+  padding-bottom: ${scale.scaleQuin};
 `;

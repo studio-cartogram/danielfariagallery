@@ -1,20 +1,17 @@
-import { css } from "styled-components";
+import styled from "styled-components";
+import scale from "../../styles/scale";
 
 const iconSizes = {
-  xxs: "4px",
-  xs: "8px",
-  sm: "16px",
-  md: "24px",
-  lg: "40px",
-  xl: "56px",
-  full: "100%"
+  sm: scale.scaleDuo,
+  md: scale.scaleTrio,
+  lg: scale.scaleQuin
 };
 
-const styles = ({ variant, color, ...rest }) => css`
+export const StyledIcon = styled.i`
   display: inline-block;
   vertical-align: middle;
   align-self: center;
   fill: currentColor;
 `;
 
-export { styles };
+export { StyledIcon };

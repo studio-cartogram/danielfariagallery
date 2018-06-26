@@ -1,20 +1,19 @@
-import Layout from "../components/Layout.js";
+import Layout from "../components/Layout";
 import fetch from "isomorphic-unfetch";
-import React, { Component } from 'react';
-import { Config } from '../config';
+import React, { Component } from "react";
+import { Config } from "../config";
 import PostIndex from "../components/PostIndex";
 import PageWrapper from "../components/PageWrapper.js";
-
 
 class PostIndexPage extends Component {
   render() {
     return (
-      <Layout index={false} { ... this.props}>
+      <div>
         <h1>Post Index</h1>
-        <PostIndex limit={20}/>
-      </Layout>
-    )
+        <PostIndex limit={20} />
+      </div>
+    );
   }
-};
+}
 
-export default PageWrapper(PostIndexPage)
+export default withLayout(PostIndexPage);
