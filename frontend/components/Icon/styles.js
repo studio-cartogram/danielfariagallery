@@ -7,7 +7,7 @@ const iconSizes = {
   lg: scale.scaleQuin
 };
 
-export const StyledIcon = styled.i`
+const StyledIcon = styled.i`
   display: inline-block;
   vertical-align: middle;
   align-self: center;
