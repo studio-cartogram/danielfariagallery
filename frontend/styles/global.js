@@ -1,8 +1,7 @@
-import { injectGlobal } from "styled-components";
-import { reset } from "./utilities";
-import { fonts, fontFamily } from "./typography";
-import theme from "./theme";
-import { scale } from "../styles/scale";
+import {injectGlobal} from 'styled-components';
+import {reset} from './utilities';
+import {fonts, fontFamily} from './typography';
+import theme from './theme';
 
 injectGlobal`
   ${fonts}
@@ -17,7 +16,7 @@ injectGlobal`
     font-size: 18px;
     font-family: ${fontFamily};
     font-weight: ${fontFamily};
-    color: ${theme.Body.color};
+    color: ${theme.Body.CurrentColor};
   }
   *,
   *:before,
@@ -25,7 +24,7 @@ injectGlobal`
     ${reset}
   }
   a {
-    color: ${theme.LinkPrimary.color};
+    color: ${theme.LinkPrimary.CurrentColor};
     text-decoration: none;
   }
 `;

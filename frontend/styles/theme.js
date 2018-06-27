@@ -1,21 +1,25 @@
-import { colors } from "./colors";
+import {colors} from './colors';
+import * as scales from './scale';
+import * as transitions from './transitions';
 
 const theme = {
   Body: {
-    color: colors.ink
+    CurrentColor: colors.ink,
   },
   LinkPrimary: {
-    color: colors.blue,
-    hover: colors.grey
+    CurrentColor: colors.blue,
+    hover: colors.grey,
   },
   LinkSecondary: {
-    color: colors.grey,
-    hover: colors.greyLight
+    CurrentColor: colors.grey,
+    hover: colors.greyLight,
   },
   LinkTertiary: {
-    color: colors.greyLightest,
-    hover: colors.grey
-  }
+    CurrentColor: colors.greyLightest,
+    hover: colors.grey,
+  },
+  ...scales,
+  ...transitions,
 };
 
 export default theme;

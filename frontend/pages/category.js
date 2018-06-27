@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import Error from "next/error";
-import PageWrapper from "../components/PageWrapper.js";
 import Menu from "../components/Menu.js";
 import { Config } from "../config.js";
+import withLayout from "../decorators/withLayout";
 
 class Category extends Component {
   static async getInitialProps(context) {
@@ -52,4 +52,4 @@ class Category extends Component {
   }
 }
 
-export default PageWrapper(Category);
+export default withLayout(Category);

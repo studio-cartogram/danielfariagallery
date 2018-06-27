@@ -1,7 +1,12 @@
-import styled from "styled-components";
-import { scale } from "../../styles/scale";
+import styled from 'styled-components';
+import {breakpoints} from '../../styles/breakpoints';
 
 export const StyledLogo = styled.span`
+  grid-column: span 3;
   height: auto;
-  padding-bottom: ${scale.scaleQuin};
+  display: inline-flex;
+
+  ${breakpoints.bpM} {
+    grid-column: span 1;
+  }
 `;

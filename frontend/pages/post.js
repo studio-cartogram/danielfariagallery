@@ -1,34 +1,32 @@
-import Layout from "../components/Layout";
-import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
-import Error from "next/error";
-import PageWrapper from "../components/PageWrapper.js";
-import { Config } from "../config.js";
+import React, {Component} from 'react';
+import fetch from 'isomorphic-unfetch';
+import Error from 'next/error';
+import {Config} from '../config.js';
+import withLayout from '../decorators/withLayout';
+import Main from '../components/Main';
 
 class Post extends Component {
   static async getInitialProps(context) {
-    const { slug, apiRoute } = context.query;
+    const {slug, apiRoute} = context.query;
     const res = await fetch(
-      `${Config.apiUrl}/wp-json/postlight/v1/${apiRoute}?slug=${slug}`
+      `${Config.apiUrl}/wp-json/postlight/v1/${apiRoute}?slug=${slug}`,
     );
     const post = await res.json();
-    return { post };
+    return {post};
   }
 
   render() {
     if (!this.props.post.title) return <Error statusCode={404} />;
 
     return (
-      <Layout {...this.props}>
         <h1>{this.props.post.title.rendered}</h1>
         <div
           dangerouslySetInnerHTML={{
-            __html: this.props.post.content.rendered
+            __html: this.props.post.content.rendered,
           }}
         />
-      </Layout>
     );
   }
 }
 
-export default PageWrapper(Post);
+export default withLayout(Post);

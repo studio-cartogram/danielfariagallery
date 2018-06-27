@@ -1,29 +1,28 @@
-import styled from "styled-components";
-import { scale } from "../../styles/scale";
-import theme from "../../styles/theme";
+import styled from 'styled-components';
+import {breakpoints} from '../../styles/breakpoints';
+import theme from '../../styles/theme';
 
 export const StyledFooter = styled.footer`
-  color: ${theme.LinkSecondary.color};
+  color: ${theme.LinkSecondary.CurrentColor};
+  grid-column: span 3;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: ${scale.scaleSex};
+  grid-gap: ${(props) => props.theme.pxScale[6]};
   position: relative;
-  font-size: ${scale.scaleDuo};
-  justify-content: space-between;
-  padding-top: ${scale.scaleQuin};
+  font-size: ${(props) => props.theme.pxScale[2]};
   a {
     display: inline-flex;
     position: relative;
-    height: ${scale.scaleTrio};
-    color: ${theme.LinkSecondary.color};
+    height: ${(props) => props.theme.pxScale[3]};
+    color: ${theme.LinkSecondary.CurrentColor};
     &:after {
       position: absolute;
-      content: "";
+      content: '';
       left: 0;
       bottom: 0;
       width: 100%;
       height: 1px;
-      background-color: ${theme.LinkTertiary.color};
+      background-color: ${theme.LinkTertiary.CurrentColor};
       transition: width 0.175s ease-in;
     }
     &:hover::after {
@@ -43,4 +42,11 @@ export const StyledFooterItem = styled.div`
   position: relative;
   justify-content: space-between;
   flex-wrap: wrap;
+  grid-column: span 3;
+  padding-top: ${(props) => props.theme.pxScale[6]};
+
+  ${breakpoints.bpM} {
+    grid-column: span 1;
+    padding-top: 0;
+  }
 `;
