@@ -1,18 +1,17 @@
-import styled from "styled-components";
-import { scale } from "../../styles/scale";
-import { breakpoints } from "../../styles/breakpoints";
-import theme from "../../styles/theme";
+import styled from 'styled-components';
+import {breakpoints} from '../../styles/breakpoints';
+import theme from '../../styles/theme';
 
 export const StyledMenuText = styled.span`
-  color: ${props => props.theme.LinkPrimary.color};
+  color: ${(props) => props.theme.LinkPrimary.color};
   margin-left: 0;
-  margin-right: ${scale.scaleDuo};
+  margin-right: ${(props) => props.theme.pxScale[3]};
   position: relative;
   display: inline-flex;
 
   &:after {
     width: 0%;
-    content: "";
+    content: '';
     left: 0;
     bottom: 0;
     position: absolute;
@@ -26,7 +25,7 @@ export const StyledMenuText = styled.span`
   }
 
   ${breakpoints.bpTablet} {
-    margin-left: ${scale.scaleDuo};
+    margin-left: ${(props) => props.theme.pxScale[3]};
     margin-right: 0;
   }
 `;
@@ -35,7 +34,7 @@ export const StyledMenu = styled.nav`
   grid-column: span 3;
   display: inline-flex;
   justify-content: flex-start;
-  padding-bottom: ${scale.scaleSex};
+  padding-bottom: ${(props) => props.theme.pxScale[6]};
 
   ${breakpoints.bpTablet} {
     grid-column: span 2;

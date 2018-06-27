@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import scale from "../../styles/scale";
+import styled from 'styled-components';
 
 const iconSizes = {
-  sm: scale.scaleDuo,
-  md: scale.scaleTrio,
-  lg: scale.scaleQuin
+  sm: `${(props) => props.theme.pxScale[2]}`,
+  md: `${(props) => props.theme.pxScale[3]}`,
+  lg: `${(props) => props.theme.pxScale[5]}`,
 };
 
 const StyledIcon = styled.i`
@@ -14,4 +13,4 @@ const StyledIcon = styled.i`
   fill: currentColor;
 `;
 
-export { StyledIcon };
+export {StyledIcon};

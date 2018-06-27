@@ -1,7 +1,6 @@
-import fetch from "isomorphic-unfetch";
-import React, { Component } from "react";
-import { Config } from "../config";
-import PostIndex from "../components/PostIndex";
+import fetch from 'isomorphic-unfetch';
+import React, {Component} from 'react';
+import PostIndex from '../components/PostIndex';
 
 class PostIndexPage extends Component {
   render() {

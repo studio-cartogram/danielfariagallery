@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { StyledFooter, StyledFooterItem, StyledFooterItemFull } from "./styles";
-import Link from "next/link";
+import React, {Component} from 'react';
+import {StyledFooter, StyledFooterItem, StyledFooterItemFull} from './styles';
+import Link from 'next/link';
 
-function Footer({ phone, email, address, map, facebook, twitter, instagram }) {
+function Footer({phone, email, address, map, facebook, twitter, instagram}) {
   return (
     <StyledFooter>
       <StyledFooterItem>
@@ -10,7 +10,7 @@ function Footer({ phone, email, address, map, facebook, twitter, instagram }) {
           <p>{address}</p>
         </StyledFooterItemFull>
         <Link href={map}>
-          <a>Directions</a>
+          <a target="_blank">Directions</a>
         </Link>
       </StyledFooterItem>
       <StyledFooterItem>
@@ -25,13 +25,13 @@ function Footer({ phone, email, address, map, facebook, twitter, instagram }) {
       </StyledFooterItem>
       <StyledFooterItem>
         <Link href={twitter}>
-          <a>Twitter</a>
+          <a target="_blank">Twitter</a>
         </Link>
         <Link href={facebook}>
-          <a>Facebook</a>
+          <a target="_blank">Facebook</a>
         </Link>
         <Link href={instagram}>
-          <a>Instagram</a>
+          <a target="_blank">Instagram</a>
         </Link>
         <Link href="/">
           <a>Subscribe</a>

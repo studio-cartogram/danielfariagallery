@@ -1,24 +1,24 @@
-import styled from "styled-components";
-import { scale } from "../../styles/scale";
-import { breakpoints } from "../../styles/breakpoints";
-import theme from "../../styles/theme";
+import styled from 'styled-components';
+import {scale} from '../../styles/scale';
+import {breakpoints} from '../../styles/breakpoints';
+import theme from '../../styles/theme';
 
 export const StyledFooter = styled.footer`
   color: ${theme.LinkSecondary.color};
   grid-column: span 3;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: ${scale.scaleSex};
+  grid-gap: ${(props) => props.theme.pxScale[6]};
   position: relative;
-  font-size: ${scale.scaleDuo};
+  font-size: ${(props) => props.theme.pxScale[2]};
   a {
     display: inline-flex;
     position: relative;
-    height: ${scale.scaleTrio};
+    height: ${(props) => props.theme.pxScale[3]};
     color: ${theme.LinkSecondary.color};
     &:after {
       position: absolute;
-      content: "";
+      content: '';
       left: 0;
       bottom: 0;
       width: 100%;
@@ -44,7 +44,7 @@ export const StyledFooterItem = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   grid-column: span 3;
-  padding-top: ${scale.scaleSex};
+  padding-top: ${(props) => props.theme.pxScale[6]};
 
   ${breakpoints.bpTablet} {
     grid-column: span 1;

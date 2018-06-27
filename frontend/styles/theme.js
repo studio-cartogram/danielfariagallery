@@ -1,4 +1,5 @@
 import { colors } from "./colors";
+import * as scales from "./scale";
 
 const theme = {
   Body: {
@@ -15,7 +16,8 @@ const theme = {
   LinkTertiary: {
     color: colors.greyLightest,
     hover: colors.grey
-  }
+  },
+  ...scales
 };
 
 export default theme;

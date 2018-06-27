@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import { scale } from "../../styles/scale";
-import { breakpoints } from "../../styles/breakpoints";
+import styled from 'styled-components';
+import {breakpoints} from '../../styles/breakpoints';
 
 export const StyledLogo = styled.span`
   grid-column: span 3;
