@@ -6,7 +6,7 @@ export const StyledLogo = styled.span`
   height: auto;
   display: inline-flex;
 
-  ${breakpoints.bpTablet} {
+  ${breakpoints.bpM} {
     grid-column: span 1;
   }
 `;

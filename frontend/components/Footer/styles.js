@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import {scale} from '../../styles/scale';
 import {breakpoints} from '../../styles/breakpoints';
 import theme from '../../styles/theme';
 
 export const StyledFooter = styled.footer`
-  color: ${theme.LinkSecondary.color};
+  color: ${theme.LinkSecondary.CurrentColor};
   grid-column: span 3;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -15,7 +14,7 @@ export const StyledFooter = styled.footer`
     display: inline-flex;
     position: relative;
     height: ${(props) => props.theme.pxScale[3]};
-    color: ${theme.LinkSecondary.color};
+    color: ${theme.LinkSecondary.CurrentColor};
     &:after {
       position: absolute;
       content: '';
@@ -23,7 +22,7 @@ export const StyledFooter = styled.footer`
       bottom: 0;
       width: 100%;
       height: 1px;
-      background-color: ${theme.LinkTertiary.color};
+      background-color: ${theme.LinkTertiary.CurrentColor};
       transition: width 0.175s ease-in;
     }
     &:hover::after {
@@ -46,7 +45,7 @@ export const StyledFooterItem = styled.div`
   grid-column: span 3;
   padding-top: ${(props) => props.theme.pxScale[6]};
 
-  ${breakpoints.bpTablet} {
+  ${breakpoints.bpM} {
     grid-column: span 1;
     padding-top: 0;
   }

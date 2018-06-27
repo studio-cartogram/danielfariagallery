@@ -9,7 +9,7 @@ export const StyledLayout = styled.section`
   flex-direction: column;
   min-height: 100vh;
 
-  ${breakpoints.bpTablet} {
+  ${breakpoints.bpM} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto 1fr auto;

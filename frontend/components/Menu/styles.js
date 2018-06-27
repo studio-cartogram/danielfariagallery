@@ -3,7 +3,7 @@ import {breakpoints} from '../../styles/breakpoints';
 import theme from '../../styles/theme';
 
 export const StyledMenuText = styled.span`
-  color: ${(props) => props.theme.LinkPrimary.color};
+  color: ${(props) => props.theme.LinkPrimary.CurrentColor};
   margin-left: 0;
   margin-right: ${(props) => props.theme.pxScale[3]};
   position: relative;
@@ -16,15 +16,16 @@ export const StyledMenuText = styled.span`
     bottom: 0;
     position: absolute;
     height: 1px;
-    background-color: ${theme.LinkPrimary.color};
-    transition: width 0.175s ease-in-out;
-  }
-  &:hover::after {
-    width: 100%;
-    transition: width 0.175s ease-in-out;
+    background-color: ${theme.LinkPrimary.CurrentColor};
+    transition: width ${theme.transitions.default};
   }
 
-  ${breakpoints.bpTablet} {
+  &:hover::after {
+    width: 100%;
+    transition: width ${theme.transitions.default};
+  }
+
+  ${breakpoints.bpM} {
     margin-left: ${(props) => props.theme.pxScale[3]};
     margin-right: 0;
   }
@@ -36,7 +37,7 @@ export const StyledMenu = styled.nav`
   justify-content: flex-start;
   padding-bottom: ${(props) => props.theme.pxScale[6]};
 
-  ${breakpoints.bpTablet} {
+  ${breakpoints.bpM} {
     grid-column: span 2;
     justify-content: flex-end;
     padding-bottom: 0;
