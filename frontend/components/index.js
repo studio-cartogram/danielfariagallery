@@ -7,3 +7,4 @@ export {default as Main} from './Main';
 export {default as Footer} from './Footer';
 export {default as CurrentExhibition} from './CurrentExhibition';
 export {default as Artist} from './Artist';
+export {default as Image} from './Image';

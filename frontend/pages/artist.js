@@ -4,7 +4,7 @@ import Error from 'next/error';
 import {Config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 
-class Artist extends Component {
+class SingleArtist extends Component {
   static async getInitialProps(context) {
     const {slug, apiRoute} = context.query;
     const endpoint = `${Config.apiUrl}/wp-json/wp/v2/${apiRoute}?slug=${slug}`;
@@ -18,4 +18,4 @@ class Artist extends Component {
   }
 }
 
-export default withLayout(Artist);
+export default withLayout(SingleArtist);

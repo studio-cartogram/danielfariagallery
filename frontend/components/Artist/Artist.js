@@ -1,11 +1,14 @@
-import React, {Component} from 'react';
 import Link from 'next/link';
-import {StyledImage, StyledImageContainer} from './styles';
+import {StyledArtistName, StyledArtist} from './styles';
+import Image from '../Image';
 
-function Artist({url, image, title}) {
+function Artist({url, artistimage, title}) {
   return (
     <Link href={url}>
-      <a>{title}</a>
+      <a>
+        {title}
+        <img scr={artistimage} alt={title} title={title} />
+      </a>
     </Link>
   );
 }
