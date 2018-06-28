@@ -10,23 +10,10 @@ export const StyledFooter = styled.footer`
   grid-gap: ${(props) => props.theme.pxScale[6]};
   position: relative;
   font-size: ${(props) => props.theme.pxScale[2]};
+
   a {
-    display: inline-flex;
-    position: relative;
-    height: ${(props) => props.theme.pxScale[3]};
-    color: ${theme.LinkSecondary.CurrentColor};
-    &:after {
-      position: absolute;
-      content: '';
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      background-color: ${theme.LinkTertiary.CurrentColor};
-      transition: width 0.175s ease-in;
-    }
-    &:hover::after {
-      width: 0%;
+    ${(props) => props.theme.linkOther};
+    ${(props) => props.theme.linkOtherHover};
     }
   }
 `;
