@@ -8,8 +8,6 @@ export const StyledMenuText = styled.span`
 
   ${(props) => props.theme.linkMain};
 
-  ${(props) => props.theme.linkMainHover};
-
   ${breakpoints.bpM} {
     margin-left: ${(props) => props.theme.pxScale[3]};
     margin-right: 0;

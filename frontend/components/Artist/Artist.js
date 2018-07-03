@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {StyledArtistName, StyledArtist} from './styles';
 import Image from '../Image';
 
-function Artist({url, artistimage, title}) {
+function Artist({url, artistImage, title}) {
   return (
     <StyledArtist>
       <StyledArtistName>
@@ -10,7 +10,7 @@ function Artist({url, artistimage, title}) {
           <a>{title}</a>
         </Link>
       </StyledArtistName>
-      <img scr={artistimage} alt={title} title={title} />
+      <Image scr={artistImage} alt={title} />
     </StyledArtist>
   );
 }

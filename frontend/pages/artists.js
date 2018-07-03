@@ -24,7 +24,7 @@ class ArtistIndex extends Component {
           <Artist
             url={artist.link}
             title={artist.title.rendered}
-            artistimage={image}
+            artistImage={image}
           />
         </li>
       );

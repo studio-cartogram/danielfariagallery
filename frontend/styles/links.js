@@ -5,7 +5,7 @@ const linkMain = css`
   position: relative;
 
   &:after {
-    width: 0%;
+    width: 0;
     content: '';
     left: 0;
     bottom: 0;
@@ -14,9 +14,7 @@ const linkMain = css`
     background-color: ${(props) => props.theme.LinkPrimary.CurrentColor};
     transition: width ${(props) => props.theme.transitions.default};
   }
-`;
 
-const linkMainHover = css`
   &:hover::after {
     width: 100%;
     transition: width ${(props) => props.theme.transitions.default};
@@ -37,14 +35,12 @@ const linkOther = css`
     width: 100%;
     height: 1px;
     background-color: ${(props) => props.theme.LinkTertiary.CurrentColor};
-    transition: width 0.175s ease-in;
+    transition: width ${(props) => props.theme.transitions.default};
   }
-`;
 
-const linkOtherHover = css`
   &:hover::after {
-    width: 0%;
+    width: 0;
   }
 `;
 
-export {linkMain, linkMainHover, linkOther, linkOtherHover};
+export {linkMain, linkOther};

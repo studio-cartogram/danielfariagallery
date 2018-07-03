@@ -4,7 +4,7 @@ import Error from 'next/error';
 import {Config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 
-class Post extends Component {
+Component => React.Component {
   static async getInitialProps(context) {
     const {slug, apiRoute} = context.query;
     const res = await fetch(

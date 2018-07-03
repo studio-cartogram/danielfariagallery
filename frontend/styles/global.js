@@ -15,7 +15,7 @@ injectGlobal`
     -moz-osx-font-smoothing: grayscale;
     font-size: 18px;
     font-family: ${fontFamily};
-    font-weight: none;
+    font-weight: normal;
     color: ${theme.Body.CurrentColor};
   }
   *,

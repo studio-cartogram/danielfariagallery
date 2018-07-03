@@ -3,19 +3,19 @@ import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 import Error from 'next/error';
 import Menu from '../components/Menu.js';
-import {Config} from '../config.js';
+import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 
 class Category extends Component {
   static async getInitialProps(context) {
     const {slug} = context.query;
     const categoriesRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`,
+      `${config.apiUrl}/wp-json/wp/v2/categories?slug=${slug}`,
     );
     const categories = await categoriesRes.json();
     if (categories.length > 0) {
       const postsRes = await fetch(
-        `${Config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${
+        `${config.apiUrl}/wp-json/wp/v2/posts?_embed&categories=${
           categories[0].id
         }`,
       );
@@ -26,7 +26,7 @@ class Category extends Component {
   }
   render() {
     if (this.props.categories.length == 0) return <Error statusCode={404} />;
-
+    const {headerMenu, categories} = this.props;
     const postsMarkup = this.props.posts.map((post, index) => {
       return (
         <ul key={index}>
@@ -43,8 +43,8 @@ class Category extends Component {
     });
     return (
       <div>
-        <Menu menu={this.props.headerMenu} />
-        <h1>{this.props.categories[0].name} Posts</h1>
+        <Menu menu={headerMenu} />
+        <h1>{categories[0].name} Posts</h1>
         <div>{postsMarkup}</div>
       </div>
     );

@@ -13,7 +13,6 @@ export const StyledFooter = styled.footer`
 
   a {
     ${(props) => props.theme.linkOther};
-    ${(props) => props.theme.linkOtherHover};
     }
   }
 `;

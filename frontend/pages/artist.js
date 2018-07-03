@@ -12,6 +12,7 @@ class SingleArtist extends Component {
     const data = await res.json();
     return {data};
   }
+
   render() {
     const artist = this.props.data[0];
     return <div>{artist.title.rendered}</div>;
