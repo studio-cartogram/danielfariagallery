@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Menu from '../Menu/Menu';
-import Logo from '../Logo/Logo';
+import Menu from '../Menu';
+import Logo from '../Logo';
 import {StyledHeader} from './styles';
 
 function Header({items}) {

@@ -15,7 +15,7 @@ injectGlobal`
     -moz-osx-font-smoothing: grayscale;
     font-size: 18px;
     font-family: ${fontFamily};
-    font-weight: ${fontFamily};
+    font-weight: normal;
     color: ${theme.Body.CurrentColor};
   }
   *,
@@ -26,5 +26,9 @@ injectGlobal`
   a {
     color: ${theme.LinkPrimary.CurrentColor};
     text-decoration: none;
+  }
+  h1 {
+    ${(props) => props.theme.pxScale[3]};
+    font-weight: normal;
   }
 `;

@@ -1,19 +1,36 @@
-import Layout from '../components/Layout';
 import fetch from 'isomorphic-unfetch';
 import React, {Component} from 'react';
 import {Config} from '../config';
-import ArtistIndex from '../components/ArtistIndex';
 import withLayout from '../decorators/withLayout';
+import Artist from '../components/Artist';
 
-class ArtistIndexPage extends Component {
+const endpoint = `${Config.apiUrl}/wp-json/wp/v2/artists?_embed`;
+
+class ArtistIndex extends Component {
+  static async getInitialProps() {
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    return {data};
+  }
+
   render() {
-    return (
-      <Layout index={false} {...this.props}>
-        <h1>Artist Index</h1>
-        <ArtistIndex limit={20} />
-      </Layout>
-    );
+    const artists = this.props.data;
+    const artistlistMarkup = artists.map((artist) => {
+      const image =
+        artist._embedded['wp:featuredmedia'][0].media_details.sizes.large
+          .source_url;
+      return (
+        <li key={artist.id}>
+          <Artist
+            url={artist.link}
+            title={artist.title.rendered}
+            artistImage={image}
+          />
+        </li>
+      );
+    });
+    return <ul>{artistlistMarkup}</ul>;
   }
 }
 
-export default withLayout(ArtistIndexPage);
+export default withLayout(ArtistIndex);

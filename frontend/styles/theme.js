@@ -1,5 +1,6 @@
 import {colors} from './colors';
 import * as scales from './scale';
+import * as links from './links';
 import * as transitions from './transitions';
 
 const theme = {
@@ -19,6 +20,7 @@ const theme = {
     hover: colors.grey,
   },
   ...scales,
+  ...links,
   ...transitions,
 };
 
