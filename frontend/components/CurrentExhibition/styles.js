@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledImage = styled.img`
   width: 100%;
@@ -12,4 +12,4 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
 `;
 
-export { StyledImage, StyledImageContainer };
+export {StyledImage, StyledImageContainer};

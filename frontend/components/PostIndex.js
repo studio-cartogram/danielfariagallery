@@ -1,36 +1,36 @@
-import Layout from "../components/Layout";
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
-import React, { Component } from "react";
-import { Config } from "../config";
+import Layout from '../components/Layout';
+import Link from 'next/link';
+import fetch from 'isomorphic-unfetch';
+import React, {Component} from 'react';
+import {config} from '../config';
 
 export default class PostIndex extends Component {
   static defaultProps = {
-    limit: 2
+    limit: 2,
   };
 
   state = {
-    posts: []
+    posts: [],
   };
 
   async componentWillMount() {
-    const { limit } = this.props;
+    const {limit} = this.props;
     const postsRes = await fetch(
-      `${Config.apiUrl}/wp-json/wp/v2/posts?per_page=${limit}`
+      `${config.apiUrl}/wp-json/wp/v2/posts?per_page=${limit}`,
     );
     const posts = await postsRes.json();
     this.setState({
-      posts
+      posts,
     });
   }
 
   render() {
-    const { posts } = this.state;
+    const {posts} = this.state;
     return (
       <section>
         <h3>Archive</h3>
         <ul>
-          {posts.map(post => (
+          {posts.map((post) => (
             <li key={post.id}>
               <Link
                 href={`/post?slug=${post.slug}&apiRoute=post`}

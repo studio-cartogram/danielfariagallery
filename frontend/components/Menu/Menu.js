@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import Link from "next/link";
-import { StyledMenuText, StyledMenu } from "./styles";
+import React, {Component} from 'react';
+import Link from 'next/link';
+import {StyledMenuText, StyledMenu} from './styles';
 
-function Menu({ items }) {
+function Menu({items}) {
   const itemsMarkup = items.map((item, index) => {
-    return item.object === "custom" ? (
+    return item.object === 'custom' ? (
       <Link href={item.url} key={item.ID}>
         <a>
           <StyledMenuText>{item.title}</StyledMenuText>
@@ -12,10 +12,8 @@ function Menu({ items }) {
       </Link>
     ) : (
       <Link
-        as={`/${item.object}/${getSlug(item.url)}`}
-        href={`/${
-          item.object === "category" ? "category" : "post"
-        }?slug=${getSlug(item.url)}&apiRoute=${item.object}`}
+        as={`/${getSlug(item.url)}`}
+        href={`/${getSlug(item.url)}`}
         key={item.ID}
       >
         <a>
@@ -29,8 +27,8 @@ function Menu({ items }) {
 }
 
 function getSlug(url) {
-  const parts = url.split("/");
-  return parts.length > 2 ? parts[parts.length - 2] : "";
+  const parts = url.split('/');
+  return parts.length > 2 ? parts[parts.length - 2] : '';
 }
 
 export default Menu;

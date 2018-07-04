@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {scale} from '../../styles/scale';
 import {breakpoints} from '../../styles/breakpoints';
 
 export const StyledLayout = styled.section`
@@ -7,7 +6,6 @@ export const StyledLayout = styled.section`
     ${(props) => props.theme.pxScale[8]};
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 
   ${breakpoints.bpM} {
     display: grid;
