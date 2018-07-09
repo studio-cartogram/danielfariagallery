@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { StyledLayout } from "./styles";
+import React, {Component} from 'react';
+import {StyledLayout} from './styles';
 
-function Layout({ children }) {
+function Layout({children}) {
   return <StyledLayout>{children}</StyledLayout>;
 }
 

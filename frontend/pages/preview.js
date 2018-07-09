@@ -1,30 +1,30 @@
-import Layout from "../components/Layout";
-import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
-import Error from "next/error";
-import Menu from "../components/Menu.js";
-import { Config } from "../config.js";
+import Layout from '../components/Layout';
+import React, {Component} from 'react';
+import fetch from 'isomorphic-unfetch';
+import Error from 'next/error';
+import Menu from '../components/Menu.js';
+import {config} from '../config.js';
 
 class Preview extends Component {
   constructor() {
     super();
     this.state = {
-      post: null
+      post: null,
     };
   }
 
   componentDidMount() {
-    const { id, wpnonce } = this.props.url.query;
+    const {id, wpnonce} = this.props.url.query;
     fetch(
       `${
-        Config.apiUrl
+        config.apiUrl
       }/wp-json/postlight/v1/post/preview?id=${id}&_wpnonce=${wpnonce}`,
-      { credentials: "include" } // required for cookie nonce auth
+      {credentials: 'include'}, // required for cookie nonce auth
     )
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         this.setState({
-          post: res
+          post: res,
         });
       });
   }
@@ -33,17 +33,17 @@ class Preview extends Component {
     if (
       this.state.post &&
       this.state.post.code &&
-      this.state.post.code === "rest_cookie_invalid_nonce"
+      this.state.post.code === 'rest_cookie_invalid_nonce'
     )
       return <Error statusCode={404} />;
 
     return (
       <Layout {...this.props}>
         <Menu menu={this.props.headerMenu} />
-        <h1>{this.state.post ? this.state.post.title.rendered : ""}</h1>
+        <h1>{this.state.post ? this.state.post.title.rendered : ''}</h1>
         <div
           dangerouslySetInnerHTML={{
-            __html: this.state.post ? this.state.post.content.rendered : ""
+            __html: this.state.post ? this.state.post.content.rendered : '',
           }}
         />
       </Layout>

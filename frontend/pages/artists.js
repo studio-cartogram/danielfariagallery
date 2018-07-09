@@ -1,10 +1,10 @@
 import fetch from 'isomorphic-unfetch';
 import React, {Component} from 'react';
-import {Config} from '../config';
+import {config} from '../config';
 import withLayout from '../decorators/withLayout';
 import Artist from '../components/Artist';
 
-const endpoint = `${Config.apiUrl}/wp-json/wp/v2/artists?_embed`;
+const endpoint = `${config.apiUrl}/wp-json/wp/v2/artists?_embed`;
 
 class ArtistIndex extends Component {
   static async getInitialProps() {

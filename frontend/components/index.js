@@ -8,3 +8,4 @@ export {default as Footer} from './Footer';
 export {default as CurrentExhibition} from './CurrentExhibition';
 export {default as Artist} from './Artist';
 export {default as Image} from './Image';
+export {default as Column} from './Column';

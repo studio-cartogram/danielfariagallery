@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import fetch from 'isomorphic-unfetch';
 import Error from 'next/error';
-import {Config} from '../config.js';
+import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 
-Component => React.Component {
+class Post extends Component {
   static async getInitialProps(context) {
     const {slug, apiRoute} = context.query;
     const res = await fetch(
-      `${Config.apiUrl}/wp-json/postlight/v1/${apiRoute}?slug=${slug}`,
+      `${config.apiUrl}/wp-json/postlight/v1/${apiRoute}?slug=${slug}`,
     );
     const post = await res.json();
     return {post};

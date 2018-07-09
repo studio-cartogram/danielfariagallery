@@ -26,3 +26,4 @@ require_once 'inc/api-routes.php';
 
 // Add featured image
 add_theme_support('post-thumbnails');
+
