@@ -8,6 +8,8 @@ export const StyledFooter = styled.footer`
   grid-column: span 3;
   font-size: ${(props) => props.theme.pxScale[2]};
   ${grid}
+  grid-row-start: 3;
+  grid-row-end: 4;
 
   a {
     ${(props) => props.theme.linkOther};
