@@ -22,7 +22,7 @@ class PublicationIndex extends Component {
       return (
         <li key={publication.id}>
           <Publication
-            url={publication.link}
+            url={`/publication/${publication.slug}`}
             title={publication.title.rendered}
             PublicationImage={image}
           />

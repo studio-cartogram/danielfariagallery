@@ -22,7 +22,7 @@ class ExhibitionIndex extends Component {
       return (
         <li key={exhibition.id}>
           <Exhibition
-            url={exhibition.link}
+            url={`/exhibition/${exhibition.slug}`}
             title={exhibition.title.rendered}
             exhibitionImage={image}
           />

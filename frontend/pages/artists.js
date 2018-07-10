@@ -22,7 +22,7 @@ class ArtistIndex extends Component {
       return (
         <li key={artist.id}>
           <Artist
-            url={artist.link}
+            url={`/artist/${artist.slug}`}
             title={artist.title.rendered}
             artistImage={image}
           />

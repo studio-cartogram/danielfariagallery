@@ -21,7 +21,11 @@ class FairIndex extends Component {
           .source_url;
       return (
         <li key={fair.id}>
-          <Fair url={fair.link} title={fair.title.rendered} FairImage={image} />
+          <Fair
+            url={`/fair/${fair.slug}`}
+            title={fair.title.rendered}
+            FairImage={image}
+          />
         </li>
       );
     });

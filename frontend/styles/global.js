@@ -5,11 +5,13 @@ import theme from './theme';
 
 injectGlobal`
   ${fonts}
-
+  html {
+    box-sizing: border-box;
+  }
   html,
   body {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -22,6 +24,9 @@ injectGlobal`
   *:before,
   *:after {
     ${reset}
+  }
+  body {
+    box-sizing: inherit;
   }
   a {
     color: ${theme.LinkPrimary.CurrentColor};

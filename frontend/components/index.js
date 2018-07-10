@@ -12,3 +12,8 @@ export {default as Fair} from './Fair';
 export {default as Publication} from './Publication';
 export {default as Image} from './Image';
 export {default as Column} from './Column';
+export {default as PageText} from './PageText';
+export {default as PageMast} from './PageMast';
+export {default as GridItem} from './GridItem';
+export {default as Thumbnail} from './Thumbnail';
+export {default as Tab} from './Tab';
