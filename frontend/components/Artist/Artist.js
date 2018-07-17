@@ -10,7 +10,7 @@ function Artist({url, artistImage, title}) {
           <a>{title}</a>
         </Link>
       </StyledArtistName>
-      <Image scr={artistImage} alt={title} />
+      <Image src={artistImage} alt={title} />
     </StyledArtist>
   );
 }

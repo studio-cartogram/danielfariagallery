@@ -10,7 +10,7 @@ function Publication({url, publicationImage, title}) {
           <a>{title}</a>
         </Link>
       </StyledPublicationName>
-      <Image scr={publicationImage} alt={title} />
+      <Image src={publicationImage} alt={title} />
     </StyledPublication>
   );
 }

@@ -181,32 +181,34 @@
                             "maxlength": ""
                         }
                     ]
+                },
+                {
+                    "key": "field_5b4e4e84f8796",
+                    "label": "Thumbnail width",
+                    "name": "thumbnail_width",
+                    "type": "select",
+                    "instructions": "How many columns should this thumbnail image span: one, two or three ?",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "one": "One",
+                        "two": "Two",
+                        "three": "Three"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
                 }
             ]
-        },
-        {
-            "key": "field_5b2d7ba911664",
-            "label": "Feature",
-            "name": "feature",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
         }
     ],
     "location": [
@@ -226,5 +228,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1531237501
+    "modified": 1531863422
 }
