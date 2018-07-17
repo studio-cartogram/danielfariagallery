@@ -10,7 +10,7 @@ function Exhibition({url, exhibitionImage, title}) {
           <a>{title}</a>
         </Link>
       </StyledExhibitionName>
-      <Image scr={exhibitionImage} alt={title} />
+      <Image src={exhibitionImage} alt={title} />
     </StyledExhibition>
   );
 }

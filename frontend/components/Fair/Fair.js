@@ -10,7 +10,7 @@ function Fair({url, fairImage, title}) {
           <a>{title}</a>
         </Link>
       </StyledFairName>
-      <Image scr={fairImage} alt={title} />
+      <Image src={fairImage} alt={title} />
     </StyledFair>
   );
 }

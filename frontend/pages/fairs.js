@@ -24,7 +24,7 @@ class FairIndex extends Component {
           <Fair
             url={`/fair/${fair.slug}`}
             title={fair.title.rendered}
-            FairImage={image}
+            fairImage={image}
           />
         </li>
       );
