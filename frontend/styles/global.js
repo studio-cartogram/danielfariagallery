@@ -15,7 +15,7 @@ injectGlobal`
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 18px;
+    font-size: ${(props) => props.theme.pxScale[21]}
     font-family: ${fontFamily};
     font-weight: normal;
     color: ${theme.Body.CurrentColor};
@@ -34,8 +34,8 @@ injectGlobal`
     font-weight: normal;
   }
   h3 {
-    font-size: 18px;
-    padding-bottom: 16px;
+    font-size: ${(props) => props.theme.pxScale[21]}
+    padding-bottom: ${(props) => props.theme.pxScale[2]};
     font-weight: normal;
     color: ${theme.Secondary.CurrentColor};
   }
@@ -43,6 +43,6 @@ injectGlobal`
     list-style: none;
   }
   li {
-    padding-bottom: 16px;
+    padding-bottom: ${(props) => props.theme.pxScale[2]};
   }
 `;

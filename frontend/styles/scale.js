@@ -20,6 +20,7 @@ const scale = [
   scaleUnit * 15,
   scaleUnit * 16,
   scaleUnit * 20,
+  scaleUnit * 2 + 2,
 ];
 
 const pxScale = scale.map((value) => `${value}px`);

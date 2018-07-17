@@ -54,7 +54,7 @@ class Contact extends React.Component {
         <Column>
           <GridItem>
             <h3>Hours</h3>
-            <span>{hourslistMarkup}</span>
+            {hourslistMarkup}
           </GridItem>
           <GridItem>
             <h3>Address</h3>
