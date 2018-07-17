@@ -34,6 +34,15 @@ function withLayout(Component) {
     }
 
     render() {
+      const {
+        email,
+        address,
+        map,
+        twitter,
+        facebook,
+        instagram,
+        phone,
+      } = this.props.globalData.contactInfo.acf;
       return (
         <ThemeProvider theme={theme}>
           <GridWrapper>
@@ -42,15 +51,14 @@ function withLayout(Component) {
               <Main>
                 <Component {...this.props} />
               </Main>
-
               <Footer
-                email={this.props.globalData.contactInfo.acf.email}
-                address={this.props.globalData.contactInfo.acf.address}
-                map={this.props.globalData.contactInfo.acf.map}
-                twitter={this.props.globalData.contactInfo.acf.twitter}
-                facebook={this.props.globalData.contactInfo.acf.facebook}
-                instagram={this.props.globalData.contactInfo.acf.instagram}
-                phone={this.props.globalData.contactInfo.acf.phone}
+                email={email}
+                address={address}
+                map={map}
+                twitter={twitter}
+                facebook={facebook}
+                instagram={instagram}
+                phone={phone}
               />
             </Layout>
           </GridWrapper>
