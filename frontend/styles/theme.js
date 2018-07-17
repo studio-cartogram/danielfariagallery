@@ -7,6 +7,9 @@ const theme = {
   Body: {
     CurrentColor: colors.ink,
   },
+  Secondary: {
+    CurrentColor: colors.grey,
+  },
   LinkPrimary: {
     CurrentColor: colors.blue,
     hover: colors.grey,

@@ -5,15 +5,17 @@ import theme from './theme';
 
 injectGlobal`
   ${fonts}
-
+  html {
+    box-sizing: border-box;
+  }
   html,
   body {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 18px;
+    font-size: ${(props) => props.theme.pxScale[21]}
     font-family: ${fontFamily};
     font-weight: normal;
     color: ${theme.Body.CurrentColor};
@@ -28,7 +30,19 @@ injectGlobal`
     text-decoration: none;
   }
   h1 {
-    ${(props) => props.theme.pxScale[3]};
+    font-size: ${(props) => props.theme.pxScale[3]};
     font-weight: normal;
+  }
+  h3 {
+    font-size: ${(props) => props.theme.pxScale[21]}
+    padding-bottom: ${(props) => props.theme.pxScale[2]};
+    font-weight: normal;
+    color: ${theme.Secondary.CurrentColor};
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    padding-bottom: ${(props) => props.theme.pxScale[2]};
   }
 `;
