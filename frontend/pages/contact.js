@@ -81,7 +81,7 @@ class Contact extends React.Component {
         <Column>
           <GridItem>
             <h3>Staff</h3>
-            <span>{stafflistMarkup}</span>
+            {stafflistMarkup}
           </GridItem>
         </Column>
       </React.Fragment>

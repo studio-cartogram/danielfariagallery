@@ -25,9 +25,6 @@ injectGlobal`
   *:after {
     ${reset}
   }
-  body {
-    box-sizing: inherit;
-  }
   a {
     color: ${theme.LinkPrimary.CurrentColor};
     text-decoration: none;
