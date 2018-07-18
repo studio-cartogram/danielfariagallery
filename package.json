@@ -12,5 +12,7 @@
     "lint": "phpcs -v wordpress/wp-content/themes/daniel-faria-gallery-headless/. RoboFile.php"
   },
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "firebase-tools": "^3.19.3"
+  }
 }
