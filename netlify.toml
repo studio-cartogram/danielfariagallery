@@ -7,3 +7,4 @@
 
 [build]
   base    = "frontend"
+  command = "yarn && yarn run next build && yarn run next start"
