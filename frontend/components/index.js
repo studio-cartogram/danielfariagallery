@@ -16,4 +16,5 @@ export {default as PageText} from './PageText';
 export {default as PageMast} from './PageMast';
 export {default as GridItem} from './GridItem';
 export {default as Thumbnail} from './Thumbnail';
+export {default as Title} from './Title';
 export {default as Tab} from './Tab';

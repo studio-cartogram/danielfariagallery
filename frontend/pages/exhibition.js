@@ -7,6 +7,7 @@ import PageText from '../components/PageText';
 import PageMast from '../components/PageMast';
 import PageThumbs from '../components/PageThumbs';
 import Thumbnail from '../components/Thumbnail';
+import Title from '../components/Title';
 import Column from '../components/Column';
 
 class Exhibition extends Component {
@@ -32,9 +33,9 @@ class Exhibition extends Component {
       <React.Fragment>
         <Column />
         <PageMast>
-          <h1>
+          <Title>
             {exhibition.acf.artist[0].post_title}: {exhibition.title.rendered}
-          </h1>
+          </Title>
           <p>
             {exhibition.acf.start_date} - {exhibition.acf.end_date}
           </p>

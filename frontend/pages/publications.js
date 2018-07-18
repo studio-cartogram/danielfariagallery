@@ -24,7 +24,7 @@ class PublicationIndex extends Component {
           <Publication
             url={`/publication/${publication.slug}`}
             title={publication.title.rendered}
-            PublicationImage={image}
+            publicationImage={image}
           />
         </li>
       );

@@ -5,7 +5,7 @@ const grid = css`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto 1fr auto;
-  grid-gap: 48px;
+  grid-gap: ${(props) => props.theme.pxScale[6]};
 `;
 
 const gridInner = css`
@@ -20,4 +20,11 @@ const gridThird = css`
   grid-gap: ${(props) => props.theme.pxScale[6]};
 `;
 
-export {grid, gridInner, gridThird};
+const gridGallery = css`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: min-content;
+  grid-gap: ${(props) => props.theme.pxScale[6]};
+`;
+
+export {grid, gridInner, gridThird, gridGallery};
