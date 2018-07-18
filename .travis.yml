@@ -1,9 +1,0 @@
-language: node_js
-node_js:
- — “7”
-script:
- — echo “Deploy!!”
-install:
- — npm install -g firebase-tools
-after_success:
- — firebase deploy — project projectId — token 1/yLCmYv169TXl2OB5wmZkBtv8xbEm6bSU6LkjwXnscnY.
