@@ -8,7 +8,7 @@ import CurrentExhibition from '../components/CurrentExhibition';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 
-const PAGE_ID = 85;
+const PAGE_ID = 143;
 const endpoint = `${config.apiUrl}/wp-json/wp/v2/pages/${PAGE_ID}`;
 
 class Index extends Component {
@@ -20,6 +20,9 @@ class Index extends Component {
 
   render() {
     const currentExhibition = getCurrentExhibitionFromData(this.props.data);
+    if (!currentExhibition) {
+      return null;
+    }
     return (
       <CurrentExhibition
         url={`/exhibition/${currentExhibition.post_name}`}
@@ -31,7 +34,7 @@ class Index extends Component {
 }
 
 function getCurrentExhibitionFromData(data) {
-  return data.acf.current_exhibition[0];
+  return data.acf.current_exhibition && data.acf.current_exhibition[0];
 }
 
 export default withLayout(Index);
