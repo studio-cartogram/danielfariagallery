@@ -38,11 +38,16 @@ class Exhibition extends Component {
           </Title>
           <p>
             {exhibition.acf.start_date} - {exhibition.acf.end_date}
+            <br />
+            Opening reception: {exhibition.acf.opening_reception}
           </p>
-          <p>Opening reception: {exhibition.acf.opening_reception}</p>
         </PageMast>
         <Column />
-        <PageText>{exhibition.content.rendered}</PageText>
+        <PageText>
+          <div
+            dangerouslySetInnerHTML={{__html: exhibition.content.rendered}}
+          />
+        </PageText>
         <PageThumbs>{workimageMarkup}</PageThumbs>
       </React.Fragment>
     );

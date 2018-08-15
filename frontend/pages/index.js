@@ -20,21 +20,25 @@ class Index extends Component {
 
   render() {
     const currentExhibition = getCurrentExhibitionFromData(this.props.data);
+    const imageFeature = currentExhibition._embedded;
     if (!currentExhibition) {
       return null;
     }
     return (
-      <CurrentExhibition
-        url={`/exhibition/${currentExhibition.post_name}`}
-        title={currentExhibition.post_title}
-        image={currentExhibition.acf.feature}
-      />
+      console.log(currentExhibition),
+      (
+        <CurrentExhibition
+          url={`/exhibition/${currentExhibition.post_name}`}
+          title={currentExhibition.post_title}
+          image={currentExhibition.acf.thumbnail}
+        />
+      )
     );
   }
 }
 
 function getCurrentExhibitionFromData(data) {
-  return data.acf.current_exhibition && data.acf.current_exhibition[0];
+  return data.acf.current_exhibition[0];
 }
 
 export default withLayout(Index);

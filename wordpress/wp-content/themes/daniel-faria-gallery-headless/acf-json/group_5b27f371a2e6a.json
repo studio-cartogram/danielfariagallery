@@ -32,6 +32,8 @@
                 "class": "",
                 "id": ""
             },
+            "show_in_rest": 1,
+            "edit_in_rest": 1,
             "display_format": "F j, Y",
             "return_format": "F j, Y",
             "first_day": 1
@@ -66,6 +68,8 @@
                 "class": "",
                 "id": ""
             },
+            "show_in_rest": 1,
+            "edit_in_rest": 0,
             "post_type": [
                 "artist"
             ],
@@ -93,6 +97,8 @@
                 "class": "",
                 "id": ""
             },
+            "show_in_rest": 1,
+            "edit_in_rest": 0,
             "collapsed": "",
             "min": 0,
             "max": 0,
@@ -209,6 +215,32 @@
                     "placeholder": ""
                 }
             ]
+        },
+        {
+            "key": "field_5b5f68f9bce6b",
+            "label": "Thumbnail",
+            "name": "thumbnail",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_rest": 1,
+            "edit_in_rest": 0,
+            "return_format": "url",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -228,5 +260,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1531863422
+    "modified": 1532995253
 }

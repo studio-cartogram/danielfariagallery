@@ -3,6 +3,10 @@ import {StyledExhibitionName, StyledExhibition} from './styles';
 import Image from '../Image';
 
 function Exhibition({url, exhibitionImage, title}) {
+  const imageMarkup = exhibitionImage ? (
+    <Image src={exhibitionImage} alt={title} />
+  ) : null;
+
   return (
     <StyledExhibition>
       <StyledExhibitionName>
@@ -10,7 +14,7 @@ function Exhibition({url, exhibitionImage, title}) {
           <a>{title}</a>
         </Link>
       </StyledExhibitionName>
-      <Image src={exhibitionImage} alt={title} />
+      {imageMarkup}
     </StyledExhibition>
   );
 }
