@@ -1,23 +1,25 @@
+import {StyledButton, StyledLi, StyledFilterControl} from './styles';
+
 function FilterControl({label, items, onItemClick}) {
   const itemsMarkup = [...new Set(items)].map((item) => {
     return (
-      <li key={item}>
-        <button onClick={onItemClick(item)}>{item}</button>
-      </li>
+      <StyledLi key={item}>
+        <StyledButton onClick={onItemClick(item)}>{item}</StyledButton>
+      </StyledLi>
     );
   });
 
   const allButtonMarkup = (
-    <li>
-      <button onClick={onItemClick(null)}>{label} ^</button>
-    </li>
+    <StyledLi>
+      <StyledButton onClick={onItemClick(null)}>{label}</StyledButton>
+    </StyledLi>
   );
 
   return (
-    <ul>
+    <StyledFilterControl>
       {allButtonMarkup}
       {itemsMarkup}
-    </ul>
+    </StyledFilterControl>
   );
 }
 

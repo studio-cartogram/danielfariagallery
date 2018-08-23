@@ -30,19 +30,19 @@ class ExhibitionIndex extends Component {
     });
 
     return (
-      <div>
+      <React.Fragment>
         <FilterControl
           onItemClick={this.handleFilterClick}
-          label={'Years'}
+          label={'All Years'}
           items={exhibitionYears}
         />
         <FilterControl
           onItemClick={this.handleFilterClick}
-          label={'Artists'}
+          label={'All Artists'}
           items={exhibitionArtists}
         />
         <ExhibitionList exhibitions={exhibitions} filters={filters} />
-      </div>
+      </React.Fragment>
     );
   }
 

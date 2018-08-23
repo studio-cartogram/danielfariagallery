@@ -42,6 +42,12 @@ injectGlobal`
     font-weight: normal;
     color: ${theme.Secondary.CurrentColor};
   }
+  h4 {
+    font-size: ${theme.pxScale[2]}
+    padding-bottom: ${theme.pxScale[0]};
+    font-weight: normal;
+    color: ${theme.CurrentColor};
+  }
   ul {
     list-style: none;
   }

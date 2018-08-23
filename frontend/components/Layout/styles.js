@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 import {breakpoints} from '../../styles/breakpoints';
-import {grid} from '../../styles/grid';
 
 export const StyledLayout = styled.section`
-  ${grid};
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 24px;
+
+  & > * {
+    grid-column: span 3;
+  }
+
+  ${breakpoints.bpM} {
+    grid-gap: ${(props) => props.theme.pxScale[6]};
+  }
 `;

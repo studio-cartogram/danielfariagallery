@@ -1,20 +1,31 @@
 import Link from 'next/link';
-import {StyledExhibitionName, StyledExhibition} from './styles';
+
+import {
+  StyledExhibitionName,
+  StyledExhibitionDate,
+  StyledExhibition,
+  StyledExhibitionThumb,
+} from './styles';
 import Image from '../Image';
 
-function Exhibition({url, exhibitionImage, title}) {
+function Exhibition({url, exhibitionImage, artist, title, startdate, enddate}) {
   const imageMarkup = exhibitionImage ? (
-    <Image src={exhibitionImage} alt={title} />
+    <StyledExhibitionThumb src={exhibitionImage} alt={title} />
   ) : null;
 
   return (
     <StyledExhibition>
-      <StyledExhibitionName>
-        <Link href={url}>
-          <a>{title}</a>
-        </Link>
-      </StyledExhibitionName>
-      {imageMarkup}
+      <Link href={url}>
+        <a>
+          {imageMarkup}
+          <StyledExhibitionName>
+            {artist}: {title}
+          </StyledExhibitionName>
+          <StyledExhibitionDate>
+            {startdate} - {enddate}
+          </StyledExhibitionDate>
+        </a>
+      </Link>
     </StyledExhibition>
   );
 }
