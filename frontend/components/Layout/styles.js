@@ -4,7 +4,7 @@ import {breakpoints} from '../../styles/breakpoints';
 export const StyledLayout = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 24px;
+  grid-gap: ${(props) => props.theme.pxScale[3]};
 
   & > * {
     grid-column: span 3;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {grid} from '../../styles/grid';
 import {breakpoints} from '../../styles/breakpoints';
 
 const StyledPageMast = styled.div`

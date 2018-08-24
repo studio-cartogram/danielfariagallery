@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Exhibition from '../Exhibition';
 import FilterControl from '../FilterControl';
 import {getYearFromDateString} from '../../pages/exhibitions';
+
 function ExhibitionList({exhibitions, filters}) {
   const exhibitionlistMarkup = exhibitions
     .filter((exhibition) => {
@@ -34,7 +35,7 @@ function ExhibitionList({exhibitions, filters}) {
 
   return (
     <React.Fragment>
-      {/* <p>Current Filter: {filters.join(', ')}</p> */}
+      <p>Current Filter: {filters.join(', ')}</p>
       <StyledExhibitionList>{exhibitionlistMarkup}</StyledExhibitionList>
     </React.Fragment>
   );

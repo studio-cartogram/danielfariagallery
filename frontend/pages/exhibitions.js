@@ -5,7 +5,9 @@ import withLayout from '../decorators/withLayout';
 import ExhibitionList from '../components/ExhibitionList';
 import FilterControl from '../components/FilterControl';
 
-const endpoint = `${config.apiUrl}/wp-json/wp/v2/exhibitions?_embed`;
+const endpoint = `${
+  config.apiUrl
+}/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
 
 class ExhibitionIndex extends Component {
   state = {
@@ -21,6 +23,11 @@ class ExhibitionIndex extends Component {
   render() {
     const exhibitions = this.props.data;
     const {filters} = this.state;
+
+    if (!exhibitions.length) {
+      return null;
+    }
+
     const exhibitionYears = exhibitions.map((exhibition) => {
       return getYearFromDateString(exhibition.acf.start_date);
     });
