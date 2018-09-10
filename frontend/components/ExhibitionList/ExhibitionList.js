@@ -1,17 +1,26 @@
+import React from 'react';
 import {StyledExhibitionList, StyledExhibitionLi} from './styles';
-import React, {Component} from 'react';
 import Exhibition from '../Exhibition';
-import FilterControl from '../FilterControl';
-import {getYearFromDateString} from '../../pages/exhibitions';
+import {getYearFromDateString} from '../../utilities';
 
 function ExhibitionList({exhibitions, filters}) {
   const exhibitionlistMarkup = exhibitions
     .filter((exhibition) => {
-      return (
-        filters.length === 0 ||
-        getYearFromDateString(exhibition.acf.start_date) === filters[0] ||
-        exhibition.acf.artist[0].post_title === filters[0]
-      );
+      const {artist, year} = filters;
+      if (artist && year) {
+        return (
+          exhibition.acf.artist[0].post_title === artist &&
+          getYearFromDateString(exhibition.acf.start_date) === year
+        );
+      }
+      if (artist) {
+        return exhibition.acf.artist[0].post_title === artist;
+      }
+      if (year) {
+        return getYearFromDateString(exhibition.acf.start_date) === year;
+      }
+
+      return true;
     })
     .map((exhibition) => {
       const image = exhibition._embedded
@@ -35,7 +44,6 @@ function ExhibitionList({exhibitions, filters}) {
 
   return (
     <React.Fragment>
-      <p>Current Filter: {filters.join(', ')}</p>
       <StyledExhibitionList>{exhibitionlistMarkup}</StyledExhibitionList>
     </React.Fragment>
   );

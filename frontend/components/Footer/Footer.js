@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyledFooter, StyledFooterItem, StyledFooterItemFull} from './styles';
-import Link from 'next/link';
+import Link from '../../components/Link';
 
 function Footer({phone, email, address, map, facebook, twitter, instagram}) {
   return (
@@ -9,33 +9,27 @@ function Footer({phone, email, address, map, facebook, twitter, instagram}) {
         <StyledFooterItemFull>
           <p>{address}</p>
         </StyledFooterItemFull>
-        <Link href={map}>
-          <a target="_blank">Directions</a>
+        <Link target="_blank" href={map}>
+          Directions
         </Link>
       </StyledFooterItem>
       <StyledFooterItem>
         <StyledFooterItemFull>
-          <Link href={`mailto:${email}`}>
-            <a>{email}</a>
-          </Link>
+          <Link href={`mailto:${email}`}>{email}</Link>
         </StyledFooterItemFull>
-        <Link href={`tel:${phone}`}>
-          <a>{phone}</a>
-        </Link>
+        <Link href={`tel:${phone}`}>{phone}</Link>
       </StyledFooterItem>
       <StyledFooterItem>
-        <Link href={twitter}>
-          <a target="_blank">Twitter</a>
+        <Link target="_blank" href={twitter}>
+          Twitter
         </Link>
-        <Link href={facebook}>
-          <a target="_blank">Facebook</a>
+        <Link target="_blank" href={facebook}>
+          Facebook
         </Link>
-        <Link href={instagram}>
-          <a target="_blank">Instagram</a>
+        <Link target="_blank" href={instagram}>
+          Instagram
         </Link>
-        <Link href="/">
-          <a>Subscribe</a>
-        </Link>
+        <Link href="/">Subscribe</Link>
       </StyledFooterItem>
     </StyledFooter>
   );

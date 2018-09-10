@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
-import Link from 'next/link';
+import React from 'react';
+import Link from '../../components/Link';
 import {StyledMenuText, StyledMenu} from './styles';
 
 function Menu({items}) {
   const itemsMarkup = items.map((item, index) => {
     return item.object === 'custom' ? (
       <Link href={item.url} key={item.ID}>
-        <a>
-          <StyledMenuText>{item.title}</StyledMenuText>
-        </a>
+        <StyledMenuText>{item.title}</StyledMenuText>
       </Link>
     ) : (
       <Link
@@ -16,9 +14,7 @@ function Menu({items}) {
         href={`/${getSlug(item.url)}`}
         key={item.ID}
       >
-        <a>
-          <StyledMenuText>{item.title}</StyledMenuText>
-        </a>
+        <StyledMenuText>{item.title}</StyledMenuText>
       </Link>
     );
   });

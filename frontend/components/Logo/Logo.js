@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '../../components/Link';
 import {StyledLogo} from './styles';
 import Icon from '../Icon';
 
@@ -6,9 +6,7 @@ function Logo() {
   return (
     <StyledLogo>
       <Link href="/">
-        <a>
-          <Icon icon={'LOGO'} />
-        </a>
+        <Icon icon={'LOGO'} />
       </Link>
     </StyledLogo>
   );

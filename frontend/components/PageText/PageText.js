@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import Link from 'next/link';
+import React from 'react';
 import {StyledPageText} from './styles';
 
 function PageText({children}) {

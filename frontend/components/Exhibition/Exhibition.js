@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '../../components/Link';
 
 import {
   StyledExhibitionName,
@@ -6,7 +6,6 @@ import {
   StyledExhibition,
   StyledExhibitionThumb,
 } from './styles';
-import Image from '../Image';
 
 function Exhibition({url, exhibitionImage, artist, title, startdate, enddate}) {
   const imageMarkup = exhibitionImage ? (
@@ -16,15 +15,13 @@ function Exhibition({url, exhibitionImage, artist, title, startdate, enddate}) {
   return (
     <StyledExhibition>
       <Link href={url}>
-        <a>
-          {imageMarkup}
-          <StyledExhibitionName>
-            {artist}: {title}
-          </StyledExhibitionName>
-          <StyledExhibitionDate>
-            {startdate} - {enddate}
-          </StyledExhibitionDate>
-        </a>
+        {imageMarkup}
+        <StyledExhibitionName>
+          {artist}: {title}
+        </StyledExhibitionName>
+        <StyledExhibitionDate>
+          {startdate} - {enddate}
+        </StyledExhibitionDate>
       </Link>
     </StyledExhibition>
   );

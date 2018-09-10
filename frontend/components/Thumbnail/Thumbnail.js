@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import Link from 'next/link';
+import React from 'react';
+import Link from '../../components/Link';
 import {
   StyledThumbnail,
   StyledThumbnailImage,
@@ -10,9 +10,7 @@ function Thumbnail({url, image, title, details}) {
   return (
     <StyledThumbnail>
       <Link href={url}>
-        <a>
-          <StyledThumbnailImage key={title} alt={title} src={image} />
-        </a>
+        <StyledThumbnailImage key={title} alt={title} src={image} />
       </Link>
       <StyledThumbnailCaption>{title}</StyledThumbnailCaption>
     </StyledThumbnail>
