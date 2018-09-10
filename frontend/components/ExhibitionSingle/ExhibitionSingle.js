@@ -17,6 +17,7 @@ function ExhibitionSingle({
   const workimageMarkup = works.map((work) => {
     return (
       <Thumbnail
+        key={work.work_image}
         url={work.work_image}
         title={work.work_title}
         image={work.work_image}

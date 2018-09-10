@@ -2,39 +2,60 @@ import styled from 'styled-components';
 import {breakpoints} from '../../styles/breakpoints';
 import theme from '../../styles/theme';
 
+const buttonHeight = theme.scale[5];
+
+const StyledFilterControl = styled.div`
+  position: relative;
+  height: auto;
+  position: relative;
+
+  ${breakpoints.bpM} {
+  }
+`;
+
+const StyledItemsList = styled.ul`
+  display: ${(props) => (props.open ? 'block' : 'none')};
+  background-color: white;
+  border: 1px solid ${theme.LinkPrimary.CurrentColor};
+  top: -${(props) => props.theme.pxScale[2]};
+  margin: 0;
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  padding-top: ${(props) => props.theme.pxScale[7]};
+  padding-bottom: ${(props) => props.theme.pxScale[1]};
+`;
+
 const StyledButton = styled.button`
   cursor: pointer;
+  background: none;
   color: ${theme.LinkPrimary.CurrentColor};
   font-size: ${(props) => props.theme.pxScale[2]};
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: left;
+  min-height: ${buttonHeight}px;
+  padding-left: ${(props) => props.theme.pxScale[2]};
+  padding-right: ${(props) => props.theme.pxScale[2]};
+  line-height: ${buttonHeight}px;
 `;
 
 const StyledLi = styled.li`
-  padding-top: ${(props) => props.theme.pxScale[0]};
-  padding-bottom: ${(props) => props.theme.pxScale[0]};
-
-  &:hover {
-    cursor: pointer;
-  }
+  list-style: none;
+  display: block;
 `;
 
-const StyledFilterControl = styled.ul`
-  border: 1px solid ${theme.LinkPrimary.CurrentColor};
-  padding: ${(props) => props.theme.pxScale[3]};
-  width: 100%;
-  height: auto;
-  position: relative;
-  grid-column: span 3;
-
-  &:before {
-    position: absolute;
-    content: '^';
-    color: ${theme.LinkPrimary.CurrentColor};
-    right: ${(props) => props.theme.pxScale[3]};
-  }
-
-  ${breakpoints.bpM} {
-    grid-column: span 1;
-  }
+const StyledArrow = styled.span`
+  padding-right: ${(props) => props.theme.pxScale[2]};
+  padding-left: ${(props) => props.theme.pxScale[2]};
 `;
 
-export {StyledButton, StyledLi, StyledFilterControl};
+export {
+  StyledButton,
+  StyledLi,
+  StyledFilterControl,
+  StyledItemsList,
+  StyledArrow,
+};

@@ -2,7 +2,6 @@ import Layout from '../components/Layout';
 import React, {Component} from 'react';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-import PageWrapper from '../components/PageWrapper.js';
 import Menu from '../components/Menu/Menu.js';
 import CurrentExhibition from '../components/CurrentExhibition';
 import {config} from '../config.js';

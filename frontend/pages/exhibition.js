@@ -1,9 +1,9 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
-import Error from 'next/error';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 import ExhibitionSingle from '../components/ExhibitionSingle';
+import Error from '../components/Error';
 
 class Exhibition extends React.Component {
   static async getInitialProps(context) {
@@ -15,6 +15,9 @@ class Exhibition extends React.Component {
   }
   render() {
     const exhibition = this.props.data[0];
+    if (!exhibition) {
+      return <Error />;
+    }
     return (
       <ExhibitionSingle
         title={`${exhibition.acf.artist[0].post_title}: ${

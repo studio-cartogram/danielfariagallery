@@ -1,24 +1,39 @@
-import {StyledButton, StyledLi, StyledFilterControl} from './styles';
+import Icon from '../Icon';
 
-function FilterControl({label, items, onItemClick}) {
+import {
+  StyledButton,
+  StyledLi,
+  StyledFilterControl,
+  StyledItemsList,
+  StyledArrow,
+} from './styles';
+
+function FilterControl({label, filterKey, items, onItemClick, open, selected}) {
   const itemsMarkup = [...new Set(items)].map((item) => {
     return (
       <StyledLi key={item}>
-        <StyledButton onClick={onItemClick(item)}>{item}</StyledButton>
+        <StyledButton onClick={onItemClick(filterKey, item)}>
+          {item}
+        </StyledButton>
       </StyledLi>
     );
   });
 
   const allButtonMarkup = (
     <StyledLi>
-      <StyledButton onClick={onItemClick(null)}>{label}</StyledButton>
+      <StyledButton onClick={open ? onItemClick() : onItemClick(filterKey)}>
+        {open ? label : selected || label}
+        <StyledArrow>
+          <Icon icon={open ? 'ARROWUP' : 'ARROWDOWN'} />
+        </StyledArrow>
+      </StyledButton>
     </StyledLi>
   );
 
   return (
     <StyledFilterControl>
       {allButtonMarkup}
-      {itemsMarkup}
+      <StyledItemsList open={open}>{itemsMarkup}</StyledItemsList>
     </StyledFilterControl>
   );
 }

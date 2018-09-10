@@ -10,12 +10,6 @@ app
   .then(() => {
     const server = express();
 
-    server.get('/post/:slug', (req, res) => {
-      const actualPage = '/post';
-      const queryParams = {slug: req.params.slug, apiRoute: 'post'};
-      app.render(req, res, actualPage, queryParams);
-    });
-
     server.get('/page/:slug', (req, res) => {
       const actualPage = '/post';
       const queryParams = {slug: req.params.slug, apiRoute: 'page'};
@@ -43,12 +37,6 @@ app
     server.get('/publication/:slug', (req, res) => {
       const actualPage = '/publication';
       const queryParams = {slug: req.params.slug, apiRoute: 'publications'};
-      app.render(req, res, actualPage, queryParams);
-    });
-
-    server.get('/category/:slug', (req, res) => {
-      const actualPage = '/category';
-      const queryParams = {slug: req.params.slug};
       app.render(req, res, actualPage, queryParams);
     });
 

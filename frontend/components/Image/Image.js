@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyledImage} from './styles';
 
 function Image({src, alt}) {
