@@ -48,7 +48,7 @@ const StyledLi = styled.li`
 `;
 
 const StyledArrow = styled.span`
-  padding-right: ${(props) => props.theme.pxScale[2]};
+  padding-right: 0;
   padding-left: ${(props) => props.theme.pxScale[2]};
 `;
 

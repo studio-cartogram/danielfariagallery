@@ -4,11 +4,11 @@ import {breakpoints} from '../../styles/breakpoints';
 export const StyledMenuText = styled.span`
   display: inline-flex;
   margin-left: 0;
-  margin-right: ${(props) => props.theme.pxScale[3]};
+  margin-right: ${(props) => props.theme.pxScale[4]};
   ${(props) => props.theme.linkMain};
 
   ${breakpoints.bpM} {
-    margin-left: ${(props) => props.theme.pxScale[3]};
+    margin-left: ${(props) => props.theme.pxScale[4]};
     margin-right: 0;
   }
 `;
