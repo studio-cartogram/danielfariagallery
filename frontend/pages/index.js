@@ -17,19 +17,23 @@ class Index extends Component {
 
   render() {
     const currentExhibition = getCurrentExhibitionFromData(this.props.data);
-    const imageFeature = currentExhibition._embedded;
     if (!currentExhibition) {
       return null;
     }
+
+    const {post_name, post_title, acf} = currentExhibition;
+
+    if (!acf) {
+      return null;
+    }
+    const {thumbnail} = acf;
+
     return (
-      console.log(currentExhibition),
-      (
-        <CurrentExhibition
-          url={`/exhibition/${currentExhibition.post_name}`}
-          title={currentExhibition.post_title}
-          image={currentExhibition.acf.thumbnail}
-        />
-      )
+      <CurrentExhibition
+        url={`/exhibition/${post_name}`}
+        title={post_title}
+        image={thumbnail}
+      />
     );
   }
 }

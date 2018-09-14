@@ -25,7 +25,7 @@ class Contact extends React.Component {
     } = this.props.contactInfo.acf;
     const stafflistMarkup = staff.map((staff) => {
       return (
-        <ul>
+        <ul key={staff.name}>
           <li key={staff.name}>
             <Link href="mailto:{staff.email}">
               <a>{staff.name}</a>
