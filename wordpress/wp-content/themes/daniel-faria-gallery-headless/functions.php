@@ -82,4 +82,3 @@ function deepIncludeACFFields( &$item, $key, $postTypes ) {
     $item->acf = get_fields( $item->ID );
   }
 }
-
