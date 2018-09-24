@@ -1,4 +1,7 @@
 import React from 'react';
+import Router from 'next/router';
+import Head from 'next/head';
+import NProgress from 'nprogress';
 import {ThemeProvider} from 'styled-components';
 import theme from '../styles/theme';
 import Layout from '../components/Layout';
@@ -33,6 +36,15 @@ function withLayout(Component) {
       };
     }
 
+    componentDidMount() {
+      Router.onRouteChangeStart = () => {
+        console.log('route chaged');
+        return NProgress.start();
+      };
+      Router.onRouteChangeComplete = () => NProgress.done();
+      Router.onRouteChangeError = () => NProgress.done();
+    }
+
     render() {
       const {
         email,
@@ -44,25 +56,34 @@ function withLayout(Component) {
         phone,
       } = this.props.globalData.contactInfo.acf;
       return (
-        <ThemeProvider theme={theme}>
-          <GridWrapper>
-            <Layout>
-              <Header items={this.props.globalData.navs.main.items} />
-              <Main>
-                <Component {...this.props} />
-              </Main>
-              <Footer
-                email={email}
-                address={address}
-                map={map}
-                twitter={twitter}
-                facebook={facebook}
-                instagram={instagram}
-                phone={phone}
-              />
-            </Layout>
-          </GridWrapper>
-        </ThemeProvider>
+        <div>
+          <Head>
+            <link
+              rel="stylesheet"
+              type="text/css"
+              href="/static/nprogress.css"
+            />
+          </Head>
+          <ThemeProvider theme={theme}>
+            <GridWrapper>
+              <Layout>
+                <Header items={this.props.globalData.navs.main.items} />
+                <Main>
+                  <Component {...this.props} />
+                </Main>
+                <Footer
+                  email={email}
+                  address={address}
+                  map={map}
+                  twitter={twitter}
+                  facebook={facebook}
+                  instagram={instagram}
+                  phone={phone}
+                />
+              </Layout>
+            </GridWrapper>
+          </ThemeProvider>
+        </div>
       );
     }
   };
