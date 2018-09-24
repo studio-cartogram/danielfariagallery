@@ -25,15 +25,21 @@ function ExhibitionSingle({
     );
   });
 
+  const openingReceptionMarkup = opening
+    ? `Opening reception: ${opening}`
+    : null;
+
   return (
     <React.Fragment>
       <Column />
       <PageMast>
-        <Title>{title}</Title>
+        <Title>
+          <div dangerouslySetInnerHTML={{__html: title}} />
+        </Title>
         <p>
           {startDate} - {endDate}
           <br />
-          Opening reception: {opening}
+          {openingReceptionMarkup}
         </p>
       </PageMast>
       <Column />
