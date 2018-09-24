@@ -1,4 +1,5 @@
 import Link from '../../components/Link';
+import {commaListsAnd} from 'common-tags';
 
 import {
   StyledExhibitionName,
@@ -7,7 +8,14 @@ import {
   StyledExhibitionThumb,
 } from './styles';
 
-function Exhibition({url, exhibitionImage, artist, title, startdate, enddate}) {
+function Exhibition({
+  url,
+  exhibitionImage,
+  artists,
+  title,
+  startdate,
+  enddate,
+}) {
   const imageMarkup = exhibitionImage ? (
     <StyledExhibitionThumb src={exhibitionImage} alt={title} />
   ) : null;
@@ -17,7 +25,11 @@ function Exhibition({url, exhibitionImage, artist, title, startdate, enddate}) {
       <Link href={url}>
         {imageMarkup}
         <StyledExhibitionName>
-          {artist}: {title}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: commaListsAnd`${artists}: ${title}`,
+            }}
+          />
         </StyledExhibitionName>
         <StyledExhibitionDate>
           {startdate} - {enddate}

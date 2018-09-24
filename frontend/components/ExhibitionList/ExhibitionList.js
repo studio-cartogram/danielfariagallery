@@ -28,13 +28,15 @@ function ExhibitionList({exhibitions, filters}) {
             .source_url
         : null;
 
+      const artists = exhibition.acf.artist.map((artist) => artist.post_title);
+
       return (
         <StyledExhibitionLi key={exhibition.id}>
           <Exhibition
             url={`/exhibition/${exhibition.slug}`}
             title={exhibition.title.rendered}
             exhibitionImage={image}
-            artist={exhibition.acf.artist[0].post_title}
+            artists={artists}
             startdate={exhibition.acf.start_date}
             enddate={exhibition.acf.end_date}
           />
