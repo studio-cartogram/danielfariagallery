@@ -37,10 +37,7 @@ function withLayout(Component) {
     }
 
     componentDidMount() {
-      Router.onRouteChangeStart = () => {
-        console.log('route chaged');
-        return NProgress.start();
-      };
+      Router.onRouteChangeStart = () => NProgress.start();
       Router.onRouteChangeComplete = () => NProgress.done();
       Router.onRouteChangeError = () => NProgress.done();
     }
