@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import fetch from 'isomorphic-unfetch';
-import Error from 'next/error';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
+import Error from '../components/Error';
+import ArtistSingle from '../components/ArtistSingle';
 
-class SingleArtist extends Component {
+class Artist extends React.Component {
   static async getInitialProps(context) {
-    const {slug, apiRoute} = context.query;
-    const endpoint = `${config.apiUrl}/wp-json/wp/v2/${apiRoute}?slug=${slug}`;
+    const {slug} = context.query;
+    const endpoint = `${config.apiUrl}/wp-json/wp/v2/artists?slug=${slug}`;
     const res = await fetch(endpoint);
     const data = await res.json();
     return {data};
@@ -15,8 +16,21 @@ class SingleArtist extends Component {
 
   render() {
     const artist = this.props.data[0];
-    return <div>{artist.title.rendered}</div>;
+    if (!artist) {
+      return <Error />;
+    }
+
+    return (
+      <ArtistSingle
+        title={artist.title.rendered}
+        content={artist.content.rendered}
+        works={artist.acf.work}
+        exhibitions={artist.acf.exhibitions}
+        press={artist.acf.press}
+        news={artist.acf.news}
+      />
+    );
   }
 }
 
-export default withLayout(SingleArtist);
+export default withLayout(Artist);

@@ -19,3 +19,6 @@ export {default as GridItem} from './GridItem';
 export {default as Thumbnail} from './Thumbnail';
 export {default as Title} from './Title';
 export {default as Tab} from './Tab';
+export {default as Fetcher} from './Fetcher';
+export {default as ArtistList} from './ArtistList';
+export {default as ArtistDisplay} from './ArtistDisplay';
