@@ -7,8 +7,8 @@ import Error from '../components/Error';
 
 class Exhibition extends React.Component {
   static async getInitialProps(context) {
-    const {slug, apiRoute} = context.query;
-    const endpoint = `${config.apiUrl}/wp-json/wp/v2/${apiRoute}?slug=${slug}`;
+    const {slug} = context.query;
+    const endpoint = `${config.apiUrl}/wp-json/wp/v2/exhibitions?slug=${slug}`;
     const res = await fetch(endpoint);
     const data = await res.json();
     return {data};

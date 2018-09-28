@@ -1,11 +1,10 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
-import Error from 'next/error';
 import withLayout from '../decorators/withLayout';
 import {endpoints} from '../config';
 import Column from '../components/Column';
 import GridItem from '../components/GridItem';
-import Link from 'next/link';
+import Link from '../components/Link';
 
 class Contact extends React.Component {
   static async getInitialProps(context) {
@@ -23,13 +22,12 @@ class Contact extends React.Component {
       note,
       staff,
     } = this.props.contactInfo.acf;
+
     const stafflistMarkup = staff.map((staff) => {
       return (
         <ul key={staff.name}>
           <li key={staff.name}>
-            <Link href="mailto:{staff.email}">
-              <a>{staff.name}</a>
-            </Link>
+            <Link href={`mailto:${staff.email}`}>{staff.name}</Link>
             <br />
             <em>{staff.role}</em>
           </li>
@@ -69,9 +67,7 @@ class Contact extends React.Component {
           <GridItem>
             <h3>Email</h3>
             <p>
-              <Link href="mailto:{email}">
-                <a>{email}</a>
-              </Link>
+              <Link href={`mailto:${email}`}>{email}</Link>
             </p>
           </GridItem>
           <GridItem>

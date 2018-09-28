@@ -10,6 +10,7 @@ import {
 
 function Exhibition({
   url,
+  slug,
   exhibitionImage,
   artists,
   title,
@@ -22,7 +23,7 @@ function Exhibition({
 
   return (
     <StyledExhibition>
-      <Link href={url}>
+      <Link href={`/exhibition?slug=${slug}`} as={url}>
         {imageMarkup}
         <StyledExhibitionName>
           <span

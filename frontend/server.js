@@ -16,27 +16,33 @@ app
       app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/exhibition/:slug', (req, res) => {
-      const actualPage = '/exhibition';
-      const queryParams = {slug: req.params.slug, apiRoute: 'exhibitions'};
+    server.get('/artist/:slug', (req, res) => {
+      const actualPage = '/artist';
+      const queryParams = {slug: req.params.slug};
       app.render(req, res, actualPage, queryParams);
     });
 
-    server.get('/artist/:slug', (req, res) => {
-      const actualPage = '/artist';
-      const queryParams = {slug: req.params.slug, apiRoute: 'artists'};
+    server.get('/exhibition/:slug', (req, res) => {
+      const actualPage = '/exhibition';
+      const queryParams = {slug: req.params.slug};
+      app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('/news/:slug', (req, res) => {
+      const actualPage = '/news';
+      const queryParams = {slug: req.params.slug};
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/fair/:slug', (req, res) => {
       const actualPage = '/fair';
-      const queryParams = {slug: req.params.slug, apiRoute: 'fairs'};
+      const queryParams = {slug: req.params.slug};
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/publication/:slug', (req, res) => {
       const actualPage = '/publication';
-      const queryParams = {slug: req.params.slug, apiRoute: 'publications'};
+      const queryParams = {slug: req.params.slug};
       app.render(req, res, actualPage, queryParams);
     });
 

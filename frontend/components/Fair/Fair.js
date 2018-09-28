@@ -2,12 +2,14 @@ import Link from '../../components/Link';
 import {StyledFairName, StyledFair} from './styles';
 import Image from '../Image';
 
-function Fair({url, fairImage, title}) {
+function Fair({url, slug, fairImage, title}) {
   return (
     <StyledFair>
       <StyledFairName>
-        <Link href={url}>{title}</Link>
-      </StyledFairName>
+        <Link as={url} href={`/fair?slug=${slug}`}>
+          {title}
+        </Link>
+      </StyledFairName>s
       <Image src={fairImage} alt={title} />
     </StyledFair>
   );
