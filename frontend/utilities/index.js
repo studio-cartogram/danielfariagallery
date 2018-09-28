@@ -17,3 +17,10 @@ export function getYearFromDateString(date) {
 export function getPastExhibitions(exhibitions) {
   return exhibitions.slice(1);
 }
+
+export function getFeaturedImage(postType) {
+  return postType._embedded
+    ? postType._embedded['wp:featuredmedia'][0].media_details.sizes.large
+        .source_url
+    : null;
+}

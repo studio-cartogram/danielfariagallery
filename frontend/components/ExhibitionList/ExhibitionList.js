@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyledExhibitionList, StyledExhibitionLi} from './styles';
 import Exhibition from '../Exhibition';
-import {getYearFromDateString} from '../../utilities';
+import {getYearFromDateString, getFeaturedImage} from '../../utilities';
 
 function ExhibitionList({exhibitions, filters}) {
   const exhibitionlistMarkup = exhibitions
@@ -23,16 +23,14 @@ function ExhibitionList({exhibitions, filters}) {
       return true;
     })
     .map((exhibition) => {
-      const image = exhibition._embedded
-        ? exhibition._embedded['wp:featuredmedia'][0].media_details.sizes.large
-            .source_url
-        : null;
+      const image = getFeaturedImage(exhibition);
 
       const artists = exhibition.acf.artist.map((artist) => artist.post_title);
 
       return (
         <StyledExhibitionLi key={exhibition.id}>
           <Exhibition
+            slug={exhibition.slug}
             url={`/exhibition/${exhibition.slug}`}
             title={exhibition.title.rendered}
             exhibitionImage={image}

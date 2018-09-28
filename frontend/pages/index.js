@@ -4,9 +4,11 @@ import fetch from 'isomorphic-unfetch';
 import CurrentExhibition from '../components/CurrentExhibition';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
+import {getCurrentExhibition, getFeaturedImage} from '../utilities';
 
-const PAGE_ID = 143;
-const endpoint = `${config.apiUrl}/wp-json/wp/v2/pages/${PAGE_ID}`;
+const endpoint = `${
+  config.apiUrl
+}/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
 
 class Index extends Component {
   static async getInitialProps() {
@@ -16,30 +18,30 @@ class Index extends Component {
   }
 
   render() {
-    const currentExhibition = getCurrentExhibitionFromData(this.props.data);
-    if (!currentExhibition) {
+    const exhibitions = this.props.data;
+
+    const currentExhibition = getCurrentExhibition(exhibitions);
+
+    if (currentExhibition.length === 0) {
       return null;
     }
 
-    const {post_name, post_title, acf} = currentExhibition;
+    const {slug, title, acf} = currentExhibition[0];
 
     if (!acf) {
       return null;
     }
-    const {thumbnail} = acf;
+    const image = getFeaturedImage(currentExhibition[0]);
 
     return (
       <CurrentExhibition
-        url={`/exhibition/${post_name}`}
-        title={post_title}
-        image={thumbnail}
+        slug={slug}
+        url={`/exhibition/${slug}`}
+        title={`${acf.artist[0].post_title}: ${title.rendered}`}
+        image={image}
       />
     );
   }
-}
-
-function getCurrentExhibitionFromData(data) {
-  return data.acf.current_exhibition[0];
 }
 
 export default withLayout(Index);
