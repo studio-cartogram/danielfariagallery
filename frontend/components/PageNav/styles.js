@@ -5,13 +5,23 @@ const StyledPageNav = styled.div`
   grid-column: span 3;
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
   flex-wrap: wrap;
 
   ${breakpoints.bpM} {
-    grid-column: span 2;
-    justify-content: space-between;
+    grid-column-start: 2;
+    grid-column-end: 4;
   }
 `;
 
-export {StyledPageNav};
+const StyledPageNavText = styled.span`
+  display: inline-flex;
+  margin-left: 0;
+  ${(props) => props.theme.linkMain};
+
+  ${breakpoints.bpM} {
+    margin-right: 0;
+    padding-right: ${(props) => props.theme.pxScale[3]};
+  }
+`;
+
+export {StyledPageNav, StyledPageNavText};
