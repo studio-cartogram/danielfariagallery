@@ -3,92 +3,6 @@
     "title": "Artists",
     "fields": [
         {
-            "key": "field_5b27fd0590668",
-            "label": "Exhibitions",
-            "name": "exhibitions",
-            "type": "relationship",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "exhibition"
-            ],
-            "taxonomy": [],
-            "filters": [
-                "search"
-            ],
-            "elements": [
-                "featured_image"
-            ],
-            "min": "",
-            "max": "",
-            "return_format": "object"
-        },
-        {
-            "key": "field_5b27fdde240a0",
-            "label": "Press",
-            "name": "press",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Add press",
-            "sub_fields": [
-                {
-                    "key": "field_5b27ff8be8032",
-                    "label": "Download",
-                    "name": "press_download",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "id",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_5b27fe10240a2",
-                    "label": "Title",
-                    "name": "press_title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                }
-            ]
-        },
-        {
             "key": "field_5b27fe71dcc7b",
             "label": "Work",
             "name": "work",
@@ -101,6 +15,8 @@
                 "class": "",
                 "id": ""
             },
+            "show_in_rest": 1,
+            "edit_in_rest": 0,
             "collapsed": "",
             "min": 0,
             "max": 0,
@@ -120,7 +36,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "id",
+                    "return_format": "url",
                     "preview_size": "thumbnail",
                     "library": "all",
                     "min_width": "",
@@ -220,6 +136,121 @@
             ]
         },
         {
+            "key": "field_5b27fdde240a0",
+            "label": "Press",
+            "name": "press",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add press",
+            "sub_fields": [
+                {
+                    "key": "field_5b27ff8be8032",
+                    "label": "Download",
+                    "name": "press_download",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_5b27fe10240a2",
+                    "label": "Title",
+                    "name": "press_title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_5b27fd0590668",
+            "label": "Exhibitions",
+            "name": "exhibitions",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_rest": 1,
+            "edit_in_rest": 0,
+            "post_type": [
+                "exhibition"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": "",
+            "return_format": "object"
+        },
+        {
+            "key": "field_5ba967f0f34f3",
+            "label": "News",
+            "name": "news",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "news"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": "",
+            "return_format": "object"
+        },
+        {
             "key": "field_5ba84eb37e7b2",
             "label": "Represented by Daniel Faria Gallery",
             "name": "representation",
@@ -256,5 +287,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537758275
+    "modified": 1537909168
 }

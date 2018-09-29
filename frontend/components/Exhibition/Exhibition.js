@@ -21,6 +21,8 @@ function Exhibition({
     <StyledExhibitionThumb src={exhibitionImage} alt={title} />
   ) : null;
 
+  console.log(url);
+
   return (
     <StyledExhibition>
       <Link href={`/exhibition?slug=${slug}`} as={url}>

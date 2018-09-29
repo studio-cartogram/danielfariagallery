@@ -27,7 +27,6 @@ class ArtistIndex extends Component {
       return artist.acf.representation;
     });
 
-    console.log(representedArtists);
     if (representedArtists.length === 0) {
       return <Error />;
     }
@@ -46,7 +45,6 @@ class ArtistIndex extends Component {
   }
 
   handleArtistHover = (artist) => {
-    console.log('i am hovered');
     this.setState({
       currentArtist: artist.slug,
     });

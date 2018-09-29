@@ -5,9 +5,6 @@ export const StyledMenuText = styled.span`
   display: inline-flex;
   margin-right: ${(props) => props.theme.pxScale[3]};
   ${(props) => props.theme.linkMain};
-
-  ${breakpoints.bpM} {
-  }
 `;
 
 export const StyledMenu = styled.nav`

@@ -1,15 +1,31 @@
 import React from 'react';
+import Link from '../Link';
+import {StyledArtistList, StyledArtistName, StyledArtistText} from './styles';
 
 class ArtistList extends React.Component {
   render() {
     const {artists} = this.props;
-    return artists.map((artist) => {
+    const artistlistMarkup = artists.map((artist) => {
       return (
-        <button key={artist.id} onMouseOver={this.onArtistHover(artist)}>
-          {artist.title.rendered}
-        </button>
+        <StyledArtistName>
+          <Link
+            slug={artist.slug}
+            as={`/artist/${artist.slug}`}
+            key={artist.id}
+            href={artist.link}
+            onMouseOver={this.onArtistHover(artist)}
+          >
+            <StyledArtistText>{artist.title.rendered}</StyledArtistText>
+          </Link>
+        </StyledArtistName>
       );
     });
+
+    return (
+      <React.Fragment>
+        <StyledArtistList>{artistlistMarkup}</StyledArtistList>
+      </React.Fragment>
+    );
   }
 
   onArtistHover = (artist) => {
