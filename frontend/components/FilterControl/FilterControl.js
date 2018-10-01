@@ -9,9 +9,9 @@ import {
 } from './styles';
 
 function FilterControl({label, filterKey, items, onItemClick, open, selected}) {
-  const itemsMarkup = [...new Set(items)].map((item) => {
+  const itemsMarkup = [...new Set(items)].map((item, index) => {
     return (
-      <StyledLi key={item}>
+      <StyledLi key={`${item}${index}`}>
         <StyledButton onClick={onItemClick(filterKey, item)}>
           {item}
         </StyledButton>
