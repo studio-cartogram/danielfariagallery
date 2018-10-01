@@ -39,7 +39,8 @@ export function getPastExhibitions(exhibitions) {
 }
 
 export function getFeaturedImage(postType) {
-  return postType._embedded
+  return postType._embedded &&
+    postType._embedded['wp:featuredmedia'][0].media_details.sizes.large
     ? postType._embedded['wp:featuredmedia'][0].media_details.sizes.large
         .source_url
     : null;
