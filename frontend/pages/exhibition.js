@@ -18,6 +18,11 @@ class Exhibition extends React.Component {
     if (!exhibition) {
       return <Error />;
     }
+
+    if (!exhibition.acf.artist[0]) {
+      console.log(exhibition);
+      return;
+    }
     return (
       <ExhibitionSingle
         title={`${exhibition.acf.artist[0].post_title}: ${

@@ -21,8 +21,8 @@ function Exhibition({
     <StyledExhibitionThumb src={exhibitionImage} alt={title} />
   ) : null;
 
-  console.log(url);
-
+  const displayTitle =
+    artists && artists.length ? commaListsAnd`${artists}: ${title}` : title;
   return (
     <StyledExhibition>
       <Link href={`/exhibition?slug=${slug}`} as={url}>
@@ -30,7 +30,7 @@ function Exhibition({
         <StyledExhibitionName>
           <span
             dangerouslySetInnerHTML={{
-              __html: commaListsAnd`${artists}: ${title}`,
+              __html: displayTitle,
             }}
           />
         </StyledExhibitionName>

@@ -52,6 +52,9 @@ class ExhibitionIndex extends Component {
     });
 
     const exhibitionArtists = exhibitions.map((exhibition) => {
+      if (!exhibition.acf.artist[0]) {
+        return;
+      }
       return exhibition.acf.artist[0].post_title;
     });
 
@@ -59,11 +62,13 @@ class ExhibitionIndex extends Component {
       ? getCurrentExhibition(exhibitions)
       : getPastExhibitions(exhibitions);
 
+    const titlePrefix = exhibitionsToShow[0].acf.artist[0]
+      ? `${exhibitionsToShow[0].acf.artist[0].post_title} : `
+      : '';
+
     const pageMarkup = onCurrent ? (
       <ExhibitionSingle
-        title={`${exhibitionsToShow[0].acf.artist[0].post_title}: ${
-          exhibitionsToShow[0].title.rendered
-        }`}
+        title={`${titlePrefix}${exhibitionsToShow[0].title.rendered}`}
         startDate={exhibitionsToShow[0].acf.start_date}
         endDate={exhibitionsToShow[0].acf.end_date}
         opening={exhibitionsToShow[0].acf.opening_reception}

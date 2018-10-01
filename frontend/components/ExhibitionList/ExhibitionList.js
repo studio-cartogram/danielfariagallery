@@ -25,7 +25,9 @@ function ExhibitionList({exhibitions, filters}) {
     .map((exhibition) => {
       const image = getFeaturedImage(exhibition);
 
-      const artists = exhibition.acf.artist.map((artist) => artist.post_title);
+      const artists = exhibition.acf.artist
+        ? exhibition.acf.artist.map((artist) => artist.post_title)
+        : [];
 
       return (
         <StyledExhibitionLi key={exhibition.id}>
