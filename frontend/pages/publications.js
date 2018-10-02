@@ -17,8 +17,8 @@ class PublicationIndex extends Component {
     const publications = this.props.data;
     const publicationlistMarkup = publications.map((publication) => {
       const image =
-        publication._embedded['wp:featuredmedia'][0].media_details.sizes.medium
-          .source_url;
+        publication._embedded['wp:featuredmedia'][0].media_details.sizes
+          .img_thumbnail.source_url;
       return (
         <li key={publication.id}>
           <Publication

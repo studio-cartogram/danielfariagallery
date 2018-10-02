@@ -17,7 +17,7 @@ class FairIndex extends Component {
     const fairs = this.props.data;
     const fairlistMarkup = fairs.map((fair) => {
       const image =
-        fair._embedded['wp:featuredmedia'][0].media_details.sizes.large
+        fair._embedded['wp:featuredmedia'][0].media_details.sizes.img_thumbnail
           .source_url;
       return (
         <li key={fair.id}>

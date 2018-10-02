@@ -27,5 +27,11 @@ require_once 'inc/api-routes.php';
 // Add featured image
 add_theme_support('post-thumbnails');
 
+// Add image sizes
+add_image_size('img_thumbnail',600, 600, true);
+add_image_size('img_medium',800, 800, false);
+add_image_size('img_large',1200, 800, false);
+add_image_size('img_xlarge',1600, 1000, false);
+
 
 
