@@ -23,3 +23,4 @@ export {default as Fetcher} from './Fetcher';
 export {default as ArtistList} from './ArtistList';
 export {default as ArtistDisplay} from './ArtistDisplay';
 export {default as Button} from './Button';
+export {default as NewsList} from './NewsList';

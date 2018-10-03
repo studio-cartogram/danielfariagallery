@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from '../Link';
 import {StyledArtistList, StyledArtistName, StyledArtistText} from './styles';
-import {compareLastNames} from '../../utilities';
 
 class ArtistList extends React.Component {
   render() {
@@ -10,11 +9,10 @@ class ArtistList extends React.Component {
 
     const artistlistMarkup = sortedArtists.map((artist) => {
       return (
-        <StyledArtistName>
+        <StyledArtistName key={artist.id}>
           <Link
             slug={artist.slug}
             as={`/artist/${artist.slug}`}
-            key={artist.id}
             href={`/artist?slug=${artist.slug}`}
             onMouseOver={this.onArtistHover(artist)}
           >
@@ -23,7 +21,6 @@ class ArtistList extends React.Component {
         </StyledArtistName>
       );
     });
-
     return (
       <React.Fragment>
         <StyledArtistList>{artistlistMarkup}</StyledArtistList>

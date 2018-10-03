@@ -8,6 +8,8 @@ import Title from '../Title';
 import Column from '../Column';
 import Fetcher from '../Fetcher';
 import Error from '../Error';
+import PageNav from '../PageNav';
+import Link from '../Link';
 import ExhibitionList from '../ExhibitionList';
 
 class ArtistSingle extends React.Component {
@@ -16,7 +18,7 @@ class ArtistSingle extends React.Component {
   };
   render() {
     const {currentSection} = this.state;
-    const {title, works, content} = this.props;
+    const {title, works, content, press} = this.props;
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
@@ -88,7 +90,13 @@ class ArtistSingle extends React.Component {
             </PageText>
           );
         case 'press':
-          return <PageText>Press</PageText>;
+          if (!press) {
+            return null;
+          }
+          const pressMarkup = press.map((press) => {
+            return <Link href={press.press_download}>{press.press_title}</Link>;
+          });
+          return <PageText>{pressMarkup}</PageText>;
       }
     }
 
@@ -100,13 +108,15 @@ class ArtistSingle extends React.Component {
           <Title>
             <div dangerouslySetInnerHTML={{__html: title}} />
           </Title>
-          <button onClick={this.handleSectionChange('work')}>Work</button>
-          <button onClick={this.handleSectionChange('cv')}>CV</button>
-          <button onClick={this.handleSectionChange('exhibitions')}>
-            Exhibitions
-          </button>
-          <button onClick={this.handleSectionChange('news')}>News</button>
-          <button onClick={this.handleSectionChange('press')}>Press</button>
+          <PageNav>
+            <Link onClick={this.handleSectionChange('work')}>Work</Link>
+            <Link onClick={this.handleSectionChange('cv')}>CV</Link>
+            <Link onClick={this.handleSectionChange('exhibitions')}>
+              Exhibitions
+            </Link>
+            <Link onClick={this.handleSectionChange('news')}>News</Link>
+            <Link onClick={this.handleSectionChange('press')}>Press</Link>
+          </PageNav>
         </PageMast>
         <Column />
         {subSectionMarkup}
