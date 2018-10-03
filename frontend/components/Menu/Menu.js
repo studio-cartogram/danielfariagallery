@@ -2,19 +2,24 @@ import React from 'react';
 import Link from '../../components/Link';
 import {StyledMenuText, StyledMenu} from './styles';
 
-function Menu({items}) {
+function Menu({items, current}) {
   const itemsMarkup = items.map((item, index) => {
     return item.object === 'custom' ? (
       <Link href={item.url} key={item.ID}>
-        <StyledMenuText>{item.title}</StyledMenuText>
+        <StyledMenuText current={current === item.url}>
+          {item.title}
+        </StyledMenuText>
       </Link>
     ) : (
       <Link
+        current={current}
         as={`/${getSlug(item.url)}`}
         href={`/${getSlug(item.url)}`}
         key={item.ID}
       >
-        <StyledMenuText>{item.title}</StyledMenuText>
+        <StyledMenuText current={current === `/${getSlug(item.url)}`}>
+          {item.title}
+        </StyledMenuText>
       </Link>
     );
   });

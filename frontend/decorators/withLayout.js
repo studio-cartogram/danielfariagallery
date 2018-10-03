@@ -37,7 +37,12 @@ function withLayout(Component) {
     }
 
     componentDidMount() {
-      Router.onRouteChangeStart = () => NProgress.start();
+      const currentRoute = this.props.url.pathname;
+      Router.onRouteChangeStart = (newRoute) => {
+        if (newRoute !== currentRoute) {
+          NProgress.start();
+        }
+      };
       Router.onRouteChangeComplete = () => NProgress.done();
       Router.onRouteChangeError = () => NProgress.done();
     }
@@ -64,7 +69,10 @@ function withLayout(Component) {
           <ThemeProvider theme={theme}>
             <GridWrapper>
               <Layout>
-                <Header items={this.props.globalData.navs.main.items} />
+                <Header
+                  current={this.props.url.pathname}
+                  items={this.props.globalData.navs.main.items}
+                />
                 <Main>
                   <Component {...this.props} />
                 </Main>

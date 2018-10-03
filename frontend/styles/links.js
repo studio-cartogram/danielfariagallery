@@ -1,4 +1,8 @@
 import {css} from 'styled-components';
+export const hoverLineStyles = (props) => css`
+  width: 100%;
+  transition: width ${props.theme.transitions.default};
+`;
 
 const linkMain = css`
   color: ${(props) => props.theme.LinkPrimary.CurrentColor};
@@ -12,11 +16,6 @@ const linkMain = css`
     position: absolute;
     height: 1px;
     background-color: ${(props) => props.theme.LinkPrimary.CurrentColor};
-    transition: width ${(props) => props.theme.transitions.default};
-  }
-
-  &:hover::after {
-    width: 100%;
     transition: width ${(props) => props.theme.transitions.default};
   }
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {default as NextLink} from 'next/link';
 
-function Link({href, as, children, ...aprops}) {
+function Link({href, as, children, current, ...aprops}) {
   return (
     <NextLink as={as} href={href}>
       <a {...aprops}>{children}</a>
