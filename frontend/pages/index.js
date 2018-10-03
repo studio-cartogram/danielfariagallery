@@ -31,7 +31,7 @@ class Index extends Component {
     if (!acf) {
       return null;
     }
-    const image = getFeaturedImage(currentExhibition[0]);
+    const image = getFeaturedImage(currentExhibition[0], 'full');
 
     return (
       <CurrentExhibition
