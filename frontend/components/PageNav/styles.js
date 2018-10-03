@@ -6,22 +6,17 @@ const StyledPageNav = styled.div`
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
+  margin-left: ${(props) => `-${props.theme.pxScale[2]}`};
 
   ${breakpoints.bpM} {
     grid-column-start: 2;
     grid-column-end: 4;
   }
-`;
 
-const StyledPageNavText = styled.span`
-  display: inline-flex;
-  margin-left: 0;
-  ${(props) => props.theme.linkMain};
-
-  ${breakpoints.bpM} {
-    margin-right: 0;
-    padding-right: ${(props) => props.theme.pxScale[3]};
+  > * {
+    padding-left: ${(props) => props.theme.pxScale[2]};
+    padding-right: ${(props) => props.theme.pxScale[2]};
   }
 `;
 
-export {StyledPageNav, StyledPageNavText};
+export {StyledPageNav};

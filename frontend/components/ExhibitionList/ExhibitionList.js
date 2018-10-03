@@ -7,15 +7,21 @@ function ExhibitionList({exhibitions, filters}) {
   const exhibitionlistMarkup = exhibitions
     .filter((exhibition) => {
       const {artist, year} = filters;
+      if (!exhibition.acf.artist[0]) {
+        return false;
+      }
+
       if (artist && year) {
         return (
           exhibition.acf.artist[0].post_title === artist &&
           getYearFromDateString(exhibition.acf.start_date) === year
         );
       }
+
       if (artist) {
         return exhibition.acf.artist[0].post_title === artist;
       }
+
       if (year) {
         return getYearFromDateString(exhibition.acf.start_date) === year;
       }
@@ -26,7 +32,9 @@ function ExhibitionList({exhibitions, filters}) {
       const image = getFeaturedImage(exhibition);
 
       const artists = exhibition.acf.artist
-        ? exhibition.acf.artist.map((artist) => artist.post_title)
+        ? exhibition.acf.artist.map(
+            (artist) => (artist ? artist.post_title : 'no artist'),
+          )
         : [];
 
       return (

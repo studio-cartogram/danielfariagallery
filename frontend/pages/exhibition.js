@@ -20,7 +20,6 @@ class Exhibition extends React.Component {
     }
 
     if (!exhibition.acf.artist[0]) {
-      console.log(exhibition);
       return;
     }
     return (

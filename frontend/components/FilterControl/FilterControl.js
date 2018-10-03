@@ -10,6 +10,9 @@ import {
 
 function FilterControl({label, filterKey, items, onItemClick, open, selected}) {
   const itemsMarkup = [...new Set(items)].map((item, index) => {
+    if (!item) {
+      return null;
+    }
     return (
       <StyledLi key={`${item}${index}`}>
         <StyledButton onClick={onItemClick(filterKey, item)}>
@@ -21,7 +24,10 @@ function FilterControl({label, filterKey, items, onItemClick, open, selected}) {
 
   const allButtonMarkup = (
     <StyledLi>
-      <StyledButton onClick={open ? onItemClick() : onItemClick(filterKey)}>
+      <StyledButton
+        open={open}
+        onClick={open ? onItemClick() : onItemClick(filterKey)}
+      >
         {open ? label : selected || label}
         <StyledArrow>
           <Icon icon={open ? 'ARROWUP' : 'ARROWDOWN'} />

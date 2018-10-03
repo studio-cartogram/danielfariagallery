@@ -15,7 +15,7 @@ class ArtistList extends React.Component {
             slug={artist.slug}
             as={`/artist/${artist.slug}`}
             key={artist.id}
-            href={artist.link}
+            href={`/artist?slug=${artist.slug}`}
             onMouseOver={this.onArtistHover(artist)}
           >
             <StyledArtistText>{artist.title.rendered}</StyledArtistText>
@@ -41,14 +41,10 @@ export default ArtistList;
 
 function sortArtistByLastName(artists) {
   artists.sort((a, b) => {
-    console.log(a, b);
     const aName = a.title.rendered.split(' ');
     const bName = b.title.rendered.split(' ');
     const aLastName = aName[aName.length - 1];
     const bLastName = bName[bName.length - 1];
-
-    console.log(aName, aLastName);
-    console.log(bName, bLastName);
 
     if (aLastName < bLastName) {
       return -1;

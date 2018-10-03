@@ -20,10 +20,13 @@ const StyledItemsList = styled.ul`
   top: -${(props) => props.theme.pxScale[2]};
   margin: 0;
   position: absolute;
-  left: -1px;
-  right: -1px;
+  left: -${(props) => props.theme.pxScale[1]};
+  right: -${(props) => props.theme.pxScale[12]};
   padding-top: ${(props) => props.theme.pxScale[7]};
   padding-bottom: ${(props) => props.theme.pxScale[1]};
+  padding-left: ${(props) => props.theme.pxScale[3]};
+  padding-right: ${(props) => props.theme.pxScale[3]};
+  z-index: 1;
 `;
 
 const StyledButton = styled.button`
@@ -33,12 +36,10 @@ const StyledButton = styled.button`
   font-size: ${(props) => props.theme.pxScale[2]};
   display: block;
   position: relative;
-  z-index: 1;
+  ${(props) => (props.open ? 'z-index: 2' : null)};
   width: 100%;
   text-align: left;
   min-height: ${buttonHeight}px;
-  padding-left: ${(props) => props.theme.pxScale[2]};
-  padding-right: ${(props) => props.theme.pxScale[2]};
   line-height: ${buttonHeight}px;
 `;
 

@@ -11,6 +11,7 @@ import {
   getCurrentExhibition,
   getPastExhibitions,
   getYearFromDateString,
+  isEquivalent,
 } from '../../utilities';
 
 const endpoint = `${
@@ -135,8 +136,13 @@ class ExhibitionIndex extends Component {
           if (artist) {
             query.artist = artist;
           }
+
           if (year) {
             query.year = year;
+          }
+
+          if (isEquivalent(this.props.url.query, query)) {
+            return;
           }
 
           this.props.url.push({

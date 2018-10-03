@@ -10,26 +10,6 @@ export function getCurrentExhibition(exhibitions) {
   );
 }
 
-export function compareLastNames(a, b) {
-  //split the names as strings into arrays
-  var aName = a.split(' ');
-  var bName = b.split(' ');
-
-  // get the last names by selecting
-  // the last element in the name arrays
-  // using array.length - 1 since full names
-  // may also have a middle name or initial
-  var aLastName = aName[aName.length - 1];
-  var bLastName = bName[bName.length - 1];
-
-  // compare the names and return either
-  // a negative number, positive number
-  // or zero.
-  if (aLastName < bLastName) return -1;
-  if (aLastName > bLastName) return 1;
-  return 0;
-}
-
 export function getYearFromDateString(date) {
   return date.substr(-4);
 }
@@ -38,10 +18,35 @@ export function getPastExhibitions(exhibitions) {
   return exhibitions.slice(1);
 }
 
-export function getFeaturedImage(postType) {
+export function getFeaturedImage(postType, size = 'img_thumbnail') {
   return postType._embedded &&
-    postType._embedded['wp:featuredmedia'][0].media_details.sizes.img_thumbnail
-    ? postType._embedded['wp:featuredmedia'][0].media_details.sizes
-        .img_thumbnail.source_url
+    postType._embedded['wp:featuredmedia'][0].media_details.sizes[size]
+    ? postType._embedded['wp:featuredmedia'][0].media_details.sizes[size]
+        .source_url
     : null;
+}
+
+export function isEquivalent(a, b) {
+  const aProps = Object.getOwnPropertyNames(a);
+  const bProps = Object.getOwnPropertyNames(b);
+
+  // If number of properties is different,
+  // objects are not equivalent
+  if (aProps.length != bProps.length) {
+    return false;
+  }
+
+  for (let i = 0; i < aProps.length; i++) {
+    const propName = aProps[i];
+
+    // If values of same property are not equal,
+    // objects are not equivalent
+    if (a[propName] !== b[propName]) {
+      return false;
+    }
+  }
+
+  // If we made it this far, objects
+  // are considered equivalent
+  return true;
 }
