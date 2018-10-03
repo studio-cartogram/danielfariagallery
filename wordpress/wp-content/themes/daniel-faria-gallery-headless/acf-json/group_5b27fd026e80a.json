@@ -252,7 +252,7 @@
         },
         {
             "key": "field_5ba84eb37e7b2",
-            "label": "Represented by Daniel Faria Gallery",
+            "label": "Currently represented by Daniel Faria Gallery",
             "name": "representation",
             "type": "true_false",
             "instructions": "Check to show this artist on the main Artists page.",
@@ -287,5 +287,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537909168
+    "modified": 1538343092
 }
