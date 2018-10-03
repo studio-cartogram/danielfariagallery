@@ -3,6 +3,9 @@ import {StyledPublicationName, StyledPublication} from './styles';
 import Image from '../Image';
 
 function Publication({url, slug, publicationImage, title}) {
+  const imageMarkup = publicationImage ? (
+    <Image src={publicationImage} alt={title} />
+  ) : null;
   return (
     <StyledPublication>
       <StyledPublicationName>
@@ -10,7 +13,7 @@ function Publication({url, slug, publicationImage, title}) {
           {title}
         </Link>
       </StyledPublicationName>
-      <Image src={publicationImage} alt={title} />
+      {imageMarkup}
     </StyledPublication>
   );
 }
