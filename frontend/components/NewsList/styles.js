@@ -25,4 +25,8 @@ const StyledNewsLi = styled.li`
   }
 `;
 
-export {StyledNewsList, StyledNewsLi};
+const StyledNewsLink = styled.span`
+  cursor: pointer;
+`;
+
+export {StyledNewsList, StyledNewsLi, StyledNewsLink};

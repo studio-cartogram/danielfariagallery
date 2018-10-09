@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyledNewsList, StyledNewsLi} from './styles';
+import {StyledNewsList, StyledNewsLi, StyledNewsLink} from './styles';
 import Link from '../Link';
 
 function NewsList({news, filters}) {
@@ -26,7 +26,7 @@ function NewsList({news, filters}) {
       return (
         <StyledNewsLi key={news.id}>
           <Link as={news.link} href={`/news/${news.slug}`} artists={artists}>
-            {news.title.rendered}
+            <StyledNewsLink>{news.title.rendered}</StyledNewsLink>
           </Link>
         </StyledNewsLi>
       );
