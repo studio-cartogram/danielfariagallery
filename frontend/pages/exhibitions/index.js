@@ -100,12 +100,17 @@ class ExhibitionIndex extends Component {
         />
       </React.Fragment>
     );
+    console.log(onCurrent);
 
     return (
       <React.Fragment>
         <PageNav>
-          <Link href={'/exhibitions'}>Current</Link>
-          <Link href={'/exhibitions/past'}>Past</Link>
+          <Link current={onCurrent} href={'/exhibitions'}>
+            Current
+          </Link>
+          <Link current={onCurrent} href={'/exhibitions/past'}>
+            Past
+          </Link>
           {navigationMarkup}
         </PageNav>
         {pageMarkup}
