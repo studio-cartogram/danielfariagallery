@@ -3,9 +3,11 @@ import {default as NextLink} from 'next/link';
 
 function Link({href, as, children, current, onClick, ...aprops}) {
   if (onClick) {
-    <a onClick={onClick} {...aprops}>
-      {children}
-    </a>;
+    return (
+      <a onClick={onClick} {...aprops}>
+        {children}
+      </a>
+    );
   }
   return (
     <NextLink as={as} href={href}>
