@@ -13,13 +13,13 @@ function ExhibitionList({exhibitions, filters}) {
 
       if (artist && year) {
         return (
-          exhibition.acf.artist[0].post_title === artist &&
+          artistIsInExhibtionArtists(exhibition.acf.artist, artist) &&
           getYearFromDateString(exhibition.acf.start_date) === year
         );
       }
 
       if (artist) {
-        return exhibition.acf.artist[0].post_title === artist;
+        return artistIsInExhibtionArtists(exhibition.acf.artist, artist);
       }
 
       if (year) {
@@ -37,27 +37,30 @@ function ExhibitionList({exhibitions, filters}) {
           )
         : [];
 
-  return (
-    <p>exhibitions</p>
-    <StyledExhibitionLi key={exhibition.id}>
-      <Exhibition
-        slug={exhibition.slug}
-        url={`/exhibition/${exhibition.slug}`}
-        title={exhibition.title.rendered}
-        exhibitionImage={image}
-        artists={artists}
-        startdate={exhibition.acf.start_date}
-        enddate={exhibition.acf.end_date}
-      />
-    </StyledExhibitionLi>
-  );
-  });
+      return (
+        <StyledExhibitionLi key={exhibition.id}>
+          <Exhibition
+            slug={exhibition.slug}
+            url={`/exhibition/${exhibition.slug}`}
+            title={exhibition.title.rendered}
+            exhibitionImage={image}
+            artists={artists}
+            startdate={exhibition.acf.start_date}
+            enddate={exhibition.acf.end_date}
+          />
+        </StyledExhibitionLi>
+      );
+    });
 
   return (
     <React.Fragment>
       <StyledExhibitionList>{exhibitionlistMarkup}</StyledExhibitionList>
     </React.Fragment>
   );
+}
+
+function artistIsInExhibtionArtists(artists, artist) {
+  return artists.map((artist) => artist.post_title).includes(artist);
 }
 
 export default ExhibitionList;
