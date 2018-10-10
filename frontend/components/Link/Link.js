@@ -4,6 +4,7 @@ import {
   StyledPrimaryLink,
   StyledSecondaryLink,
   StyledTertiaryLink,
+  StyledInvisibleLink,
 } from './styles';
 
 function Link({href, variant, as, children, current, onClick, ...aprops}) {
@@ -16,6 +17,14 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
   }
 
   switch (variant) {
+    case 'invisible':
+      return (
+        <StyledInvisibleLink variant={variant} current={current}>
+          <NextLink as={as} href={href}>
+            <a {...aprops}>{children}</a>
+          </NextLink>
+        </StyledInvisibleLink>
+      );
     case 'secondary':
       return (
         <StyledSecondaryLink variant={variant} current={current}>

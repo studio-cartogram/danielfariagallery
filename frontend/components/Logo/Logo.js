@@ -5,7 +5,7 @@ import Icon from '../Icon';
 function Logo() {
   return (
     <StyledLogo>
-      <Link href="/">
+      <Link variant="invisible" href="/">
         <Icon icon={'LOGO'} />
       </Link>
     </StyledLogo>

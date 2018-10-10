@@ -24,7 +24,7 @@ const afterStyles = (props) => {
       width: 0;
       content: '';
       left: 0;
-      bottom: 0;
+      bottom: -4px;
       position: absolute;
       height: 1px;
       background-color: ${(props) => props.theme[color].CurrentColor};
@@ -67,4 +67,19 @@ const StyledTertiaryLink = styled.span`
   }
 `;
 
-export {StyledPrimaryLink, StyledSecondaryLink, StyledTertiaryLink};
+const StyledInvisibleLink = styled.span`
+  display: inline-flex;
+  height: auto;
+  color: inherit;
+
+  &:hover::after {
+    opacity: 0.8;
+  }
+`;
+
+export {
+  StyledPrimaryLink,
+  StyledSecondaryLink,
+  StyledTertiaryLink,
+  StyledInvisibleLink,
+};
