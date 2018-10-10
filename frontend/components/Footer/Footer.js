@@ -7,29 +7,38 @@ function Footer({phone, email, address, map, facebook, twitter, instagram}) {
     <StyledFooter>
       <StyledFooterItem>
         <StyledFooterItemFull>
-          <p>{address}</p>
+          <p>
+            {address}
+            <br />
+            <Link variant="tertiary" target="_blank" href={map}>
+              Directions
+            </Link>
+          </p>
         </StyledFooterItemFull>
-        <Link target="_blank" href={map}>
-          Directions
-        </Link>
       </StyledFooterItem>
       <StyledFooterItem>
         <StyledFooterItemFull>
-          <Link href={`mailto:${email}`}>{email}</Link>
+          <Link variant="tertiary" href={`mailto:${email}`}>
+            {email}
+          </Link>
         </StyledFooterItemFull>
-        <Link href={`tel:${phone}`}>{phone}</Link>
+        <Link variant="tertiary" href={`tel:${phone}`}>
+          {phone}
+        </Link>
       </StyledFooterItem>
       <StyledFooterItem>
-        <Link target="_blank" href={twitter}>
+        <Link variant="tertiary" target="_blank" href={twitter}>
           Twitter
         </Link>
-        <Link target="_blank" href={facebook}>
+        <Link variant="tertiary" target="_blank" href={facebook}>
           Facebook
         </Link>
-        <Link target="_blank" href={instagram}>
+        <Link variant="tertiary" target="_blank" href={instagram}>
           Instagram
         </Link>
-        <Link href="/">Subscribe</Link>
+        <Link variant="tertiary" href="/">
+          Subscribe
+        </Link>
       </StyledFooterItem>
     </StyledFooter>
   );

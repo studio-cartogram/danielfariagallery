@@ -14,12 +14,19 @@ const theme = {
     hover: colors.grey,
   },
   LinkSecondary: {
-    CurrentColor: colors.grey,
+    CurrentColor: colors.ink,
     hover: colors.greyLight,
   },
   LinkTertiary: {
-    CurrentColor: colors.greyLightest,
+    CurrentColor: colors.grey,
     hover: colors.grey,
+  },
+  LinkHybrid: {
+    CurrentColor: colors.ink,
+    hover: colors.grey,
+  },
+  BorderLight: {
+    CurrentColor: colors.greyLightest,
   },
   ...scales,
   ...transitions,
