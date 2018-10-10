@@ -15,6 +15,12 @@ const afterStyles = (props) => {
     case 'tertiary':
       color = 'LinkTertiary';
       break;
+    case 'invisible':
+      color = 'LinkInvisible';
+      break;
+    case 'hybrid':
+      color = 'LinkHybrid';
+      break;
     default:
       color = 'LinkPrimary';
   }
@@ -51,16 +57,72 @@ const StyledPrimaryLink = styled.span`
 `;
 
 const StyledSecondaryLink = styled.span`
-  color: red;
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+  height: ${(props) => props.theme.pxScale[3]};
+  color: ${(props) => props.theme.LinkSecondary.CurrentColor};
+
+  &:after {
+    width: 0;
+    content: '';
+    left: 0;
+    bottom: -4px;
+    position: absolute;
+    height: 1px;
+    background-color: ${(props) => props.theme.BorderLight.CurrentColor};
+    transition: width ${(props) => props.theme.transitions.default};
+  }
+
+  &:hover:after {
+    ${(props) => hoverLineStyles(props)};
+  }
+
+  &:after {
+    ${(props) => (props.current ? hoverLineStyles(props) : null)};
+  }
+`;
+
+const StyledHybridLink = styled.span`
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+  height: ${(props) => props.theme.pxScale[3]};
+  color: ${(props) => props.theme.LinkSecondary.CurrentColor};
+
+  &:after {
+    width: 100%;
+    content: '';
+    left: 0;
+    bottom: -4px;
+    position: absolute;
+    height: 1px;
+    background-color: ${(props) => props.theme.BorderLight.CurrentColor};
+    transition: width ${(props) => props.theme.transitions.default};
+  }
+
+  &:hover::after {
+    width: 0;
+  }
 `;
 
 const StyledTertiaryLink = styled.span`
   display: inline-flex;
   position: relative;
+  cursor: pointer;
   height: ${(props) => props.theme.pxScale[3]};
-  color: ${(props) => props.theme.LinkSecondary.CurrentColor};
+  color: ${(props) => props.theme.LinkTertiary.CurrentColor};
 
-  ${(props) => afterStyles(props)};
+  &:after {
+    width: 100%;
+    content: '';
+    left: 0;
+    bottom: -4px;
+    position: absolute;
+    height: 1px;
+    background-color: ${(props) => props.theme.BorderLight.CurrentColor};
+    transition: width ${(props) => props.theme.transitions.default};
+  }
 
   &:hover::after {
     width: 0;
@@ -82,4 +144,5 @@ export {
   StyledSecondaryLink,
   StyledTertiaryLink,
   StyledInvisibleLink,
+  StyledHybridLink,
 };

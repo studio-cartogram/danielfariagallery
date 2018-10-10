@@ -5,6 +5,7 @@ import {
   StyledSecondaryLink,
   StyledTertiaryLink,
   StyledInvisibleLink,
+  StyledHybridLink,
 } from './styles';
 
 function Link({href, variant, as, children, current, onClick, ...aprops}) {
@@ -40,6 +41,14 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
             <a {...aprops}>{children}</a>
           </NextLink>
         </StyledTertiaryLink>
+      );
+    case 'hybrid':
+      return (
+        <StyledHybridLink variant={variant} current={current}>
+          <NextLink as={as} href={href}>
+            <a {...aprops}>{children}</a>
+          </NextLink>
+        </StyledHybridLink>
       );
     default:
       return (

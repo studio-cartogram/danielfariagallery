@@ -4,6 +4,7 @@ import withLayout from '../decorators/withLayout';
 import {endpoints} from '../config';
 import Column from '../components/Column';
 import GridItem from '../components/GridItem';
+import GridSpace from '../components/GridSpace';
 import Link from '../components/Link';
 
 class Contact extends React.Component {
@@ -21,17 +22,20 @@ class Contact extends React.Component {
       email,
       note,
       staff,
+      map,
     } = this.props.contactInfo.acf;
 
     const stafflistMarkup = staff.map((staff) => {
       return (
         <ul key={staff.name}>
           <li key={staff.name}>
-            <Link variant="tertiary" href={`mailto:${staff.email}`}>
-              {staff.name}
-            </Link>
-            <br />
-            <em>{staff.role}</em>
+            <p>
+              <Link variant="secondary" href={`mailto:${staff.email}`}>
+                {staff.name}
+              </Link>
+              <br />
+              <em>{staff.role}</em>
+            </p>
           </li>
         </ul>
       );
@@ -51,6 +55,7 @@ class Contact extends React.Component {
     });
     return (
       <React.Fragment>
+        <GridSpace />
         <Column>
           <GridItem>
             <h3>Hours</h3>
@@ -59,6 +64,9 @@ class Contact extends React.Component {
           <GridItem>
             <h3>Address</h3>
             <p>{address}</p>
+            <Link variant="hybrid" target="_blank" href={map}>
+              Directions
+            </Link>
           </GridItem>
         </Column>
         <Column>
@@ -69,7 +77,9 @@ class Contact extends React.Component {
           <GridItem>
             <h3>Email</h3>
             <p>
-              <Link href={`mailto:${email}`}>{email}</Link>
+              <Link variant="hybrid" href={`mailto:${email}`}>
+                {email}
+              </Link>
             </p>
           </GridItem>
           <GridItem>

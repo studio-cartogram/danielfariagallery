@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import {breakpoints} from '../../styles/breakpoints';
 
 export const StyledColumn = styled.section`
-  grid-column: span 1;
+  grid-column: span 3;
   padding-bottom: 0;
 
-  ${breakpoints.bpL} {
+  ${breakpoints.bpM} {
+    grid-column: span 1;
     padding-bottom: ${(props) => props.theme.pxScale[5]};
   }
 `;
