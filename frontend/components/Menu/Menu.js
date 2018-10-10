@@ -3,7 +3,6 @@ import Link from '../../components/Link';
 import {StyledMenuText, StyledMenu} from './styles';
 
 function Menu({items, current}) {
-  console.log(current);
   const itemsMarkup = items.map((item, index) => {
     return item.object === 'custom' ? (
       <StyledMenuText key={item.ID}>

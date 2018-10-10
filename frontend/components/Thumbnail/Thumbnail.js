@@ -7,7 +7,6 @@ import {
 } from './styles';
 
 function Thumbnail({url, image, title, details}) {
-  console.log(url);
   return (
     <StyledThumbnail>
       <Link href={url} as={url}>
