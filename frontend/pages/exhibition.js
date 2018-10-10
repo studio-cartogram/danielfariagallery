@@ -4,6 +4,7 @@ import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 import ExhibitionSingle from '../components/ExhibitionSingle';
 import Error from '../components/Error';
+import {commaListsAnd} from 'common-tags';
 
 class Exhibition extends React.Component {
   static async getInitialProps(context) {
@@ -15,6 +16,18 @@ class Exhibition extends React.Component {
   }
   render() {
     const exhibition = this.props.data[0];
+
+    const artists = exhibition.acf.artist
+      ? exhibition.acf.artist.map(
+          (artist) => (artist ? artist.post_title : 'no artist'),
+        )
+      : [];
+
+    const title = exhibition.title.rendered;
+
+    const displayTitle =
+      artists && artists.length ? commaListsAnd`${artists}: ${title}` : title;
+
     if (!exhibition) {
       return <Error />;
     }
@@ -22,11 +35,10 @@ class Exhibition extends React.Component {
     if (!exhibition.acf.artist[0]) {
       return;
     }
+
     return (
       <ExhibitionSingle
-        title={`${exhibition.acf.artist[0].post_title}: ${
-          exhibition.title.rendered
-        }`}
+        title={displayTitle}
         startDate={exhibition.acf.start_date}
         endDate={exhibition.acf.end_date}
         opening={exhibition.acf.opening_reception}

@@ -13,6 +13,7 @@ import {
   getYearFromDateString,
   isEquivalent,
 } from '../../utilities';
+import {commaListsAnd} from 'common-tags';
 
 const endpoint = `${
   config.apiUrl
@@ -63,13 +64,22 @@ class ExhibitionIndex extends Component {
       ? getCurrentExhibition(exhibitions)
       : getPastExhibitions(exhibitions);
 
-    const titlePrefix = exhibitionsToShow[0].acf.artist[0]
-      ? `${exhibitionsToShow[0].acf.artist[0].post_title}: `
-      : '';
+    const artistsToShow = exhibitionsToShow[0].acf.artist
+      ? exhibitionsToShow[0].acf.artist.map(
+          (artist) => (artist ? artist.post_title : 'no artist'),
+        )
+      : [];
+
+    const title = exhibitionsToShow[0].title.rendered;
+
+    const displayTitle =
+      artistsToShow && artistsToShow.length
+        ? commaListsAnd`${artistsToShow}: ${title}`
+        : title;
 
     const pageMarkup = onCurrent ? (
       <ExhibitionSingle
-        title={`${titlePrefix}${exhibitionsToShow[0].title.rendered}`}
+        title={displayTitle}
         startDate={exhibitionsToShow[0].acf.start_date}
         endDate={exhibitionsToShow[0].acf.end_date}
         opening={exhibitionsToShow[0].acf.opening_reception}
@@ -104,10 +114,14 @@ class ExhibitionIndex extends Component {
     return (
       <React.Fragment>
         <PageNav>
-          <Link current={onCurrent} href={'/exhibitions'}>
+          <Link variant="secondary" current={onCurrent} href={'/exhibitions'}>
             Current
           </Link>
-          <Link current={!onCurrent} href={'/exhibitions/past'}>
+          <Link
+            variant="secondary"
+            current={!onCurrent}
+            href={'/exhibitions/past'}
+          >
             Past
           </Link>
           {navigationMarkup}

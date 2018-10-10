@@ -23,6 +23,7 @@ function Exhibition({
 
   const displayTitle =
     artists && artists.length ? commaListsAnd`${artists}: ${title}` : title;
+
   return (
     <StyledExhibition>
       <Link href={`/exhibition?slug=${slug}`} as={url}>
