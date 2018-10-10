@@ -64,7 +64,7 @@ class ExhibitionIndex extends Component {
       : getPastExhibitions(exhibitions);
 
     const titlePrefix = exhibitionsToShow[0].acf.artist[0]
-      ? `${exhibitionsToShow[0].acf.artist[0].post_title} : `
+      ? `${exhibitionsToShow[0].acf.artist[0].post_title}: `
       : '';
 
     const pageMarkup = onCurrent ? (
@@ -100,7 +100,6 @@ class ExhibitionIndex extends Component {
         />
       </React.Fragment>
     );
-    console.log(onCurrent);
 
     return (
       <React.Fragment>
