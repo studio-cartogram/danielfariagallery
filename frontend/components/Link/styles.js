@@ -67,7 +67,7 @@ const StyledSecondaryLink = styled.span`
     width: 0;
     content: '';
     left: 0;
-    bottom: -4px;
+    bottom: -2px;
     position: absolute;
     height: 1px;
     background-color: ${(props) => props.theme.BorderLight.CurrentColor};
@@ -94,7 +94,7 @@ const StyledHybridLink = styled.span`
     width: 100%;
     content: '';
     left: 0;
-    bottom: -4px;
+    bottom: -2px;
     position: absolute;
     height: 1px;
     background-color: ${(props) => props.theme.BorderLight.CurrentColor};
@@ -117,7 +117,7 @@ const StyledTertiaryLink = styled.span`
     width: 100%;
     content: '';
     left: 0;
-    bottom: -4px;
+    bottom: -2px;
     position: absolute;
     height: 1px;
     background-color: ${(props) => props.theme.BorderLight.CurrentColor};

@@ -18,13 +18,16 @@ function Footer({phone, email, address, map, facebook, twitter, instagram}) {
       </StyledFooterItem>
       <StyledFooterItem>
         <StyledFooterItemFull>
-          <Link variant="tertiary" href={`mailto:${email}`}>
-            {email}
-          </Link>
+          <p>
+            <Link variant="tertiary" href={`mailto:${email}`}>
+              {email}
+            </Link>
+            <br />
+            <Link variant="tertiary" href={`tel:${phone}`}>
+              {phone}
+            </Link>
+          </p>
         </StyledFooterItemFull>
-        <Link variant="tertiary" href={`tel:${phone}`}>
-          {phone}
-        </Link>
       </StyledFooterItem>
       <StyledFooterItem>
         <Link variant="tertiary" target="_blank" href={twitter}>

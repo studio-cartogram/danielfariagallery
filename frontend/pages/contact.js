@@ -63,10 +63,12 @@ class Contact extends React.Component {
           </GridItem>
           <GridItem>
             <h3>Address</h3>
-            <p>{address}</p>
-            <Link variant="hybrid" target="_blank" href={map}>
-              Directions
-            </Link>
+            <p>
+              {address}
+              <Link variant="hybrid" target="_blank" href={map}>
+                Directions
+              </Link>
+            </p>
           </GridItem>
         </Column>
         <Column>

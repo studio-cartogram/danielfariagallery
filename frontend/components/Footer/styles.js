@@ -24,9 +24,9 @@ export const StyledFooter = styled.footer`
 `;
 
 export const StyledFooterItemFull = styled.div`
-  display: inline-flex;
-  flex-basis: 100%;
-  flex-wrap: wrap;
+  // display: inline-flex;
+  // flex-basis: 100%;
+  // flex-wrap: wrap;
 `;
 
 export const StyledFooterItem = styled.div`
