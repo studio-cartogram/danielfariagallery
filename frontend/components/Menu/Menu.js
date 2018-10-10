@@ -3,24 +3,25 @@ import Link from '../../components/Link';
 import {StyledMenuText, StyledMenu} from './styles';
 
 function Menu({items, current}) {
+  console.log(current);
   const itemsMarkup = items.map((item, index) => {
     return item.object === 'custom' ? (
-      <Link href={item.url} key={item.ID}>
-        <StyledMenuText current={current === item.url}>
+      <StyledMenuText key={item.ID}>
+        <Link current={current === item.url} variant="primary" href={item.url}>
           {item.title}
-        </StyledMenuText>
-      </Link>
+        </Link>
+      </StyledMenuText>
     ) : (
-      <Link
-        current={current}
-        as={`/${getSlug(item.url)}`}
-        href={`/${getSlug(item.url)}`}
-        key={item.ID}
-      >
-        <StyledMenuText current={current === `/${getSlug(item.url)}`}>
+      <StyledMenuText key={item.ID}>
+        <Link
+          variant="primary"
+          current={current === `/${getSlug(item.url)}`}
+          as={`/${getSlug(item.url)}`}
+          href={`/${getSlug(item.url)}`}
+        >
           {item.title}
-        </StyledMenuText>
-      </Link>
+        </Link>
+      </StyledMenuText>
     );
   });
 

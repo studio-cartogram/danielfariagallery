@@ -27,7 +27,9 @@ class Contact extends React.Component {
       return (
         <ul key={staff.name}>
           <li key={staff.name}>
-            <Link href={`mailto:${staff.email}`}>{staff.name}</Link>
+            <Link variant="tertiary" href={`mailto:${staff.email}`}>
+              {staff.name}
+            </Link>
             <br />
             <em>{staff.role}</em>
           </li>

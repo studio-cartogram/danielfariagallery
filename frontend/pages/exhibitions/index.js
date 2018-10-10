@@ -108,7 +108,7 @@ class ExhibitionIndex extends Component {
           <Link current={onCurrent} href={'/exhibitions'}>
             Current
           </Link>
-          <Link current={onCurrent} href={'/exhibitions/past'}>
+          <Link current={!onCurrent} href={'/exhibitions/past'}>
             Past
           </Link>
           {navigationMarkup}

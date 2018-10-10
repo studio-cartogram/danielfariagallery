@@ -14,8 +14,8 @@ const StyledPageNav = styled.div`
   }
 
   > * {
-    padding-left: ${(props) => props.theme.pxScale[2]};
-    padding-right: ${(props) => props.theme.pxScale[2]};
+    margin-left: ${(props) => props.theme.pxScale[2]};
+    margin-right: ${(props) => props.theme.pxScale[2]};
   }
 `;
 

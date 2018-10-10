@@ -5,6 +5,7 @@ import PageThumbs from '../PageThumbs';
 import Thumbnail from '../Thumbnail';
 import Title from '../Title';
 import Column from '../Column';
+import Link from '../Link';
 
 class ExhibitionSingle extends React.Component {
   state = {
@@ -53,8 +54,10 @@ class ExhibitionSingle extends React.Component {
             <br />
             {openingReceptionMarkup}
           </p>
-          <button onClick={this.handleSectionChange('work')}>Work</button>
-          <button onClick={this.handleSectionChange('about')}>About</button>
+          <PageNav>
+            <Link onClick={this.handleSectionChange('work')}>Work</Link>
+            <Link onClick={this.handleSectionChange('about')}>About</Link>
+          </PageNav>
         </PageMast>
         <Column />
         {sectionMarkup(currentSection)}

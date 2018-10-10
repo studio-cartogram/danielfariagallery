@@ -1,20 +1,9 @@
 import styled from 'styled-components';
 import {breakpoints} from '../../styles/breakpoints';
-import {hoverLineStyles} from '../../styles/links';
 
 export const StyledMenuText = styled.span`
   display: inline-flex;
   margin-right: ${(props) => props.theme.pxScale[3]};
-  ${(props) => (props.current ? `cursor: default` : null)};
-  ${(props) => props.theme.linkMain};
-
-  &:hover:after {
-    ${(props) => hoverLineStyles(props)};
-  }
-
-  &:after {
-    ${(props) => (props.current ? hoverLineStyles(props) : null)};
-  }
 `;
 
 export const StyledMenu = styled.nav`

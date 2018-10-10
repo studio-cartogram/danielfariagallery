@@ -7,9 +7,10 @@ import {
 } from './styles';
 
 function Thumbnail({url, image, title, details}) {
+  console.log(url);
   return (
     <StyledThumbnail>
-      <Link href={url}>
+      <Link href={url} as={url}>
         <StyledThumbnailImage key={title} alt={title} src={image} />
       </Link>
       <StyledThumbnailCaption>{title}</StyledThumbnailCaption>
