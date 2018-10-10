@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from '../Link';
-import {StyledArtistList, StyledArtistName, StyledArtistText} from './styles';
+import {StyledArtistList, StyledArtistName} from './styles';
 
 class ArtistList extends React.Component {
   render() {
@@ -11,12 +11,13 @@ class ArtistList extends React.Component {
       return (
         <StyledArtistName key={artist.id}>
           <Link
+            variant="primary"
             slug={artist.slug}
             as={`/artist/${artist.slug}`}
             href={`/artist?slug=${artist.slug}`}
             onMouseOver={this.onArtistHover(artist)}
           >
-            <StyledArtistText>{artist.title.rendered}</StyledArtistText>
+            {artist.title.rendered}
           </Link>
         </StyledArtistName>
       );

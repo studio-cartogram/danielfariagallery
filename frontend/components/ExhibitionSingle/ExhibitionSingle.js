@@ -14,11 +14,22 @@ class ExhibitionSingle extends React.Component {
   };
   render() {
     const {currentSection} = this.state;
-    const {title, startDate, endDate, opening, works, content} = this.props;
+    const {
+      title,
+      startDate,
+      endDate,
+      opening,
+      works,
+      artists,
+      content,
+    } = this.props;
 
     const openingReceptionMarkup = opening
       ? `Opening reception: ${opening}`
       : null;
+
+    const displayTitle =
+      artists && artists.length ? commaListsAnd`${artists}: ${title}` : title;
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
@@ -48,7 +59,7 @@ class ExhibitionSingle extends React.Component {
         <Column />
         <PageMast>
           <Title>
-            <div dangerouslySetInnerHTML={{__html: title}} />
+            <div dangerouslySetInnerHTML={{__html: displayTitle}} />
           </Title>
           <p>
             {startDate} - {endDate}
