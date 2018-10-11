@@ -9,7 +9,7 @@ function Fair({url, slug, fairImage, title}) {
         <Link as={url} href={`/fair?slug=${slug}`}>
           {title}
         </Link>
-      </StyledFairName>s
+      </StyledFairName>
       <Image src={fairImage} alt={title} />
     </StyledFair>
   );
