@@ -11,6 +11,7 @@ const StyledThumbnailImage = styled.img`
 const StyledThumbnail = styled.div`
   overflow: hidden;
   display: grid;
+  grid-column: span 1;
 `;
 
 const StyledThumbnailCaption = styled.p`

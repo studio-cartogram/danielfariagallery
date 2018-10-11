@@ -42,7 +42,7 @@ class ArtistSingle extends React.Component {
               />
             );
           });
-          return <PageThumbs>{workImageMarkup}</PageThumbs>;
+          return <React.Fragment>{workImageMarkup}</React.Fragment>;
         case 'exhibitions':
           return (
             <PageText>
@@ -78,7 +78,6 @@ class ArtistSingle extends React.Component {
                   if (loading) {
                     return 'loading';
                   }
-
                   return (
                     <ExhibitionList
                       filters={{artist: title}}
@@ -94,16 +93,25 @@ class ArtistSingle extends React.Component {
             return null;
           }
           const pressMarkup = press.map((press) => {
-            return <Link href={press.press_download}>{press.press_title}</Link>;
+            return (
+              <li>
+                <p>
+                  <Link href={press.press_download}>{press.press_title}</Link>
+                </p>
+              </li>
+            );
           });
-          return <PageText>{pressMarkup}</PageText>;
+          return (
+            <PageText>
+              <ul>{pressMarkup}</ul>
+            </PageText>
+          );
       }
     }
 
     const subSectionMarkup = sectionMarkup(currentSection);
     return (
       <React.Fragment>
-        <Column />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: title}} />
@@ -118,7 +126,6 @@ class ArtistSingle extends React.Component {
             <Link onClick={this.handleSectionChange('press')}>Press</Link>
           </PageNav>
         </PageMast>
-        <Column />
         {subSectionMarkup}
       </React.Fragment>
     );

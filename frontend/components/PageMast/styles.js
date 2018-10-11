@@ -6,6 +6,8 @@ const StyledPageMast = styled.div`
 
   ${breakpoints.bpM} {
     grid-column: span 2;
+    grid-column-start: 2;
+    grid-column-end: 4;
   }
 `;
 

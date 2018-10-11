@@ -50,13 +50,12 @@ class ExhibitionSingle extends React.Component {
               />
             );
           });
-          return <PageThumbs>{workimageMarkup}</PageThumbs>;
+          return <React.Fragment>{workimageMarkup}</React.Fragment>;
       }
     }
 
     return (
       <React.Fragment>
-        <Column />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: displayTitle}} />
@@ -67,11 +66,22 @@ class ExhibitionSingle extends React.Component {
             {openingReceptionMarkup}
           </p>
           <PageNav>
-            <Link onClick={this.handleSectionChange('work')}>Work</Link>
-            <Link onClick={this.handleSectionChange('about')}>About</Link>
+            <Link
+              current={currentSection}
+              onClick={this.handleSectionChange('work')}
+              href="#"
+            >
+              Work
+            </Link>
+            <Link
+              current={currentSection}
+              onClick={this.handleSectionChange('about')}
+              href="#"
+            >
+              About
+            </Link>
           </PageNav>
         </PageMast>
-        <Column />
         {sectionMarkup(currentSection)}
       </React.Fragment>
     );

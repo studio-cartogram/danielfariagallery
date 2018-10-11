@@ -25,9 +25,16 @@ function NewsList({news, filters}) {
 
       return (
         <StyledNewsLi key={news.id}>
-          <Link as={news.link} href={`/news/${news.slug}`} artists={artists}>
-            <StyledNewsLink>{news.title.rendered}</StyledNewsLink>
-          </Link>
+          <StyledNewsLink>
+            <Link
+              variant="primary"
+              as={`/news/${news.slug}`}
+              href={`/news/${news.slug}`}
+              artists={artists}
+            >
+              <div dangerouslySetInnerHTML={{__html: news.title.rendered}} />
+            </Link>
+          </StyledNewsLink>
         </StyledNewsLi>
       );
     });
