@@ -26,6 +26,7 @@ injectGlobal`
     ${reset}
   }
   a {
+    color: ${theme.LinkPrimary.CurrentColor};
     text-decoration: none;
   }
   p {

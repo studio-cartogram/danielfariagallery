@@ -6,6 +6,7 @@ import {
   StyledTertiaryLink,
   StyledInvisibleLink,
   StyledHybridLink,
+  StyledZoomLink,
 } from './styles';
 
 function Link({href, variant, as, children, current, onClick, ...aprops}) {
@@ -49,6 +50,14 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
             <a {...aprops}>{children}</a>
           </NextLink>
         </StyledHybridLink>
+      );
+    case 'zoom':
+      return (
+        <StyledZoomLink variant={variant} current={current}>
+          <NextLink as={as} href={href}>
+            <a {...aprops}>{children}</a>
+          </NextLink>
+        </StyledZoomLink>
       );
     default:
       return (

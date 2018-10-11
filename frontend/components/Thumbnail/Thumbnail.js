@@ -9,7 +9,7 @@ import {
 function Thumbnail({url, image, title, details}) {
   return (
     <StyledThumbnail>
-      <Link href={url} as={url}>
+      <Link variant="zoom" href={url} as={url}>
         <StyledThumbnailImage key={title} alt={title} src={image} />
       </Link>
       <StyledThumbnailCaption>{title}</StyledThumbnailCaption>

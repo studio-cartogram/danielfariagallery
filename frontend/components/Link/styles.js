@@ -21,6 +21,9 @@ const afterStyles = (props) => {
     case 'hybrid':
       color = 'LinkHybrid';
       break;
+    case 'zoom':
+      color = 'LinkZoom';
+      break;
     default:
       color = 'LinkPrimary';
   }
@@ -63,6 +66,10 @@ const StyledSecondaryLink = styled.span`
   height: ${(props) => props.theme.pxScale[3]};
   color: ${(props) => props.theme.LinkSecondary.CurrentColor};
 
+  a {
+    color: ${(props) => props.theme.LinkSecondary.CurrentColor};
+  }
+
   &:after {
     width: 0;
     content: '';
@@ -90,6 +97,10 @@ const StyledHybridLink = styled.span`
   height: ${(props) => props.theme.pxScale[3]};
   color: ${(props) => props.theme.LinkSecondary.CurrentColor};
 
+  a {
+    color: ${(props) => props.theme.LinkSecondary.CurrentColor};
+  }
+
   &:after {
     width: 100%;
     content: '';
@@ -112,6 +123,10 @@ const StyledTertiaryLink = styled.span`
   cursor: pointer;
   height: ${(props) => props.theme.pxScale[3]};
   color: ${(props) => props.theme.LinkTertiary.CurrentColor};
+
+  a {
+    color: ${(props) => props.theme.LinkTertiary.CurrentColor};
+  }
 
   &:after {
     width: 100%;
@@ -139,10 +154,22 @@ const StyledInvisibleLink = styled.span`
   }
 `;
 
+const StyledZoomLink = styled.span`
+  display: inline-flex;
+  height: auto;
+  color: inherit;
+
+  a {
+    position: relative;
+    overflow: hidden;
+  }
+`;
+
 export {
   StyledPrimaryLink,
   StyledSecondaryLink,
   StyledTertiaryLink,
   StyledInvisibleLink,
   StyledHybridLink,
+  StyledZoomLink,
 };
