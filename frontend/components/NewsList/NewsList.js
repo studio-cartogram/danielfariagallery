@@ -29,7 +29,7 @@ function NewsList({news, filters}) {
             <Link
               variant="primary"
               as={`/news/${news.slug}`}
-              href={`/news/${news.slug}`}
+              href={`/new?slug=${news.slug}`}
               artists={artists}
             >
               <div dangerouslySetInnerHTML={{__html: news.title.rendered}} />

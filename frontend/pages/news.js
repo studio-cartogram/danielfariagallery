@@ -26,7 +26,6 @@ class NewsIndex extends Component {
   render() {
     const news = this.props.data;
     const {filters, open} = this.state;
-    const {asPath} = this.props.url;
 
     const newsArtists = news.map((news) => {
       if (!news.acf.artist[0]) {

@@ -2,15 +2,14 @@ import React from 'react';
 import {config} from '../../config';
 import PageText from '../PageText';
 import PageMast from '../PageMast';
-import PageThumbs from '../PageThumbs';
 import Thumbnail from '../Thumbnail';
 import Title from '../Title';
-import Column from '../Column';
 import Fetcher from '../Fetcher';
 import Error from '../Error';
 import PageNav from '../PageNav';
 import Link from '../Link';
 import ExhibitionList from '../ExhibitionList';
+import NewsList from '../NewsList';
 
 class ArtistSingle extends React.Component {
   state = {
@@ -45,9 +44,11 @@ class ArtistSingle extends React.Component {
           return <React.Fragment>{workImageMarkup}</React.Fragment>;
         case 'exhibitions':
           return (
-            <PageText>
+            <React.Fragment>
               <Fetcher
-                url={`${config.apiUrl}/wp-json/wp/v2/exhibitions?per_page=100`}
+                url={`${
+                  config.apiUrl
+                }/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`}
               >
                 {({loading, data, error}) => {
                   if (error) {
@@ -56,7 +57,6 @@ class ArtistSingle extends React.Component {
                   if (loading) {
                     return 'loading';
                   }
-
                   return (
                     <ExhibitionList
                       filters={{artist: title}}
@@ -65,12 +65,16 @@ class ArtistSingle extends React.Component {
                   );
                 }}
               </Fetcher>
-            </PageText>
+            </React.Fragment>
           );
         case 'news':
           return (
-            <PageText>
-              <Fetcher url={`${config.apiUrl}/wp-json/wp/v2/news?per_page=100`}>
+            <React.Fragment>
+              <Fetcher
+                url={`${
+                  config.apiUrl
+                }/wp-json/wp/v2/news?per_page=100&_embed=true`}
+              >
                 {({loading, data, error}) => {
                   if (error) {
                     return <Error />;
@@ -78,15 +82,33 @@ class ArtistSingle extends React.Component {
                   if (loading) {
                     return 'loading';
                   }
-                  return (
-                    <ExhibitionList
-                      filters={{artist: title}}
-                      exhibitions={data}
-                    />
-                  );
+                  return <NewsList filters={{artist: title}} news={data} />;
+
+                  // const artistsInNews = data.filter((item) => {
+                  //   return item.acf.artist.filter((artist) => {
+                  //     return artist.post_title === title;
+                  //   }).length;
+                  // });
+
+                  // const newsMarkup = artistsInNews.map((news) => {
+                  //   return (
+                  //     <li>
+                  //       <p>
+                  //         <Link href={news.link} as={news.link}>
+                  //           {news.title.rendered}
+                  //         </Link>
+                  //       </p>
+                  //     </li>
+                  //   );
+                  // });
+                  // return (
+                  //   <PageText>
+                  //     <ul>{newsMarkup}</ul>
+                  //   </PageText>
+                  // );
                 }}
               </Fetcher>
-            </PageText>
+            </React.Fragment>
           );
         case 'press':
           if (!press) {
