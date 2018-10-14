@@ -18,7 +18,8 @@ class SingleNew extends Component {
     if (!news) {
       return <Error />;
     }
-    return <div>{news.title.rendered}</div>;
+    console.log(news.content.rendered);
+    return <div dangerouslySetInnerHTML={{__html: news.title.rendered}} />;
   }
 }
 

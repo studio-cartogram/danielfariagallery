@@ -1,5 +1,11 @@
 import React from 'react';
-import {StyledNewsList, StyledNewsLi, StyledNewsLink} from './styles';
+import {
+  StyledNewsList,
+  StyledNewsLi,
+  StyledNewsLink,
+  StyledArtistLinkList,
+  StyledArtistLink,
+} from './styles';
 import Link from '../Link';
 
 function NewsList({news, filters}) {
@@ -23,6 +29,20 @@ function NewsList({news, filters}) {
           )
         : [];
 
+      const artistListMarkup = news.acf.artist.map((artist) => {
+        return (
+          <StyledArtistLink key={artist.post_name}>
+            <Link
+              variant="tertiary"
+              as={`/artist/${artist.post_name}`}
+              href={`/artist?slug=${artist.post_name}`}
+            >
+              {artist.post_title}
+            </Link>
+          </StyledArtistLink>
+        );
+      });
+
       return (
         <StyledNewsLi key={news.id}>
           <StyledNewsLink>
@@ -35,6 +55,7 @@ function NewsList({news, filters}) {
               <div dangerouslySetInnerHTML={{__html: news.title.rendered}} />
             </Link>
           </StyledNewsLink>
+          <StyledArtistLinkList>{artistListMarkup}</StyledArtistLinkList>
         </StyledNewsLi>
       );
     });

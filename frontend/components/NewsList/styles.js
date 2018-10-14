@@ -29,4 +29,22 @@ const StyledNewsLink = styled.span`
   cursor: pointer;
 `;
 
-export {StyledNewsList, StyledNewsLi, StyledNewsLink};
+const StyledArtistLinkList = styled.ul`
+  padding-top: ${(props) => props.theme.pxScale[1]};
+  display: block;
+`;
+
+const StyledArtistLink = styled.li`
+  cursor: pointer;
+  display: inline-flex;
+  padding-top: ${(props) => props.theme.pxScale[0]};
+  padding-right: ${(props) => props.theme.pxScale[2]};
+`;
+
+export {
+  StyledNewsList,
+  StyledNewsLi,
+  StyledNewsLink,
+  StyledArtistLinkList,
+  StyledArtistLink,
+};
