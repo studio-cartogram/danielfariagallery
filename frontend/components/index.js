@@ -8,6 +8,8 @@ export {default as GridSpace} from './GridSpace';
 export {default as GridWrapper} from './GridWrapper';
 export {default as Layout} from './Layout';
 export {default as Main} from './Main';
+export {default as NewsSingle} from './NewsSingle';
+export {default as NewsList} from './NewsList';
 export {default as Footer} from './Footer';
 export {default as CurrentExhibition} from './CurrentExhibition';
 export {default as Artist} from './Artist';

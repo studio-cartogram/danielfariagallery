@@ -3,6 +3,11 @@ import fetch from 'isomorphic-unfetch';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 import Error from '../components/Error';
+import Title from '../components/Title';
+import PageMast from '../components/PageMast';
+import PageText from '../components/PageText';
+import Link from '../components/Link';
+import NewsSingle from '../components/NewsSingle';
 
 class SingleNew extends Component {
   static async getInitialProps(context) {
@@ -18,8 +23,14 @@ class SingleNew extends Component {
     if (!news) {
       return <Error />;
     }
-    console.log(news.content.rendered);
-    return <div dangerouslySetInnerHTML={{__html: news.title.rendered}} />;
+
+    return (
+      <NewsSingle
+        title={news.title.rendered}
+        content={news.content.rendered}
+        artists={news.acf.artist}
+      />
+    );
   }
 }
 
