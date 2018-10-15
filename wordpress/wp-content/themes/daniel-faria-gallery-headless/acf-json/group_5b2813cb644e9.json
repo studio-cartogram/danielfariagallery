@@ -188,8 +188,8 @@
         },
         {
             "key": "field_5bc4d3c42bc33",
-            "label": "Artists",
-            "name": "artists",
+            "label": "Artist(s)",
+            "name": "artist",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -231,5 +231,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1539626563
+    "modified": 1539633414
 }

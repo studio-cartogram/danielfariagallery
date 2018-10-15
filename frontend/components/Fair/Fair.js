@@ -1,16 +1,33 @@
 import Link from '../../components/Link';
-import {StyledFairName, StyledFair} from './styles';
-import Image from '../Image';
+import Thumbnail from '../../components/Thumbnail';
 
-function Fair({url, slug, fairImage, title}) {
+import {
+  StyledFairName,
+  StyledFairDate,
+  StyledFair,
+  StyledFairThumb,
+} from './styles';
+
+function Fair({url, slug, fairImage, artists, title, startdate, enddate}) {
+  const imageMarkup = fairImage ? (
+    <StyledFairThumb src={fairImage} alt={title} />
+  ) : null;
+
   return (
     <StyledFair>
-      <StyledFairName>
-        <Link as={url} href={`/fair?slug=${slug}`}>
-          {title}
-        </Link>
-      </StyledFairName>
-      <Image src={fairImage} alt={title} />
+      <Link variant="zoom" href={`/fair?slug=${slug}`} as={url}>
+        {imageMarkup}
+        <StyledFairName>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          />
+        </StyledFairName>
+        <StyledFairDate>
+          {startdate} - {enddate}
+        </StyledFairDate>
+      </Link>
     </StyledFair>
   );
 }

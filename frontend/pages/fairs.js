@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch';
 import React, {Component} from 'react';
 import {config} from '../config';
 import withLayout from '../decorators/withLayout';
-import Fair from '../components/Fair';
+import FairList from '../components/FairList';
 
 const endpoint = `${config.apiUrl}/wp-json/wp/v2/fairs?_embed`;
 
@@ -15,22 +15,8 @@ class FairIndex extends Component {
 
   render() {
     const fairs = this.props.data;
-    const fairlistMarkup = fairs.map((fair) => {
-      const image =
-        fair._embedded['wp:featuredmedia'][0].media_details.sizes.img_thumbnail
-          .source_url;
-      return (
-        <li key={fair.id}>
-          <Fair
-            slug={fair.slug}
-            url={`/fair/${fair.slug}`}
-            title={fair.title.rendered}
-            fairImage={image}
-          />
-        </li>
-      );
-    });
-    return <ul>{fairlistMarkup}</ul>;
+
+    return <FairList fairs={fairs} />;
   }
 }
 
