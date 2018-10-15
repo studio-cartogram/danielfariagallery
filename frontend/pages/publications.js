@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch';
 import React, {Component} from 'react';
 import {config} from '../config';
 import withLayout from '../decorators/withLayout';
-import Publication from '../components/Publication';
+import PublicationList from '../components/PublicationList';
 
 const endpoint = `${config.apiUrl}/wp-json/wp/v2/publications?_embed`;
 
@@ -15,24 +15,8 @@ class PublicationIndex extends Component {
 
   render() {
     const publications = this.props.data;
-    const publicationlistMarkup = publications.map((publication) => {
-      const image = publication._embedded['wp:featuredmedia'][0].media_details
-        .sizes.img_thumbnail
-        ? publication._embedded['wp:featuredmedia'][0].media_details.sizes
-            .img_thumbnail.source_url
-        : null;
-      return (
-        <li key={publication.id}>
-          <Publication
-            slug={publication.slug}
-            url={`/publication/${publication.slug}`}
-            title={publication.title.rendered}
-            publicationImage={image}
-          />
-        </li>
-      );
-    });
-    return <ul>{publicationlistMarkup}</ul>;
+
+    return <PublicationList publications={publications} />;
   }
 }
 

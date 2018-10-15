@@ -1,19 +1,28 @@
 import Link from '../../components/Link';
-import {StyledPublicationName, StyledPublication} from './styles';
-import Image from '../Image';
 
-function Publication({url, slug, publicationImage, title}) {
+import {
+  StyledPublicationName,
+  StyledPublication,
+  StyledPublicationThumb,
+} from './styles';
+
+function Publication({url, slug, publicationImage, artists, title}) {
   const imageMarkup = publicationImage ? (
-    <Image src={publicationImage} alt={title} />
+    <StyledPublicationThumb src={publicationImage} alt={title} />
   ) : null;
+
   return (
     <StyledPublication>
-      <StyledPublicationName>
-        <Link as={url} href={`publication?slug=${slug}`}>
-          {title}
-        </Link>
-      </StyledPublicationName>
-      {imageMarkup}
+      <Link variant="zoom" href={`/publication?slug=${slug}`} as={url}>
+        {imageMarkup}
+        <StyledPublicationName>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          />
+        </StyledPublicationName>
+      </Link>
     </StyledPublication>
   );
 }

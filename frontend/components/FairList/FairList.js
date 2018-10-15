@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyledFairList, StyledFairLi} from './styles';
 import Fair from '../Fair';
-import {getYearFromDateString, getFeaturedImage} from '../../utilities';
+import {getFeaturedImage} from '../../utilities';
 
 function FairList({fairs}) {
   const fairlistMarkup = fairs.map((fair) => {
