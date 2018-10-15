@@ -29,7 +29,7 @@ app
     });
 
     server.get('/news/:slug', (req, res) => {
-      const actualPage = '/news';
+      const actualPage = '/new';
       const queryParams = {slug: req.params.slug};
       app.render(req, res, actualPage, queryParams);
     });
@@ -42,6 +42,12 @@ app
 
     server.get('/publication/:slug', (req, res) => {
       const actualPage = '/publication';
+      const queryParams = {slug: req.params.slug};
+      app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('/work/:id', (req, res) => {
+      const actualPage = '/media';
       const queryParams = {slug: req.params.slug};
       app.render(req, res, actualPage, queryParams);
     });

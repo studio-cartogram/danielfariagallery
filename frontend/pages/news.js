@@ -27,12 +27,13 @@ class NewsIndex extends Component {
     const news = this.props.data;
     const {filters, open} = this.state;
 
-    const newsArtists = news.map((news) => {
-      if (!news.acf.artist[0]) {
-        return;
-      }
-      return news.acf.artist[0].post_title;
-    });
+    const newsArtists = news.reduce((acc, news) => {
+      const currentNewsArtists = news.acf.artist.map(
+        (artist) => artist && artist.post_title,
+      );
+
+      return [...acc, ...currentNewsArtists];
+    }, []);
 
     const navigationMarkup = (
       <React.Fragment>

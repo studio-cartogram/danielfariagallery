@@ -9,15 +9,17 @@ import {
 import Link from '../Link';
 
 function NewsList({news, filters}) {
-  const newslistMarkup = news
+  const newsListMarkup = news
     .filter((news) => {
       const {artist} = filters;
       if (!news.acf.artist[0]) {
         return false;
       }
 
+      const artistNames = news.acf.artist.map((artist) => artist.post_title);
+
       if (artist) {
-        return news.acf.artist[0].post_title === artist;
+        return artistNames.includes(artist);
       }
 
       return true;
@@ -62,7 +64,7 @@ function NewsList({news, filters}) {
 
   return (
     <React.Fragment>
-      <StyledNewsList>{newslistMarkup}</StyledNewsList>
+      <StyledNewsList>{newsListMarkup}</StyledNewsList>
     </React.Fragment>
   );
 }
