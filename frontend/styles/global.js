@@ -1,6 +1,6 @@
 import {injectGlobal} from 'styled-components';
 import {reset} from './utilities';
-import {fonts, fontFamily} from './typography';
+import {fonts, fontFamily, fontFamilyItalic} from './typography';
 import theme from './theme';
 
 injectGlobal`
@@ -53,5 +53,8 @@ injectGlobal`
   }
   li {
     padding-bottom: ${(props) => props.theme.pxScale[2]};
+  }
+  em, i {
+    font-family: ${fontFamilyItalic}
   }
 `;
