@@ -1,6 +1,6 @@
 {
     "key": "group_5b27f371a2e6a",
-    "title": "Exhibitions",
+    "title": "Exhibition Information",
     "fields": [
         {
             "key": "field_5b27f377437b1",
@@ -202,11 +202,11 @@
     ],
     "menu_order": 0,
     "position": "acf_after_title",
-    "style": "seamless",
+    "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537469602
+    "modified": 1539719244
 }
