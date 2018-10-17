@@ -20,13 +20,16 @@ class Fair extends React.Component {
       return <Error />;
     }
 
+    const displayTitle = `${fair.title.rendered}, ${fair.acf.location}`;
+
     return (
       <FairSingle
-        title={fair.title.rendered}
+        title={displayTitle}
         content={fair.content.rendered}
         works={fair.acf.work}
         startDate={fair.acf.start_date}
         endDate={fair.acf.end_date}
+        location={fair.acf.location}
       />
     );
   }

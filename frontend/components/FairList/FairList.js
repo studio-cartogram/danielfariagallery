@@ -23,6 +23,7 @@ function FairList({fairs}) {
           artists={artists}
           startdate={fair.acf.start_date}
           enddate={fair.acf.end_date}
+          location={fair.acf.location}
         />
       </StyledFairLi>
     );

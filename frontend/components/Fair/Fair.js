@@ -8,10 +8,21 @@ import {
   StyledFairThumb,
 } from './styles';
 
-function Fair({url, slug, fairImage, artists, title, startdate, enddate}) {
+function Fair({
+  url,
+  slug,
+  fairImage,
+  artists,
+  title,
+  startdate,
+  enddate,
+  location,
+}) {
   const imageMarkup = fairImage ? (
     <StyledFairThumb src={fairImage} alt={title} />
   ) : null;
+
+  const displayTitle = `${title}, ${location}`;
 
   return (
     <StyledFair>
@@ -20,7 +31,7 @@ function Fair({url, slug, fairImage, artists, title, startdate, enddate}) {
         <StyledFairName>
           <span
             dangerouslySetInnerHTML={{
-              __html: title,
+              __html: displayTitle,
             }}
           />
         </StyledFairName>

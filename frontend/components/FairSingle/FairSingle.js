@@ -15,7 +15,7 @@ class FairSingle extends React.Component {
   };
   render() {
     const {currentSection} = this.state;
-    const {title, works, content, startDate, endDate} = this.props;
+    const {title, works, content, startDate, endDate, location} = this.props;
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
