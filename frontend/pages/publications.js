@@ -4,7 +4,9 @@ import {config} from '../config';
 import withLayout from '../decorators/withLayout';
 import PublicationList from '../components/PublicationList';
 
-const endpoint = `${config.apiUrl}/wp-json/wp/v2/publications?_embed`;
+const endpoint = `${
+  config.apiUrl
+}/wp-json/wp/v2/publications?per_page=100&_embed=true`;
 
 class PublicationIndex extends Component {
   static async getInitialProps() {

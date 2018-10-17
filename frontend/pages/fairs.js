@@ -4,7 +4,9 @@ import {config} from '../config';
 import withLayout from '../decorators/withLayout';
 import FairList from '../components/FairList';
 
-const endpoint = `${config.apiUrl}/wp-json/wp/v2/fairs?_embed`;
+const endpoint = `${
+  config.apiUrl
+}/wp-json/wp/v2/fairs?per_page=100&_embed=true`;
 
 class FairIndex extends Component {
   static async getInitialProps() {
