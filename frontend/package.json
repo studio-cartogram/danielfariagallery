@@ -26,7 +26,7 @@
     "next": "latest",
     "nprogress": "^0.2.0",
     "path": "^0.12.7",
-    "react": "^16.0.0",
+    "react": "16.5.2",
     "styled-components": "^3.3.2"
   },
   "devDependencies": {

@@ -20,7 +20,22 @@ import Link from '../Link';
 
 */
 class Modal extends React.Component {
+  componentDidMount() {
+    if (this.props.router.query.id) {
+      this.disableSrcoll();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.router.query.id && !this.props.router.query.id) {
+      this.enableSrcoll();
+    } else {
+      this.disableSrcoll();
+    }
+  }
+
   render() {
+    console.log('render');
     const {
       collection,
       router: {
@@ -43,9 +58,9 @@ class Modal extends React.Component {
 
     const workDetails =
       item.work_details && item.work_details.length
-        ? item.work_details.map((detail) => {
+        ? item.work_details.map((detail, index) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={index}>
                 {detail.work_detail}
                 <br />
               </React.Fragment>
@@ -73,7 +88,10 @@ class Modal extends React.Component {
 
   dismiss = () => {
     const {router} = this.props;
-    router.push(...this.getPushUrl(id));
+    router.push(
+      `/exhibition?slug=${router.query.slug}`,
+      `${router.pathname}/${router.query.slug}`,
+    );
   };
 
   next = (itemIndex) => {
@@ -105,10 +123,25 @@ class Modal extends React.Component {
   getPushUrl(id) {
     const {router} = this.props;
 
+    if (!id) {
+      return [
+        `/exhibition?slug=${router.query.slug}`,
+        `${router.pathname}/${router.query.slug}`,
+      ];
+    }
+
     return [
       `/exhibition?slug=${router.query.slug}&id=${id}`,
       `${router.pathname}/${router.query.slug}?id=${id}`,
     ];
+  }
+
+  disableSrcoll() {
+    document.body.classList.add('no-scroll');
+  }
+
+  enableSrcoll() {
+    document.body.classList.remove('no-scroll');
   }
 }
 

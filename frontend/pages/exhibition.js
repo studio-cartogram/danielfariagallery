@@ -38,6 +38,7 @@ class Exhibition extends React.Component {
 
     return (
       <ExhibitionSingle
+        slug={exhibition.slug}
         title={displayTitle}
         startDate={exhibition.acf.start_date}
         endDate={exhibition.acf.end_date}

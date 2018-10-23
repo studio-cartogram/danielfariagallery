@@ -81,6 +81,7 @@ class ExhibitionIndex extends Component {
     const pageMarkup = onCurrent ? (
       <ExhibitionSingle
         title={displayTitle}
+        slug={exhibitionsToShow[0].slug}
         startDate={exhibitionsToShow[0].acf.start_date}
         endDate={exhibitionsToShow[0].acf.end_date}
         opening={exhibitionsToShow[0].acf.opening_reception}

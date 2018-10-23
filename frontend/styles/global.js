@@ -5,9 +5,11 @@ import theme from './theme';
 
 injectGlobal`
   ${fonts}
+  
   html {
     box-sizing: border-box;
   }
+
   html,
   body {
     height: 100vh;
@@ -20,28 +22,45 @@ injectGlobal`
     font-weight: normal;
     color: ${theme.Body.CurrentColor};
   }
+
   *,
   *:before,
   *:after {
     ${reset}
   }
+
+  em, i {
+    font-family: ${fontFamilyItalic}
+  }
+
+  .no-scroll {
+    overflow: hidden;
+  }
+
+  /* THis is not ideal to have globals,
+     but needed only for the wordpress content
+     coming from the cms.
+  */ 
+  p {
+    padding-bottom: ${theme.pxScale[2]};
+  }
   a {
     color: ${theme.LinkPrimary.CurrentColor};
     text-decoration: none;
   }
-  p {
-    padding-bottom: ${theme.pxScale[2]};
-  }
+  
   h1 {
     font-size: ${theme.pxScale[3]};
     font-weight: normal;
   }
+
   h3 {
     font-size: ${theme.pxScale[21]};
     padding-bottom: ${theme.pxScale[2]};
     font-weight: normal;
     color: ${theme.Secondary.CurrentColor};
   }
+  
   h4 {
     font-size: ${theme.pxScale[2]};
     padding-bottom: ${theme.pxScale[0]};
@@ -54,7 +73,5 @@ injectGlobal`
   li {
     padding-bottom: ${(props) => props.theme.pxScale[2]};
   }
-  em, i {
-    font-family: ${fontFamilyItalic}
-  }
+
 `;

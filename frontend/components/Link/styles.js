@@ -6,6 +6,11 @@ const hoverLineStyles = (props) => css`
   transition: width ${props.theme.transitions.default};
 `;
 
+const baseLinkStyles = (props) => css`
+  width: 100%;
+  transition: width ${props.theme.transitions.default};
+`;
+
 const afterStyles = (props) => {
   let color;
   switch (props.variant) {

@@ -23,7 +23,7 @@ class ExhibitionSingle extends React.Component {
       works,
       artists,
       content,
-      router,
+      slug,
     } = this.props;
 
     const openingReceptionMarkup = opening
@@ -44,10 +44,8 @@ class ExhibitionSingle extends React.Component {
         case 'work':
           const workimageMarkup = works.map((work) => {
             const id = getFileNameFromPath(work.work_image);
-            const href = `${router.pathname}?slug=${
-              router.query.slug
-            }&id=${id}`;
-            const as = `${router.pathname}/${router.query.slug}?id=${id}`;
+            const href = `/exhibition?slug=${slug}&id=${id}`;
+            const as = `/exhibition/${slug}?id=${id}`;
             return (
               <Thumbnail
                 key={id}
@@ -65,7 +63,7 @@ class ExhibitionSingle extends React.Component {
 
     return (
       <React.Fragment>
-        <Modal collection={works} />
+        <Modal current collection={works} />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: displayTitle}} />
