@@ -31,7 +31,9 @@ class ExhibitionSingle extends React.Component {
       : null;
 
     const displayTitle =
-      artists && artists.length ? commaListsAnd`${artists}: ${title}` : title;
+      artists && artists.length
+        ? commaListsAnd`${artists}: <em>${title}</em>`
+        : title;
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
@@ -63,7 +65,7 @@ class ExhibitionSingle extends React.Component {
 
     return (
       <React.Fragment>
-        <Modal current collection={works} />
+        <Modal current collection={works} postType="exhibition" />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: displayTitle}} />

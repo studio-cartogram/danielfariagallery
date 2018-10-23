@@ -1,5 +1,6 @@
 import React from 'react';
 import {config} from '../../config';
+import {withRouter} from 'next/router';
 import PageText from '../PageText';
 import PageMast from '../PageMast';
 import Thumbnail from '../Thumbnail';
@@ -8,6 +9,8 @@ import Fetcher from '../Fetcher';
 import Error from '../Error';
 import PageNav from '../PageNav';
 import Link from '../Link';
+import Modal from '../../components/Modal';
+import {getFileNameFromPath} from '../../utilities';
 
 class FairSingle extends React.Component {
   state = {
@@ -15,7 +18,7 @@ class FairSingle extends React.Component {
   };
   render() {
     const {currentSection} = this.state;
-    const {title, works, content, startDate, endDate} = this.props;
+    const {title, works, content, startDate, endDate, slug} = this.props;
 
     // const workArtists = works.map((work) => {
     //   return work.work_artist[0];
@@ -75,13 +78,19 @@ class FairSingle extends React.Component {
             return null;
           }
           const workImageMarkup = works.map((work) => {
+            const id = getFileNameFromPath(work.work_image);
+            const href = `/fair?slug=${slug}&id=${id}`;
+            const as = `/fair/${slug}?id=${id}`;
             return (
               <Thumbnail
-                key={work.work_image}
                 url={work.work_image}
                 title={work.work_title}
                 image={work.work_image}
                 artist={work.work_artist}
+                key={id}
+                id={id}
+                as={as}
+                href={href}
               />
             );
           });
@@ -92,6 +101,7 @@ class FairSingle extends React.Component {
     const subSectionMarkup = sectionMarkup(currentSection);
     return (
       <React.Fragment>
+        <Modal current collection={works} />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: title}} />
@@ -117,4 +127,4 @@ class FairSingle extends React.Component {
   };
 }
 
-export default FairSingle;
+export default withRouter(FairSingle);

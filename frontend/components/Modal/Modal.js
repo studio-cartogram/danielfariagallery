@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyledModal,
-  StyledModalControls,
+  StyledControls,
   StyledModalMast,
   StyledImage,
   StyledClose,
@@ -38,6 +38,7 @@ class Modal extends React.Component {
     console.log('render');
     const {
       collection,
+      postType,
       router: {
         query: {id},
       },
@@ -68,18 +69,26 @@ class Modal extends React.Component {
           })
         : null;
 
+    const workDetailsMarkup =
+      item.work_details && item.work_details.length ? (
+        <div>{workDetails}</div>
+      ) : null;
+
     return (
       <StyledModal>
-        <StyledClose>
-          <Link onClick={this.dismiss}>Close</Link>
-        </StyledClose>
-        <StyledModalControls>
+        <Link onClick={this.dismiss}>Close</Link>
+        <StyledControls>
           <Link onClick={this.prev(itemIndex)}>Prev</Link>
           <Link onClick={this.next(itemIndex)}>Next</Link>
-        </StyledModalControls>
+        </StyledControls>
         <StyledModalMast>
           <Title>{item.work_title}</Title>
-          <div>{workDetails}</div>
+          <p>{workDetailsMarkup}</p>
+          <p>
+            <Link target="_blank" href={item.work_image}>
+              Full image
+            </Link>
+          </p>
         </StyledModalMast>
         <StyledImage alt={item.work_title} src={item.work_image} />
       </StyledModal>
@@ -88,8 +97,9 @@ class Modal extends React.Component {
 
   dismiss = () => {
     const {router} = this.props;
+
     router.push(
-      `/exhibition?slug=${router.query.slug}`,
+      `${router.pathname}?slug=${router.query.slug}`,
       `${router.pathname}/${router.query.slug}`,
     );
   };
@@ -109,7 +119,7 @@ class Modal extends React.Component {
   };
 
   goToImage = (index) => {
-    const {router, collection} = this.props;
+    const {router, collection, postType} = this.props;
     const item = collection[index];
 
     if (!item) {
@@ -122,16 +132,16 @@ class Modal extends React.Component {
 
   getPushUrl(id) {
     const {router} = this.props;
-
+    console.log(router.pathname);
     if (!id) {
       return [
-        `/exhibition?slug=${router.query.slug}`,
+        `${router.pathname}?slug=${router.query.slug}`,
         `${router.pathname}/${router.query.slug}`,
       ];
     }
 
     return [
-      `/exhibition?slug=${router.query.slug}&id=${id}`,
+      `${router.pathname}?slug=${router.query.slug}&id=${id}`,
       `${router.pathname}/${router.query.slug}?id=${id}`,
     ];
   }

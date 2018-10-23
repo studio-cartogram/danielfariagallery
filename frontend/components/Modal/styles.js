@@ -13,8 +13,8 @@ export const StyledModal = styled.div`
   z-index: 1;
   grid-column: span 3;
   padding: ${(props) => props.theme.pxScale[3]};
-  padding-top: ${(props) => props.theme.pxScale[8]};
   overflow-y: scroll;
+  justify-items: start;
 
   ${breakpoints.bpM} {
     display: grid;
@@ -25,33 +25,15 @@ export const StyledModal = styled.div`
   }
 `;
 
-export const StyledModalControls = styled.div`
-  position: fixed;
-  top: ${(props) => props.theme.pxScale[3]};
-  right: ${(props) => props.theme.pxScale[3]};
-  display: flex;
+export const StyledControls = styled.div`
+  padding-bottom: ${(props) => props.theme.pxScale[3]};
+
   > * {
     margin-right: ${(props) => props.theme.pxScale[2]};
   }
 
   ${breakpoints.bpM} {
-    top: ${(props) => props.theme.pxScale[6]};
-    right: ${(props) => props.theme.pxScale[6]};
-
-    > * {
-      margin-left: ${(props) => props.theme.pxScale[2]};
-    }
-  }
-`;
-
-export const StyledClose = styled.div`
-  position: fixed;
-  top: ${(props) => props.theme.pxScale[3]};
-  left: ${(props) => props.theme.pxScale[3]};
-
-  ${breakpoints.bpM} {
-    top: ${(props) => props.theme.pxScale[6]};
-    left: ${(props) => props.theme.pxScale[6]};
+    padding-bottom: ${(props) => props.theme.pxScale[0]};
   }
 `;
 

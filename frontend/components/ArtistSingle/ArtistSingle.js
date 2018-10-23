@@ -1,5 +1,6 @@
 import React from 'react';
 import {config} from '../../config';
+import {withRouter} from 'next/router';
 import PageText from '../PageText';
 import PageMast from '../PageMast';
 import Thumbnail from '../Thumbnail';
@@ -10,6 +11,8 @@ import PageNav from '../PageNav';
 import Link from '../Link';
 import ExhibitionList from '../ExhibitionList';
 import NewsList from '../NewsList';
+import Modal from '../../components/Modal';
+import {getFileNameFromPath} from '../../utilities';
 
 class ArtistSingle extends React.Component {
   state = {
@@ -17,7 +20,7 @@ class ArtistSingle extends React.Component {
   };
   render() {
     const {currentSection} = this.state;
-    const {title, works, content, press} = this.props;
+    const {title, works, content, press, slug} = this.props;
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
@@ -33,10 +36,8 @@ class ArtistSingle extends React.Component {
           }
           const workImageMarkup = works.map((work) => {
             const id = getFileNameFromPath(work.work_image);
-            const href = `${router.pathname}?slug=${
-              router.query.slug
-            }&id=${id}`;
-            const as = `${router.pathname}/${router.query.slug}?id=${id}`;
+            const href = `/artist?slug=${slug}&id=${id}`;
+            const as = `/artist/${slug}?id=${id}`;
             return (
               <Thumbnail
                 key={id}
@@ -90,29 +91,6 @@ class ArtistSingle extends React.Component {
                     return 'loading';
                   }
                   return <NewsList filters={{artist: title}} news={data} />;
-
-                  // const artistsInNews = data.filter((item) => {
-                  //   return item.acf.artist.filter((artist) => {
-                  //     return artist.post_title === title;
-                  //   }).length;
-                  // });
-
-                  // const newsMarkup = artistsInNews.map((news) => {
-                  //   return (
-                  //     <li>
-                  //       <p>
-                  //         <Link href={news.link} as={news.link}>
-                  //           {news.title.rendered}
-                  //         </Link>
-                  //       </p>
-                  //     </li>
-                  //   );
-                  // });
-                  // return (
-                  //   <PageText>
-                  //     <ul>{newsMarkup}</ul>
-                  //   </PageText>
-                  // );
                 }}
               </Fetcher>
             </React.Fragment>
@@ -141,6 +119,7 @@ class ArtistSingle extends React.Component {
     const subSectionMarkup = sectionMarkup(currentSection);
     return (
       <React.Fragment>
+        <Modal current collection={works} />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: title}} />
@@ -168,4 +147,4 @@ class ArtistSingle extends React.Component {
   };
 }
 
-export default ArtistSingle;
+export default withRouter(ArtistSingle);

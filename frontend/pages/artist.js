@@ -16,12 +16,14 @@ class Artist extends React.Component {
 
   render() {
     const artist = this.props.data[0];
+
     if (!artist) {
       return <Error />;
     }
 
     return (
       <ArtistSingle
+        slug={artist.slug}
         title={artist.title.rendered}
         content={artist.content.rendered}
         works={artist.acf.work}

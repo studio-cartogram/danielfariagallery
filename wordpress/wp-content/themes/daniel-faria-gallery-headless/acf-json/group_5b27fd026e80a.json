@@ -86,7 +86,7 @@
                         {
                             "key": "field_5b280f5b451bc",
                             "label": "Detail",
-                            "name": "detail",
+                            "name": "work_detail",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -229,5 +229,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1539726017
+    "modified": 1540322971
 }

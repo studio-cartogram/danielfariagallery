@@ -24,6 +24,7 @@ class Fair extends React.Component {
 
     return (
       <FairSingle
+        slug={fair.slug}
         title={displayTitle}
         content={fair.content.rendered}
         works={fair.acf.work}
