@@ -22,7 +22,9 @@ function Exhibition({
   ) : null;
 
   const displayTitle =
-    artists && artists.length ? commaListsAnd`${artists}: ${title}` : title;
+    artists && artists.length
+      ? commaListsAnd`${artists}: <em>${title}</em>`
+      : title;
 
   return (
     <StyledExhibition>

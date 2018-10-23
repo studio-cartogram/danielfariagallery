@@ -26,7 +26,9 @@ class Exhibition extends React.Component {
     const title = exhibition.title.rendered;
 
     const displayTitle =
-      artists && artists.length ? commaListsAnd`${artists}: ${title}` : title;
+      artists && artists.length
+        ? commaListsAnd`${artists}: <em>${title}</em>`
+        : title;
 
     if (!exhibition) {
       return <Error />;

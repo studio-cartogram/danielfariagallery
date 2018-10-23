@@ -75,7 +75,7 @@ class ExhibitionIndex extends Component {
 
     const displayTitle =
       artistsToShow && artistsToShow.length
-        ? commaListsAnd`${artistsToShow}: ${title}`
+        ? commaListsAnd`${artistsToShow}: <em>${title}</em>`
         : title;
 
     const pageMarkup = onCurrent ? (
