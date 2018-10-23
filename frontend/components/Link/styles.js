@@ -42,6 +42,26 @@ const afterStyles = (props) => {
   `;
 };
 
+const StyledPrimaryButton = styled.button`
+  font-size: 100%;
+  color: ${(props) => props.theme.LinkPrimary.CurrentColor};
+  ${(props) => (props.current ? `cursor: default` : null)};
+  position: relative;
+  cursor: pointer;
+
+  ${(props) => afterStyles(props)};
+  a {
+    cursor: pointer;
+  }
+  &:hover:after {
+    ${(props) => hoverLineStyles(props)};
+  }
+
+  &:after {
+    ${(props) => (props.current ? hoverLineStyles(props) : null)};
+  }
+`;
+
 const StyledPrimaryLink = styled.span`
   color: ${(props) => props.theme.LinkPrimary.CurrentColor};
   ${(props) => (props.current ? `cursor: default` : null)};
@@ -49,7 +69,9 @@ const StyledPrimaryLink = styled.span`
   cursor: pointer;
 
   ${(props) => afterStyles(props)};
-
+  a {
+    cursor: pointer;
+  }
   &:hover:after {
     ${(props) => hoverLineStyles(props)};
   }
@@ -93,7 +115,6 @@ const StyledSecondaryLink = styled.span`
 const StyledHybridLink = styled.span`
   display: inline-flex;
   position: relative;
-  cursor: pointer;
   height: ${(props) => props.theme.pxScale[3]};
   color: ${(props) => props.theme.LinkSecondary.CurrentColor};
 
@@ -172,4 +193,5 @@ export {
   StyledInvisibleLink,
   StyledHybridLink,
   StyledZoomLink,
+  StyledPrimaryButton,
 };

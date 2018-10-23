@@ -15,7 +15,52 @@ class FairSingle extends React.Component {
   };
   render() {
     const {currentSection} = this.state;
-    const {title, works, content, startDate, endDate, location} = this.props;
+    const {title, works, content, startDate, endDate} = this.props;
+
+    // const workArtists = works.map((work) => {
+    //   return work.work_artist[0];
+    // });
+
+    // const featuredArtists = work.reduce((acc, work) => {
+    //   const currentArtists = work.work_artist.map(
+    //     (artist) => artist && artist.post_title,
+    //   );
+    //   return [...acc, ...currentArtists];
+    // }, []);
+
+    // const newsArtists = news.reduce((acc, news) => {
+    //   const currentNewsArtists = news.acf.artist.map(
+    //     (artist) => artist && artist.post_title,
+    //   );
+
+    //   return [...acc, ...currentNewsArtists];
+    // }, []);
+
+    // const fairArtists = works.reduce((acc, work) => {
+    //   const currentFairArtists = work.work_artist.map(
+    //     (artist) => artist && artist.post_title,
+    //   );
+
+    //   return [...acc, ...currentFairArtists];
+    // }, []);
+
+    // console.log(featuredArtists);
+
+    // const workArtists = works.map((work) => {
+    //   return work.work_artist;
+    // });
+
+    // const workArtists = works.map((item) => {
+    //   const featuredArtists = item.work_artist.map(
+    //     (artist) => artist && artist.post_title,
+    //   );
+    //   return [...featuredArtists];
+    // }, []);
+
+    // console.log(featuredArtists);
+
+    // this gets me the first artist off the first Work
+    // console.log(works[0].work_artist[0].post_title);
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {

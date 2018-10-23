@@ -12,43 +12,44 @@ app
 
     server.get('/page/:slug', (req, res) => {
       const actualPage = '/post';
-      const queryParams = {slug: req.params.slug, apiRoute: 'page'};
+      const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/artist/:slug', (req, res) => {
       const actualPage = '/artist';
-      const queryParams = {slug: req.params.slug};
+      const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/exhibition/:slug', (req, res) => {
       const actualPage = '/exhibition';
-      const queryParams = {slug: req.params.slug};
+      const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);
+
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/news/:slug', (req, res) => {
       const actualPage = '/new';
-      const queryParams = {slug: req.params.slug};
+      const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/fair/:slug', (req, res) => {
       const actualPage = '/fair';
-      const queryParams = {slug: req.params.slug};
+      const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/publication/:slug', (req, res) => {
       const actualPage = '/publication';
-      const queryParams = {slug: req.params.slug};
+      const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);
       app.render(req, res, actualPage, queryParams);
     });
 
     server.get('/work/:id', (req, res) => {
       const actualPage = '/media';
-      const queryParams = {slug: req.params.slug};
+      const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);
       app.render(req, res, actualPage, queryParams);
     });
 

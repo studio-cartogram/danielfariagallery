@@ -7,14 +7,19 @@ import {
   StyledInvisibleLink,
   StyledHybridLink,
   StyledZoomLink,
+  StyledPrimaryButton,
 } from './styles';
 
 function Link({href, variant, as, children, current, onClick, ...aprops}) {
   if (onClick) {
     return (
-      <a onClick={onClick} {...aprops}>
+      <StyledPrimaryButton
+        onClick={onClick}
+        variant={variant}
+        current={current}
+      >
         {children}
-      </a>
+      </StyledPrimaryButton>
     );
   }
 

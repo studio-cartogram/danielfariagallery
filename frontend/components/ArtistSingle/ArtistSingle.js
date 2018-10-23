@@ -32,10 +32,17 @@ class ArtistSingle extends React.Component {
             return null;
           }
           const workImageMarkup = works.map((work) => {
+            const id = getFileNameFromPath(work.work_image);
+            const href = `${router.pathname}?slug=${
+              router.query.slug
+            }&id=${id}`;
+            const as = `${router.pathname}/${router.query.slug}?id=${id}`;
             return (
               <Thumbnail
-                key={work.work_image}
-                url={work.work_image}
+                key={id}
+                id={id}
+                as={as}
+                href={href}
                 title={work.work_title}
                 image={work.work_image}
               />

@@ -1,4 +1,5 @@
 import isWithinRange from 'date-fns/is_within_range';
+import {basename, extname} from 'path';
 
 export function getCurrentExhibition(exhibitions) {
   return exhibitions.filter((exhibition) =>
@@ -24,6 +25,11 @@ export function getFeaturedImage(postType, size = 'img_thumbnail') {
     ? postType._embedded['wp:featuredmedia'][0].media_details.sizes[size]
         .source_url
     : null;
+}
+
+export function getFileNameFromPath(path) {
+  const filename = basename(path, extname(path));
+  return filename;
 }
 
 export function isEquivalent(a, b) {

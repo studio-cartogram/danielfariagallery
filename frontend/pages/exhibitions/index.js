@@ -7,6 +7,7 @@ import PageNav from '../../components/PageNav';
 import FilterControl from '../../components/FilterControl';
 import ExhibitionSingle from '../../components/ExhibitionSingle';
 import Link from '../../components/Link';
+
 import {
   getCurrentExhibition,
   getPastExhibitions,

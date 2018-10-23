@@ -12,6 +12,7 @@ export {default as NewsSingle} from './NewsSingle';
 export {default as NewsList} from './NewsList';
 export {default as FairList} from './FairList';
 export {default as FairSingle} from './FairSingle';
+export {default as Modal} from './Modal';
 export {default as Footer} from './Footer';
 export {default as CurrentExhibition} from './CurrentExhibition';
 export {default as Artist} from './Artist';

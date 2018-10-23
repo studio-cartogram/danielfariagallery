@@ -1,12 +1,13 @@
 import React from 'react';
+import {withRouter} from 'next/router';
 import PageText from '../PageText';
 import PageMast from '../PageMast';
 import PageNav from '../PageNav';
-import PageThumbs from '../PageThumbs';
 import Thumbnail from '../Thumbnail';
 import Title from '../Title';
-import Column from '../Column';
 import Link from '../Link';
+import Modal from '../../components/Modal';
+import {getFileNameFromPath} from '../../utilities';
 
 class ExhibitionSingle extends React.Component {
   state = {
@@ -22,6 +23,7 @@ class ExhibitionSingle extends React.Component {
       works,
       artists,
       content,
+      router,
     } = this.props;
 
     const openingReceptionMarkup = opening
@@ -41,10 +43,17 @@ class ExhibitionSingle extends React.Component {
           );
         case 'work':
           const workimageMarkup = works.map((work) => {
+            const id = getFileNameFromPath(work.work_image);
+            const href = `${router.pathname}?slug=${
+              router.query.slug
+            }&id=${id}`;
+            const as = `${router.pathname}/${router.query.slug}?id=${id}`;
             return (
               <Thumbnail
-                key={work.work_image}
-                url={work.work_image}
+                key={id}
+                id={id}
+                as={as}
+                href={href}
                 title={work.work_title}
                 image={work.work_image}
               />
@@ -56,6 +65,7 @@ class ExhibitionSingle extends React.Component {
 
     return (
       <React.Fragment>
+        <Modal collection={works} />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: displayTitle}} />
@@ -95,4 +105,4 @@ class ExhibitionSingle extends React.Component {
   };
 }
 
-export default ExhibitionSingle;
+export default withRouter(ExhibitionSingle);

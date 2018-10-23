@@ -6,11 +6,11 @@ import {
   StyledThumbnailCaption,
 } from './styles';
 
-function Thumbnail({url, image, title, details}) {
+function Thumbnail({url, href, as, id, image, title}) {
   return (
     <StyledThumbnail>
-      <Link variant="zoom" href={url} as={url}>
-        <StyledThumbnailImage key={title} alt={title} src={image} />
+      <Link variant="zoom" href={href} as={as}>
+        <StyledThumbnailImage alt={title} src={image} />
       </Link>
       <StyledThumbnailCaption>{title}</StyledThumbnailCaption>
     </StyledThumbnail>
