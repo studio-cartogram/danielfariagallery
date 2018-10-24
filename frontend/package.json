@@ -4,16 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "now --npm",
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "docker:build": "docker build -t frontend .",
     "docker:clean": "docker rm -f frontend || true",
     "docker:run": "docker run -p 3000:3000 --name frontend frontend",
     "docker:stop": "docker stop frontend",
     "docker:start": "docker start frontend && yarn run docker:logs",
     "docker:logs": "docker logs -f frontend",
-    "deploy": "yarn run docker:build && yarn run docker:clean && yarn run docker:run"
+    "doecker:deploy": "yarn run docker:build && yarn run docker:clean && yarn run docker:run"
   },
   "keywords": [],
   "author": "",

@@ -4,21 +4,12 @@ import {
   StyledControls,
   StyledModalMast,
   StyledImage,
-  StyledClose,
 } from './styles';
 import {withRouter} from 'next/router';
 import {getFileNameFromPath} from '../../utilities';
 import Title from '../Title';
 import Link from '../Link';
 
-/*
-  Next Steps
-
-  1. Add prev and next accorw
-  2. Add full image button
-  3. Add whatever else you want details wise
-
-*/
 class Modal extends React.Component {
   componentDidMount() {
     if (this.props.router.query.id) {
@@ -38,7 +29,6 @@ class Modal extends React.Component {
     console.log('render');
     const {
       collection,
-      postType,
       router: {
         query: {id},
       },
@@ -119,7 +109,7 @@ class Modal extends React.Component {
   };
 
   goToImage = (index) => {
-    const {router, collection, postType} = this.props;
+    const {router, collection} = this.props;
     const item = collection[index];
 
     if (!item) {

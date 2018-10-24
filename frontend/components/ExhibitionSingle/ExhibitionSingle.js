@@ -65,7 +65,7 @@ class ExhibitionSingle extends React.Component {
 
     return (
       <React.Fragment>
-        <Modal current collection={works} postType="exhibition" />
+        <Modal current collection={works} />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: displayTitle}} />

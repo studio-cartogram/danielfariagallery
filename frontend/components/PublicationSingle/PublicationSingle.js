@@ -8,6 +8,8 @@ import Fetcher from '../Fetcher';
 import Error from '../Error';
 import PageNav from '../PageNav';
 import Link from '../Link';
+import Modal from '../../components/Modal';
+import {getFileNameFromPath} from '../../utilities';
 
 class PublicationSingle extends React.Component {
   state = {
@@ -15,7 +17,7 @@ class PublicationSingle extends React.Component {
   };
   render() {
     const {currentSection} = this.state;
-    const {title, works, content} = this.props;
+    const {title, works, content, slug} = this.props;
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
@@ -30,9 +32,15 @@ class PublicationSingle extends React.Component {
             return null;
           }
           const workImageMarkup = works.map((work) => {
+            const id = getFileNameFromPath(work.work_image);
+            const href = `/publication?slug=${slug}&id=${id}`;
+            const as = `/publication/${slug}?id=${id}`;
             return (
               <Thumbnail
-                key={work.work_image}
+                key={id}
+                id={id}
+                as={as}
+                href={href}
                 url={work.work_image}
                 title={work.work_title}
                 image={work.work_image}
@@ -47,6 +55,7 @@ class PublicationSingle extends React.Component {
     const subSectionMarkup = sectionMarkup(currentSection);
     return (
       <React.Fragment>
+        <Modal current collection={works} />
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: title}} />
@@ -69,4 +78,4 @@ class PublicationSingle extends React.Component {
   };
 }
 
-export default PublicationSingle;
+export default withRouter(PublicationSingle);

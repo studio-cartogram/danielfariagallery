@@ -22,6 +22,7 @@ class Publication extends React.Component {
 
     return (
       <PublicationSingle
+        slug={publication.slug}
         title={publication.title.rendered}
         content={publication.content.rendered}
         works={publication.acf.work}
