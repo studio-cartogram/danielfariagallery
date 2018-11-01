@@ -35,7 +35,10 @@ class ArtistSingle extends React.Component {
             return null;
           }
           const workImageMarkup = works.map((work) => {
-            const id = getFileNameFromPath(work.work_image);
+            const id = getFileNameFromPath(
+              work.work_image.sizes.img_large ||
+                work.work_image.sizes.img_medium,
+            );
             const href = `/artist?slug=${slug}&id=${id}`;
             const as = `/artist/${slug}?id=${id}`;
             return (
@@ -45,7 +48,10 @@ class ArtistSingle extends React.Component {
                 as={as}
                 href={href}
                 title={work.work_title}
-                image={work.work_image}
+                image={
+                  work.work_image.sizes.img_large ||
+                  work.work_image.sizes.img_medium
+                }
               />
             );
           });
@@ -120,18 +126,46 @@ class ArtistSingle extends React.Component {
     return (
       <React.Fragment>
         <Modal current collection={works} />
+        <div>
+          <Link as="/artists" href="/artists">
+            All artists
+          </Link>
+        </div>
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: title}} />
           </Title>
           <PageNav>
-            <Link onClick={this.handleSectionChange('work')}>Work</Link>
-            <Link onClick={this.handleSectionChange('cv')}>CV</Link>
-            <Link onClick={this.handleSectionChange('exhibitions')}>
+            <Link
+              current={currentSection === 'work'}
+              onClick={this.handleSectionChange('work')}
+            >
+              Work
+            </Link>
+            <Link
+              current={currentSection === 'cv'}
+              onClick={this.handleSectionChange('cv')}
+            >
+              CV
+            </Link>
+            <Link
+              current={currentSection === 'exhibitions'}
+              onClick={this.handleSectionChange('exhibitions')}
+            >
               Exhibitions
             </Link>
-            <Link onClick={this.handleSectionChange('news')}>News</Link>
-            <Link onClick={this.handleSectionChange('press')}>Press</Link>
+            <Link
+              current={currentSection === 'news'}
+              onClick={this.handleSectionChange('news')}
+            >
+              News
+            </Link>
+            <Link
+              current={currentSection === 'press'}
+              onClick={this.handleSectionChange('press')}
+            >
+              Press
+            </Link>
           </PageNav>
         </PageMast>
         {subSectionMarkup}
