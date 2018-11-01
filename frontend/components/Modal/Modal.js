@@ -26,7 +26,6 @@ class Modal extends React.Component {
   }
 
   render() {
-    console.log('render');
     const {
       collection,
       router: {
@@ -39,7 +38,7 @@ class Modal extends React.Component {
     }
 
     const itemIndex = collection.findIndex(
-      (item) => getFileNameFromPath(item.work_image) === id,
+      (item) => getFileNameFromPath(item.work_image.sizes.img_large) === id,
     );
     const item = collection[itemIndex];
 
@@ -75,12 +74,17 @@ class Modal extends React.Component {
           <Title>{item.work_title}</Title>
           <p>{workDetailsMarkup}</p>
           <p>
-            <Link target="_blank" href={item.work_image}>
+            <Link target="_blank" href={item.work_image.url}>
               Full image
             </Link>
           </p>
         </StyledModalMast>
-        <StyledImage alt={item.work_title} src={item.work_image} />
+        <StyledImage
+          alt={item.work_title}
+          src={
+            item.work_image.sizes.img_large || work.work_image.sizes.img_medium
+          }
+        />
       </StyledModal>
     );
   }
@@ -116,7 +120,9 @@ class Modal extends React.Component {
       this.dismiss();
       return null;
     }
-    const id = getFileNameFromPath(item.work_image);
+    const id = getFileNameFromPath(
+      item.work_image.sizes.img_large || work.work_image.sizes.img_medium,
+    );
     router.push(...this.getPushUrl(id));
   };
 

@@ -50,6 +50,7 @@ export const StyledModalMast = styled.div`
 export const StyledImage = styled.img`
   max-height: 100vh;
   width: auto;
+  max-width: 100%;
   margin-bottom: ${(props) => props.theme.pxScale[3]};
   grid-column: span 3;
 
