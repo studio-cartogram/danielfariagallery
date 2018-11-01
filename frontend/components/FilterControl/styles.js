@@ -4,6 +4,14 @@ import theme from '../../styles/theme';
 
 const buttonHeight = theme.scale[5];
 
+const StyledBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
 const StyledFilterControl = styled.div`
   position: relative;
   height: auto;
@@ -17,10 +25,10 @@ const StyledItemsList = styled.ul`
   display: ${(props) => (props.open ? 'block' : 'none')};
   background-color: white;
   border: 1px solid ${theme.LinkPrimary.CurrentColor};
-  top: -${(props) => props.theme.pxScale[2]};
+  top: -${(props) => props.theme.pxScale[3]};
   margin: 0;
   position: absolute;
-  left: -${(props) => props.theme.pxScale[1]};
+  left: -${(props) => props.theme.pxScale[3]};
   right: -${(props) => props.theme.pxScale[12]};
   padding-top: ${(props) => props.theme.pxScale[7]};
   padding-bottom: ${(props) => props.theme.pxScale[1]};
@@ -49,6 +57,8 @@ const StyledLi = styled.li`
 `;
 
 const StyledArrow = styled.span`
+  position: relative;
+  top: -2px;
   padding-right: 0;
   padding-left: ${(props) => props.theme.pxScale[2]};
 `;
@@ -59,4 +69,5 @@ export {
   StyledFilterControl,
   StyledItemsList,
   StyledArrow,
+  StyledBackdrop,
 };

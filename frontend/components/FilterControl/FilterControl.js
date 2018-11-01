@@ -6,6 +6,7 @@ import {
   StyledFilterControl,
   StyledItemsList,
   StyledArrow,
+  StyledBackdrop,
 } from './styles';
 
 function FilterControl({label, filterKey, items, onItemClick, open, selected}) {
@@ -36,10 +37,15 @@ function FilterControl({label, filterKey, items, onItemClick, open, selected}) {
     </StyledLi>
   );
 
+  const backdropMarkup = open ? (
+    <StyledBackdrop onClick={onItemClick()} />
+  ) : null;
+
   return (
     <StyledFilterControl>
       {allButtonMarkup}
       <StyledItemsList open={open}>{itemsMarkup}</StyledItemsList>
+      {backdropMarkup}
     </StyledFilterControl>
   );
 }
