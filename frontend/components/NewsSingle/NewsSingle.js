@@ -22,6 +22,11 @@ function NewsSingle({url, slug, title, artists, content}) {
 
   return (
     <React.Fragment>
+      <div>
+        <Link as="/news" href="/news">
+          All news
+        </Link>
+      </div>
       <PageMast>
         <Title>
           <div dangerouslySetInnerHTML={{__html: title}} />

@@ -24,6 +24,7 @@ class ExhibitionSingle extends React.Component {
       artists,
       content,
       slug,
+      current,
     } = this.props;
 
     const openingReceptionMarkup = opening
@@ -45,7 +46,10 @@ class ExhibitionSingle extends React.Component {
           );
         case 'work':
           const workimageMarkup = works.map((work) => {
-            const id = getFileNameFromPath(work.work_image);
+            const id = getFileNameFromPath(
+              work.work_image.sizes.img_large ||
+                work.work_image.sizes.img_medium,
+            );
             const href = `/exhibition?slug=${slug}&id=${id}`;
             const as = `/exhibition/${slug}?id=${id}`;
             return (
@@ -55,7 +59,10 @@ class ExhibitionSingle extends React.Component {
                 as={as}
                 href={href}
                 title={work.work_title}
-                image={work.work_image}
+                image={
+                  work.work_image.sizes.img_large ||
+                  work.work_image.sizes.img_medium
+                }
               />
             );
           });
@@ -66,6 +73,13 @@ class ExhibitionSingle extends React.Component {
     return (
       <React.Fragment>
         <Modal current collection={works} />
+        {!current && (
+          <div>
+            <Link as="/exhibitions/past" href="/exhibitions/past">
+              All exhibitions
+            </Link>
+          </div>
+        )}
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: displayTitle}} />
@@ -77,16 +91,18 @@ class ExhibitionSingle extends React.Component {
           </p>
           <PageNav>
             <Link
-              current={currentSection}
+              current={currentSection === 'work'}
               onClick={this.handleSectionChange('work')}
               href="#"
+              variant="primary"
             >
               Work
             </Link>
             <Link
-              current={currentSection}
+              current={currentSection === 'about'}
               onClick={this.handleSectionChange('about')}
               href="#"
+              variant="primary"
             >
               About
             </Link>

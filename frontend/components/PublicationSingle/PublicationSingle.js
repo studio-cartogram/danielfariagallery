@@ -4,8 +4,7 @@ import PageText from '../PageText';
 import PageMast from '../PageMast';
 import Thumbnail from '../Thumbnail';
 import Title from '../Title';
-import Fetcher from '../Fetcher';
-import Error from '../Error';
+import {withRouter} from 'next/router';
 import PageNav from '../PageNav';
 import Link from '../Link';
 import Modal from '../../components/Modal';
@@ -56,6 +55,11 @@ class PublicationSingle extends React.Component {
     return (
       <React.Fragment>
         <Modal current collection={works} />
+        <div>
+          <Link as="/publications" href="/publications">
+            All publications
+          </Link>
+        </div>
         <PageMast>
           <Title>
             <div dangerouslySetInnerHTML={{__html: title}} />
