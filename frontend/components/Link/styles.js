@@ -47,17 +47,36 @@ const afterStyles = (props) => {
   `;
 };
 
-const StyledPrimaryButton = styled.button`
+const Button = styled.button`
   font-size: 100%;
-  color: ${(props) => props.theme.LinkPrimary.CurrentColor};
-  ${(props) => (props.current ? `cursor: default` : null)};
   position: relative;
+  display: inline-block;
   cursor: pointer;
-
-  ${(props) => afterStyles(props)};
+  background-color: transparent;
+  color: ${(props) => props.theme.LinkPrimary.CurrentColor};
   a {
     cursor: pointer;
   }
+`;
+
+const Link = styled.span`
+  font-size: 100%;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  color: ${(props) => props.theme.LinkPrimary.CurrentColor};
+  a {
+    cursor: pointer;
+  }
+`;
+
+const StyledPrimaryButton = styled(Button)`
+  line-height: 1.2;
+  ${(props) => (props.current ? `cursor: default` : null)};
+  ${(props) => afterStyles(props)};
+
   &:hover:after {
     ${(props) => hoverLineStyles(props)};
   }
@@ -67,16 +86,12 @@ const StyledPrimaryButton = styled.button`
   }
 `;
 
-const StyledPrimaryLink = styled.span`
-  color: ${(props) => props.theme.LinkPrimary.CurrentColor};
-  ${(props) => (props.current ? `cursor: default` : null)};
-  position: relative;
-  cursor: pointer;
+const StyledPrimaryLink = styled(Link)`
+  line-height: 1.2;
 
+  ${(props) => (props.current ? `cursor: default` : null)};
   ${(props) => afterStyles(props)};
-  a {
-    cursor: pointer;
-  }
+
   &:hover:after {
     ${(props) => hoverLineStyles(props)};
   }
@@ -86,10 +101,7 @@ const StyledPrimaryLink = styled.span`
   }
 `;
 
-const StyledSecondaryLink = styled.span`
-  display: inline-flex;
-  position: relative;
-  cursor: pointer;
+const StyledSecondaryLink = styled(Link)`
   height: ${(props) => props.theme.pxScale[3]};
   color: ${(props) => props.theme.LinkSecondary.CurrentColor};
 
@@ -117,9 +129,7 @@ const StyledSecondaryLink = styled.span`
   }
 `;
 
-const StyledHybridLink = styled.span`
-  display: inline-flex;
-  position: relative;
+const StyledHybridLink = styled(Link)`
   height: ${(props) => props.theme.pxScale[3]};
   color: ${(props) => props.theme.LinkSecondary.CurrentColor};
 
@@ -143,10 +153,7 @@ const StyledHybridLink = styled.span`
   }
 `;
 
-const StyledTertiaryLink = styled.span`
-  display: inline-flex;
-  position: relative;
-  cursor: pointer;
+const StyledTertiaryLink = styled(Link)`
   height: ${(props) => props.theme.pxScale[3]};
   color: ${(props) => props.theme.LinkTertiary.CurrentColor};
 
@@ -170,7 +177,7 @@ const StyledTertiaryLink = styled.span`
   }
 `;
 
-const StyledInvisibleLink = styled.span`
+const StyledInvisibleLink = styled(Link)`
   display: inline-flex;
   height: auto;
   color: inherit;
@@ -180,7 +187,7 @@ const StyledInvisibleLink = styled.span`
   }
 `;
 
-const StyledZoomLink = styled.span`
+const StyledZoomLink = styled(Link)`
   display: inline-flex;
   height: auto;
   color: inherit;
