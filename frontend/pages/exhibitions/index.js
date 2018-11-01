@@ -7,6 +7,7 @@ import PageNav from '../../components/PageNav';
 import FilterControl from '../../components/FilterControl';
 import ExhibitionSingle from '../../components/ExhibitionSingle';
 import Link from '../../components/Link';
+import Error from '../../components/Error';
 
 import {
   getCurrentExhibition,
@@ -65,6 +66,12 @@ class ExhibitionIndex extends Component {
       ? getCurrentExhibition(exhibitions)
       : getPastExhibitions(exhibitions);
 
+    if (exhibitionsToShow.length === 0) {
+      return (
+        <Error message="No exhibitions to show. Likely this means there is no current exhibitions" />
+      );
+    }
+
     const artistsToShow = exhibitionsToShow[0].acf.artist
       ? exhibitionsToShow[0].acf.artist.map(
           (artist) => (artist ? artist.post_title : 'no artist'),
@@ -77,7 +84,6 @@ class ExhibitionIndex extends Component {
       artistsToShow && artistsToShow.length
         ? commaListsAnd`${artistsToShow}: <em>${title}</em>`
         : title;
-
     const pageMarkup = onCurrent ? (
       <ExhibitionSingle
         title={displayTitle}
@@ -87,6 +93,7 @@ class ExhibitionIndex extends Component {
         opening={exhibitionsToShow[0].acf.opening_reception}
         content={exhibitionsToShow[0].content.rendered}
         works={exhibitionsToShow[0].acf.work}
+        current={onCurrent}
       />
     ) : (
       <ExhibitionList exhibitions={exhibitionsToShow} filters={filters} />
