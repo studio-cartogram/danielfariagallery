@@ -5,7 +5,7 @@ import {getFeaturedImage} from '../../utilities';
 
 function FairList({fairs}) {
   const fairlistMarkup = fairs.map((fair) => {
-    const image = getFeaturedImage(fair);
+    const image = getFeaturedImage(fair, 'medium_large');
 
     const artists = fair.acf.artist
       ? fair.acf.artist.map(
