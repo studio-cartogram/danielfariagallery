@@ -28,7 +28,7 @@ function Exhibition({
 
   return (
     <StyledExhibition>
-      <Link href={`/exhibition?slug=${slug}`} as={url}>
+      <Link variant="invisible" href={`/exhibition?slug=${slug}`} as={url}>
         {imageMarkup}
         <StyledExhibitionName>
           <span
