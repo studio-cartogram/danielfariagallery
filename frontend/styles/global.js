@@ -43,10 +43,20 @@ injectGlobal`
   */ 
   p {
     padding-bottom: ${theme.pxScale[2]};
+    max-width: 600px;
+  }
+  button {
+    &:focus {
+      outline: none;
+    }
   }
   a {
+    &:focus {
+      outline: none;
+    }
     color: ${theme.LinkPrimary.CurrentColor};
     text-decoration: none;
+    display: inline-block;
   }
   
   h1 {
