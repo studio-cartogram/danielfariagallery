@@ -6,7 +6,7 @@ export const StyledMain = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: ${(props) => props.theme.pxScale[3]};
-
+  grid-template-rows: auto 1fr;
   ${breakpoints.bpM} {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: ${(props) => props.theme.pxScale[6]};

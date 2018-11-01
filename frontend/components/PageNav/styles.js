@@ -7,6 +7,7 @@ const StyledPageNav = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-left: ${(props) => `-${props.theme.pxScale[2]}`};
+  z-index: 1;
 
   ${breakpoints.bpM} {
     grid-column-start: 2;
