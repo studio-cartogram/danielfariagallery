@@ -12,8 +12,3 @@ export const endpoints = {
   footerNav,
   contactInfo,
 };
-
-// export const fetchOptions = {
-//   mode: 'no-cors',
-//   credentials: 'include',
-// };
