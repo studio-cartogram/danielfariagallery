@@ -58,7 +58,7 @@ function withLayout(Component) {
         phone,
       } = this.props.globalData.contactInfo.acf;
       return (
-        <div>
+        <React.Fragment>
           <Head>
             <link
               rel="stylesheet"
@@ -67,28 +67,26 @@ function withLayout(Component) {
             />
           </Head>
           <ThemeProvider theme={theme}>
-            <GridWrapper>
-              <Layout>
-                <Header
-                  current={this.props.url.pathname}
-                  items={this.props.globalData.navs.main.items}
-                />
-                <Main>
-                  <Component {...this.props} />
-                </Main>
-                <Footer
-                  email={email}
-                  address={address}
-                  map={map}
-                  twitter={twitter}
-                  facebook={facebook}
-                  instagram={instagram}
-                  phone={phone}
-                />
-              </Layout>
-            </GridWrapper>
+            <Layout>
+              <Header
+                current={this.props.url.pathname}
+                items={this.props.globalData.navs.main.items}
+              />
+              <Main>
+                <Component {...this.props} />
+              </Main>
+              <Footer
+                email={email}
+                address={address}
+                map={map}
+                twitter={twitter}
+                facebook={facebook}
+                instagram={instagram}
+                phone={phone}
+              />
+            </Layout>
           </ThemeProvider>
-        </div>
+        </React.Fragment>
       );
     }
   };
