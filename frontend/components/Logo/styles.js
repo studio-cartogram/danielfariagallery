@@ -3,7 +3,7 @@ import {breakpoints} from '../../styles/breakpoints';
 
 export const StyledLogo = styled.span`
   grid-column: span 3;
-  height: auto;
+  height: 0;
   display: inline-flex;
 
   ${breakpoints.bpM} {
