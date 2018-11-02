@@ -24,7 +24,6 @@ class FairSingle extends React.Component {
     );
     const uniqueArtists = uniqBy(artists, 'post_name');
     const artistListMarkup = uniqueArtists.map((artist, index) => {
-      console.log(index, uniqueArtists.length);
       return (
         <React.Fragment>
           <Link

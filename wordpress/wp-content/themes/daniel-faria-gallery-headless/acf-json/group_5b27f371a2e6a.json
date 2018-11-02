@@ -1,6 +1,6 @@
 {
     "key": "group_5b27f371a2e6a",
-    "title": "Exhibition Information",
+    "title": "Exhibitions",
     "fields": [
         {
             "key": "field_5b27f377437b1",
@@ -118,7 +118,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "url",
+                    "return_format": "array",
                     "preview_size": "thumbnail",
                     "library": "all",
                     "min_width": "",
@@ -208,5 +208,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1539719244
+    "modified": 1541120882
 }
