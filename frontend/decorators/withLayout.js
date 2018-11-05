@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from 'next/router';
+import Router, {withRouter} from 'next/router';
 import Head from 'next/head';
 import NProgress from 'nprogress';
 import {ThemeProvider} from 'styled-components';
@@ -36,7 +36,7 @@ function withLayout(Component) {
     }
 
     componentDidMount() {
-      const currentRoute = this.props.url.pathname;
+      const currentRoute = Router.pathname;
       Router.onRouteChangeStart = (newRoute) => {
         if (newRoute !== currentRoute) {
           NProgress.start();
@@ -57,38 +57,59 @@ function withLayout(Component) {
         phone,
       } = this.props.globalData.contactInfo.acf;
       return (
-        <React.Fragment>
-          <Head>
-            <link
-              rel="stylesheet"
-              type="text/css"
-              href="/static/nprogress.css"
-            />
-          </Head>
-          <ThemeProvider theme={theme}>
-            <Layout>
-              <Header
-                current={this.props.url.pathname}
-                items={this.props.globalData.navs.main.items}
-              />
-              <Main>
-                <Component {...this.props} />
-              </Main>
-              <Footer
-                email={email}
-                address={address}
-                map={map}
-                twitter={twitter}
-                facebook={facebook}
-                instagram={instagram}
-                phone={phone}
-              />
-            </Layout>
-          </ThemeProvider>
-        </React.Fragment>
+        <AppWithRouter
+          email={email}
+          address={address}
+          map={map}
+          twitter={twitter}
+          facebook={facebook}
+          instagram={instagram}
+          phone={phone}
+          items={this.props.globalData.navs.main.items}
+        >
+          <Component {...this.props} />
+        </AppWithRouter>
       );
     }
   };
 }
 
 export default withLayout;
+
+function App({
+  email,
+  address,
+  map,
+  twitter,
+  facebook,
+  instagram,
+  phone,
+  router,
+  items,
+  children,
+}) {
+  return (
+    <React.Fragment>
+      <Head>
+        <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Header current={router.pathname} items={items} />
+          <Main>{children}</Main>
+          <Footer
+            email={email}
+            address={address}
+            map={map}
+            twitter={twitter}
+            facebook={facebook}
+            instagram={instagram}
+            phone={phone}
+          />
+        </Layout>
+      </ThemeProvider>
+    </React.Fragment>
+  );
+}
+
+const AppWithRouter = withRouter(App);

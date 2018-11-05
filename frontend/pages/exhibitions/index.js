@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import {withRouter} from 'next/router';
 import React, {Component} from 'react';
 import {config} from '../../config';
 import withLayout from '../../decorators/withLayout';
@@ -25,8 +26,8 @@ class ExhibitionIndex extends Component {
   state = {
     open: undefined,
     filters: {
-      artist: this.props.url.query.artist,
-      year: this.props.url.query.year,
+      artist: this.props.router.query.artist,
+      year: this.props.router.query.year,
     },
   };
 
@@ -42,7 +43,7 @@ class ExhibitionIndex extends Component {
     }
     const exhibitions = this.props.data;
     const {filters, open} = this.state;
-    const {asPath} = this.props.url;
+    const {asPath} = this.props.router;
 
     const onCurrent =
       asPath.split('/').length === 2 && asPath.split('/')[2] !== 'past';
@@ -168,11 +169,11 @@ class ExhibitionIndex extends Component {
             query.year = year;
           }
 
-          if (isEquivalent(this.props.url.query, query)) {
+          if (isEquivalent(this.props.router.query, query)) {
             return;
           }
 
-          this.props.url.push({
+          this.props.router.push({
             pathname: '/exhibitions/past',
             query,
           });
@@ -182,4 +183,4 @@ class ExhibitionIndex extends Component {
   };
 }
 
-export default withLayout(ExhibitionIndex);
+export default withRouter(withLayout(ExhibitionIndex));

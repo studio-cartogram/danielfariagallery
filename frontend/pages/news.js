@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import {withRouter} from 'next/router';
 import React, {Component} from 'react';
 import {config} from '../config';
 import withLayout from '../decorators/withLayout';
@@ -13,7 +14,7 @@ class NewsIndex extends Component {
   state = {
     open: undefined,
     filters: {
-      artist: this.props.url.query.artist,
+      artist: this.props.router.query.artist,
     },
   };
 
@@ -26,7 +27,6 @@ class NewsIndex extends Component {
   render() {
     const news = this.props.data;
     const {filters, open} = this.state;
-
     const newsArtists = news.reduce((acc, news) => {
       const currentNewsArtists = news.acf.artist.map(
         (artist) => artist && artist.post_title,
@@ -80,7 +80,7 @@ class NewsIndex extends Component {
             query.artist = artist;
           }
 
-          if (isEquivalent(this.props.url.query, query)) {
+          if (isEquivalent(this.props.router.query, query)) {
             return;
           }
         },
@@ -89,4 +89,4 @@ class NewsIndex extends Component {
   };
 }
 
-export default withLayout(NewsIndex);
+export default withRouter(withLayout(NewsIndex));
