@@ -6,12 +6,25 @@ import Column from '../components/Column';
 import GridItem from '../components/GridItem';
 import GridSpace from '../components/GridSpace';
 import Link from '../components/Link';
+import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
 class Contact extends React.Component {
   static async getInitialProps(context) {
     const res = await fetch(endpoints.contactInfo);
-    const contactInfo = await res.json();
-    return {contactInfo};
+    const data = await res.json();
+    return {data};
+  }
+
+  static async getInitialProps(ctx) {
+    const data = await cachedFetch(endpoints.contactInfo);
+    const isServer = !!ctx.req;
+    return {data, isServer};
+  }
+
+  componentDidMount() {
+    if (this.props.isServer) {
+      overrideCache(endpoint, this.props.data);
+    }
   }
 
   render() {
@@ -23,7 +36,7 @@ class Contact extends React.Component {
       note,
       staff,
       map,
-    } = this.props.contactInfo.acf;
+    } = this.props.data.acf;
 
     const stafflistMarkup = staff.map((staff) => {
       return (

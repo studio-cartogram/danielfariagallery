@@ -1,21 +1,23 @@
-import React, {Component} from 'react';
-import fetch from 'isomorphic-unfetch';
+import React from 'react';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 import Error from '../components/Error';
-import Title from '../components/Title';
-import PageMast from '../components/PageMast';
-import PageText from '../components/PageText';
-import Link from '../components/Link';
 import NewsSingle from '../components/NewsSingle';
+import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-class SingleNew extends Component {
-  static async getInitialProps(context) {
-    const {slug} = context.query;
+class SingleNew extends React.Component {
+  static async getInitialProps(ctx) {
+    const {slug} = ctx.query;
     const endpoint = `${config.apiUrl}/wp-json/wp/v2/news?slug=${slug}`;
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    return {data};
+    const data = await cachedFetch(endpoint);
+    const isServer = !!ctx.req;
+    return {data, endpoint, isServer};
+  }
+
+  componentDidMount() {
+    if (this.props.isServer) {
+      overrideCache(this.props.endpoint, this.props.data);
+    }
   }
 
   render() {

@@ -1,17 +1,23 @@
 import React from 'react';
-import fetch from 'isomorphic-unfetch';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 import Error from '../components/Error';
 import ArtistSingle from '../components/ArtistSingle';
+import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
 class Artist extends React.Component {
-  static async getInitialProps(context) {
-    const {slug} = context.query;
+  static async getInitialProps(ctx) {
+    const {slug} = ctx.query;
     const endpoint = `${config.apiUrl}/wp-json/wp/v2/artists?slug=${slug}`;
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    return {data};
+    const data = await cachedFetch(endpoint);
+    const isServer = !!ctx.req;
+    return {data, endpoint, isServer};
+  }
+
+  componentDidMount() {
+    if (this.props.isServer) {
+      overrideCache(this.props.endpoint, this.props.data);
+    }
   }
 
   render() {

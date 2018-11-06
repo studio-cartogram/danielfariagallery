@@ -1,10 +1,10 @@
-import fetch from 'isomorphic-unfetch';
 import React, {Component} from 'react';
 import {config} from '../config';
 import withLayout from '../decorators/withLayout';
 import ArtistDisplay from '../components/ArtistDisplay';
 import ArtistList from '../components/ArtistList';
 import Error from '../components/Error';
+import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
 const endpoint = `${
   config.apiUrl
@@ -14,13 +14,21 @@ class ArtistIndex extends Component {
   state = {
     currentArtist: undefined,
   };
-  static async getInitialProps() {
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    return {data};
+  static async getInitialProps(ctx) {
+    const data = await cachedFetch(endpoint);
+    const isServer = !!ctx.req;
+    return {data, isServer};
+  }
+
+  componentDidMount() {
+    if (this.props.isServer) {
+      overrideCache(endpoint, this.props.data);
+    }
   }
 
   render() {
+    console.log('on artists');
+
     const artists = this.props.data;
     const {currentArtist} = this.state;
     const representedArtists = artists.filter((artist) => {

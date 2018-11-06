@@ -27,7 +27,7 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
     case 'invisible':
       return (
         <StyledInvisibleLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
+          <NextLink prefetch as={as} href={href}>
             <a {...aprops}>{children}</a>
           </NextLink>
         </StyledInvisibleLink>
@@ -35,7 +35,7 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
     case 'secondary':
       return (
         <StyledSecondaryLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
+          <NextLink prefetch as={as} href={href}>
             <a {...aprops}>{children}</a>
           </NextLink>
         </StyledSecondaryLink>
@@ -43,14 +43,14 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
     case 'tertiary':
       return (
         <StyledTertiaryLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
+          <NextLink prefetch as={as} href={href}>
             <a {...aprops}>{children}</a>
           </NextLink>
         </StyledTertiaryLink>
       );
     case 'hybrid':
       return (
-        <StyledHybridLink variant={variant} current={current}>
+        <StyledHybridLink prefetch variant={variant} current={current}>
           <NextLink as={as} href={href}>
             <a {...aprops}>{children}</a>
           </NextLink>
@@ -59,7 +59,7 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
     case 'zoom':
       return (
         <StyledZoomLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
+          <NextLink prefetch as={as} href={href}>
             <a {...aprops}>{children}</a>
           </NextLink>
         </StyledZoomLink>
@@ -67,7 +67,7 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
     default:
       return (
         <StyledPrimaryLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
+          <NextLink prefetch as={as} href={href}>
             <a {...aprops}>{children}</a>
           </NextLink>
         </StyledPrimaryLink>

@@ -1,6 +1,5 @@
-import fetch from 'isomorphic-unfetch';
 import {withRouter} from 'next/router';
-import React, {Component} from 'react';
+import React from 'react';
 import {config} from '../../config';
 import withLayout from '../../decorators/withLayout';
 import ExhibitionList from '../../components/ExhibitionList';
@@ -9,6 +8,7 @@ import FilterControl from '../../components/FilterControl';
 import ExhibitionSingle from '../../components/ExhibitionSingle';
 import Link from '../../components/Link';
 import Error from '../../components/Error';
+import cachedFetch, {overrideCache} from '../../utilities/cached-fetch';
 
 import {
   getCurrentExhibition,
@@ -22,7 +22,7 @@ const endpoint = `${
   config.apiUrl
 }/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
 
-class ExhibitionIndex extends Component {
+class ExhibitionIndex extends React.Component {
   state = {
     open: undefined,
     filters: {
@@ -31,10 +31,16 @@ class ExhibitionIndex extends Component {
     },
   };
 
-  static async getInitialProps() {
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    return {data};
+  static async getInitialProps(ctx) {
+    const data = await cachedFetch(endpoint);
+    const isServer = !!ctx.req;
+    return {data, isServer};
+  }
+
+  componentDidMount() {
+    if (this.props.isServer) {
+      overrideCache(endpoint, this.props.data);
+    }
   }
 
   render() {

@@ -1,20 +1,25 @@
-import Layout from '../components/Layout';
-import React, {Component} from 'react';
-import fetch from 'isomorphic-unfetch';
+import React from 'react';
 import CurrentExhibition from '../components/CurrentExhibition';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
 import {getCurrentExhibition, getFeaturedImage} from '../utilities';
+import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
 const endpoint = `${
   config.apiUrl
 }/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
 
-class Index extends Component {
-  static async getInitialProps() {
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    return {data};
+class Index extends React.Component {
+  static async getInitialProps(ctx) {
+    const data = await cachedFetch(endpoint);
+    const isServer = !!ctx.req;
+    return {data, isServer};
+  }
+
+  componentDidMount() {
+    if (this.props.isServer) {
+      overrideCache(endpoint, this.props.data);
+    }
   }
 
   render() {

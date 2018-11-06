@@ -1,16 +1,16 @@
-import fetch from 'isomorphic-unfetch';
 import {withRouter} from 'next/router';
-import React, {Component} from 'react';
+import React from 'react';
 import {config} from '../config';
 import withLayout from '../decorators/withLayout';
 import NewsList from '../components/NewsList';
 import FilterControl from '../components/FilterControl';
 import PageNav from '../components/PageNav';
 import {isEquivalent} from '../utilities';
+import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
 const endpoint = `${config.apiUrl}/wp-json/wp/v2/news?per_page=100&_embed=true`;
 
-class NewsIndex extends Component {
+class NewsIndex extends React.Component {
   state = {
     open: undefined,
     filters: {
@@ -18,10 +18,16 @@ class NewsIndex extends Component {
     },
   };
 
-  static async getInitialProps() {
-    const res = await fetch(endpoint);
-    const data = await res.json();
-    return {data};
+  static async getInitialProps(ctx) {
+    const data = await cachedFetch(endpoint);
+    const isServer = !!ctx.req;
+    return {data, isServer};
+  }
+
+  componentDidMount() {
+    if (this.props.isServer) {
+      overrideCache(endpoint, this.props.data);
+    }
   }
 
   render() {
