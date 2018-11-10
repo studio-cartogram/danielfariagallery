@@ -8,8 +8,8 @@ const StyledImage = styled.img`
 
 const StyledImageContainer = styled.div`
   grid-column: span 3;
-  height: 640px;
-  overflow: hidden;
+  width: 100%;
+  height: auto;
 `;
 
 export {StyledImage, StyledImageContainer};
