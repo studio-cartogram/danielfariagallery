@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Main from '../components/Main';
 import {endpoints} from '../config.js';
+import GlobalStyles from '../styles/global';
 
 function withLayout(Component) {
   return class extends React.Component {
@@ -92,9 +93,13 @@ function App({
     <React.Fragment>
       <Head>
         <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>Daniel Faria Gallery, Toronto Canada</title>
       </Head>
       <ThemeProvider theme={theme}>
         <Layout>
+          <GlobalStyles />
           <Header current={router.pathname} items={items} />
           <Main>{children}</Main>
           <Footer

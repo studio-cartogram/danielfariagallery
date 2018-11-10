@@ -1,10 +1,10 @@
-import {injectGlobal} from 'styled-components';
+import {createGlobalStyle} from 'styled-components';
 import {reset} from './utilities';
 import {fonts, fontFamily, fontFamilyItalic} from './typography';
 import theme from './theme';
 
-injectGlobal`
-  ${fonts}
+export default createGlobalStyle`
+   ${fonts}
   
   html {
     box-sizing: border-box;
@@ -17,7 +17,7 @@ injectGlobal`
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: ${(props) => props.theme.pxScale[21]}
+    font-size: ${theme.pxScale[21]};
     font-family: ${fontFamily};
     font-weight: normal;
     color: ${theme.Body.CurrentColor};
@@ -81,7 +81,7 @@ injectGlobal`
     list-style: none;
   }
   li {
-    padding-bottom: ${(props) => props.theme.pxScale[2]};
+    padding-bottom: ${theme.pxScale[2]};
   }
 
 `;
