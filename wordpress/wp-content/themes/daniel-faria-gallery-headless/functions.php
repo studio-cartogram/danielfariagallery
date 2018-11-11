@@ -34,4 +34,71 @@ add_image_size('img_large',1200, 800, false);
 add_image_size('img_xlarge',1600, 1000, false);
 
 
+// Custom post types with REST API support
 
+add_action('init', 'create_post_types' );
+
+if ( ! function_exists( 'create_post_types' ) ) {
+
+  function create_post_types() {
+
+    $exhibition_args = array(
+      'public' => true,
+      'label' => 'Exhibitions',
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'rewrite' => array( 'slug' => 'exhibition' ),
+      'supports' => array( 'title', 'thumbnail', 'editor')
+    );
+
+    register_post_type( 'exhibition', $exhibition_args );
+
+    $artist_args = array(
+      'public' => true,
+      'label' => 'Artists',
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'rewrite' => array( 'slug' => 'artist' ),
+      'supports' => array( 'title', 'thumbnail', 'editor')
+    );
+
+    register_post_type( 'artist', $artist_args );
+
+    $fair_args = array(
+      'public' => true,
+      'label' => 'Fairs',
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'rewrite' => array( 'slug' => 'fair' ),
+      'supports' => array( 'title', 'thumbnail', 'editor')
+    );
+
+    register_post_type( 'fair', $fair_args );
+
+    $publication_args = array(
+      'public' => true,
+      'label' => 'Publications',
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'rewrite' => array( 'slug' => 'publication' ),
+      'supports' => array( 'title', 'thumbnail', 'editor')
+    );
+
+    register_post_type( 'publication', $publication_args );
+
+    $news_args = array(
+      'public' => true,
+      'label' => 'News',
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'rewrite' => array( 'slug' => 'news' ),
+      'supports' => array( 'title', 'thumbnail', 'editor')
+    );
+
+    register_post_type( 'news', $news_args );
+
+    flush_rewrite_rules( false );
+
+  }
+
+}
