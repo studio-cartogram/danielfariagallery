@@ -128,7 +128,6 @@ class Modal extends React.Component {
 
   getPushUrl(id) {
     const {router} = this.props;
-    console.log(router.pathname);
     if (!id) {
       return [
         `${router.pathname}?slug=${router.query.slug}`,
