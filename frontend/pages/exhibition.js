@@ -24,6 +24,10 @@ class Exhibition extends React.Component {
   render() {
     const exhibition = this.props.data[0];
 
+    if (!exhibition) {
+      return <Error />;
+    }
+
     const artists = exhibition.acf.artist
       ? exhibition.acf.artist.map(
           (artist) => (artist ? artist.post_title : 'no artist'),
