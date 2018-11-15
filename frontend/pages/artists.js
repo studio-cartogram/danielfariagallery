@@ -27,8 +27,6 @@ class ArtistIndex extends Component {
   }
 
   render() {
-    console.log('on artists');
-
     const artists = this.props.data;
     const {currentArtist} = this.state;
     const representedArtists = artists.filter((artist) => {
