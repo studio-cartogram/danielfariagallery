@@ -23,7 +23,7 @@ class Contact extends React.Component {
 
   componentDidMount() {
     if (this.props.isServer) {
-      overrideCache(endpoint, this.props.data);
+      overrideCache(endpoints.contactInfo, this.props.data);
     }
   }
 
@@ -55,8 +55,8 @@ class Contact extends React.Component {
     });
     const hourslistMarkup = hours.map((hours) => {
       return (
-        <ul>
-          <li key={hours.day}>
+        <ul key={hours.day}>
+          <li>
             <p>
               {hours.day}
               <br />
