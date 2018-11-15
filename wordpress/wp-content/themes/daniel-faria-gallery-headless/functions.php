@@ -27,6 +27,10 @@ require_once 'inc/api-routes.php';
 // Add featured image
 add_theme_support('post-thumbnails');
 
+// Force WP Rocket to Cache the Rest API
+// https://docs.wp-rocket.me/article/744-rocketcacherejectwprestapi
+apply_filters( 'rocket_cache_reject_wp_rest_api', false );
+
 // Add image sizes
 add_image_size('img_thumbnail',600, 600, true);
 add_image_size('img_medium',800, 800, false);
@@ -47,6 +51,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'label' => 'Exhibitions',
       'has_archive' => true,
       'show_in_rest' => true,
+      'rest_base' => 'exhibitions',
       'rewrite' => array( 'slug' => 'exhibition' ),
       'supports' => array( 'title', 'thumbnail', 'editor')
     );
@@ -58,6 +63,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'label' => 'Artists',
       'has_archive' => true,
       'show_in_rest' => true,
+      'rest_base' => 'artists',
       'rewrite' => array( 'slug' => 'artist' ),
       'supports' => array( 'title', 'thumbnail', 'editor')
     );
@@ -69,6 +75,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'label' => 'Fairs',
       'has_archive' => true,
       'show_in_rest' => true,
+      'rest_base'             => 'fairs',
       'rewrite' => array( 'slug' => 'fair' ),
       'supports' => array( 'title', 'thumbnail', 'editor')
     );
@@ -80,6 +87,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'label' => 'Publications',
       'has_archive' => true,
       'show_in_rest' => true,
+      'rest_base'             => 'publications',
       'rewrite' => array( 'slug' => 'publication' ),
       'supports' => array( 'title', 'thumbnail', 'editor')
     );
@@ -91,13 +99,14 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'label' => 'News',
       'has_archive' => true,
       'show_in_rest' => true,
+      'rest_base'             => 'news',
       'rewrite' => array( 'slug' => 'news' ),
       'supports' => array( 'title', 'thumbnail', 'editor')
     );
 
     register_post_type( 'news', $news_args );
 
-    flush_rewrite_rules( false );
+    // flush_rewrite_rules( false );
 
   }
 
