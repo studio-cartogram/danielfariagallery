@@ -6,7 +6,6 @@ import ExhibitionList from '../../components/ExhibitionList';
 import PageNav from '../../components/PageNav';
 import FilterControl from '../../components/FilterControl';
 import ExhibitionSingle from '../../components/ExhibitionSingle';
-import Link from '../../components/Link';
 import Error from '../../components/Error';
 import cachedFetch, {overrideCache} from '../../utilities/cached-fetch';
 

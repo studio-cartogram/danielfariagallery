@@ -30,7 +30,7 @@ function ExhibitionList({exhibitions, filters}) {
   });
 
   if (exhibitionsToShow.length === 0) {
-    return <Empty />;
+    return <Empty type="exhibitions" />;
   }
 
   const exhibitionlistMarkup = exhibitionsToShow.map((exhibition) => {

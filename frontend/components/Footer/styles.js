@@ -5,9 +5,11 @@ import theme from '../../styles/theme';
 export const StyledFooter = styled.footer`
   grid-column: span 3;
   display: flex;
+  justify-content: space-between;
   color: ${theme.LinkSecondary.CurrentColor};
   flex-wrap: wrap;
   font-size: ${(props) => props.theme.pxScale[2]};
+  padding-top: ${(props) => props.theme.pxScale[3]};
   
   ${breakpoints.bpM} {
     display: grid;
@@ -23,16 +25,15 @@ export const StyledFooter = styled.footer`
 `;
 
 export const StyledFooterItemFull = styled.div`
-  // display: inline-flex;
-  // flex-basis: 100%;
-  // flex-wrap: wrap;
+  display: inline-flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
 `;
 
 export const StyledFooterItem = styled.div`
   display: inline-flex;
   align-items: start;
   position: relative;
-  justify-content: space-between;
   flex-wrap: wrap;
   grid-column: span 1;
   padding-top: ${(props) => props.theme.pxScale[0]};
