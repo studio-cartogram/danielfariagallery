@@ -30,7 +30,7 @@ const StyledItemsList = styled.ul`
   position: absolute;
   left: -${(props) => props.theme.pxScale[3]};
   right: -${(props) => props.theme.pxScale[12]};
-  padding-top: ${(props) => props.theme.pxScale[7]};
+  padding-top: ${(props) => props.theme.pxScale[8]};
   padding-bottom: ${(props) => props.theme.pxScale[1]};
   padding-left: ${(props) => props.theme.pxScale[3]};
   padding-right: ${(props) => props.theme.pxScale[3]};
@@ -63,7 +63,14 @@ const StyledArrow = styled.span`
   padding-left: ${(props) => props.theme.pxScale[2]};
 `;
 
+const StyledLink = styled.span`
+  display: block;
+  padding-top: ${(props) => props.theme.pxScale[4]};
+  padding-bottom: ${(props) => props.theme.pxScale[1]};
+`;
+
 export {
+  StyledLink,
   StyledButton,
   StyledLi,
   StyledFilterControl,

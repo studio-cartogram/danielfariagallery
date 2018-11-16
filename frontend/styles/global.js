@@ -80,8 +80,4 @@ export default createGlobalStyle`
   ul {
     list-style: none;
   }
-  li {
-    padding-bottom: ${theme.pxScale[2]};
-  }
-
 `;

@@ -4,10 +4,12 @@ import {breakpoints} from '../../styles/breakpoints';
 export const StyledMenuText = styled.span`
   display: inline-flex;
   margin-right: ${(props) => props.theme.pxScale[3]};
-  padding-bottom: ${(props) => props.theme.pxScale[2]};
+  padding-bottom: ${(props) => props.theme.pxScale[0]};
+  padding-top: ${(props) => props.theme.pxScale[0]};
 
   ${breakpoints.bpM} {
     padding-bottom: 0;
+    padding-top: 0;
   }
 `;
 
@@ -16,7 +18,7 @@ export const StyledMenu = styled.nav`
   display: inline-flex;
   justify-content: flex-start;
   padding-top: ${(props) => props.theme.pxScale[3]};
-  padding-bottom: ${(props) => props.theme.pxScale[3]};
+  padding-bottom: ${(props) => props.theme.pxScale[0]};
   flex-wrap: wrap;
 
   ${breakpoints.bpM} {

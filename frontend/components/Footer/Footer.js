@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyledFooter, StyledFooterItem, StyledFooterItemFull} from './styles';
 import Link from '../../components/Link';
+import PageNav from '../../components/PageNav';
 
 function Footer({phone, email, address, map, facebook, twitter, instagram}) {
   return (

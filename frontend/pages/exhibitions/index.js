@@ -130,16 +130,16 @@ class ExhibitionIndex extends React.Component {
     return (
       <React.Fragment>
         <PageNav>
-          <Link variant="primary" current={onCurrent} href={'/exhibitions'}>
-            Current
-          </Link>
-          <Link
-            variant="primary"
+          <FilterControl
+            label="Current"
+            current={onCurrent}
+            href={'/exhibitions'}
+          />
+          <FilterControl
+            label="Past"
             current={!onCurrent}
             href={'/exhibitions/past'}
-          >
-            Past
-          </Link>
+          />
           {navigationMarkup}
         </PageNav>
         {pageMarkup}
