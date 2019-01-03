@@ -22,6 +22,9 @@ export const StyledModal = styled.div`
     padding: ${(props) => props.theme.pxScale[6]};
     grid-template-columns: repeat(3, 1fr);
     grid-gap: ${(props) => props.theme.pxScale[6]};
+    grid-auto-rows: min-content;
+    height: 100vh;
+    grid-template-rows: auto auto 1fr;
   }
 `;
 
@@ -51,6 +54,8 @@ export const StyledImage = styled.img`
   max-height: 100vh;
   width: auto;
   max-width: 100%;
+  min-height: 200px;
+  height: auto;
   margin-bottom: ${(props) => props.theme.pxScale[3]};
   grid-column: span 3;
 
