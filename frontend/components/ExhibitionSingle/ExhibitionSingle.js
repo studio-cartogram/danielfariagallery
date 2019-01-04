@@ -6,6 +6,7 @@ import PageNav from '../PageNav';
 import Thumbnail from '../Thumbnail';
 import Title from '../Title';
 import Link from '../Link';
+import FeaturedImage from '../FeaturedImage';
 import Modal from '../../components/Modal';
 import {getFileNameFromPath} from '../../utilities';
 
@@ -25,6 +26,7 @@ class ExhibitionSingle extends React.Component {
       content,
       slug,
       current,
+      featuredImage,
     } = this.props;
 
     const openingReceptionMarkup = opening
@@ -35,6 +37,8 @@ class ExhibitionSingle extends React.Component {
       artists && artists.length
         ? commaListsAnd`${artists}: <em>${title}</em>`
         : title;
+
+    console.log(featuredImage);
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
@@ -67,7 +71,13 @@ class ExhibitionSingle extends React.Component {
               />
             );
           });
-          return <React.Fragment>{workImageMarkup}</React.Fragment>;
+          return (
+            <React.Fragment>
+              <FeaturedImage image={featuredImage} />
+
+              {workImageMarkup}
+            </React.Fragment>
+          );
       }
     }
 

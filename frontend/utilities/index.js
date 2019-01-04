@@ -19,11 +19,11 @@ export function getPastExhibitions(exhibitions) {
   return exhibitions.slice(1);
 }
 
-export function getFeaturedImage(postType, size = 'img_thumbnail') {
-  return postType._embedded &&
-    postType._embedded['wp:featuredmedia'][0].media_details.sizes[size]
-    ? postType._embedded['wp:featuredmedia'][0].media_details.sizes[size]
-        .source_url
+export function getFeaturedImage(post, size = 'img_thumbnail') {
+  console.log(post);
+  return post._embedded &&
+    post._embedded['wp:featuredmedia'][0].media_details.sizes[size]
+    ? post._embedded['wp:featuredmedia'][0].media_details.sizes[size].source_url
     : null;
 }
 

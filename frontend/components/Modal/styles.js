@@ -51,7 +51,7 @@ export const StyledModalMast = styled.div`
 `;
 
 export const StyledImage = styled.img`
-  max-height: 100vh;
+  max-height: 100%;
   width: auto;
   max-width: 100%;
   min-height: 200px;

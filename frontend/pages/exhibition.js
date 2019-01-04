@@ -5,11 +5,14 @@ import ExhibitionSingle from '../components/ExhibitionSingle';
 import Error from '../components/Error';
 import {commaListsAnd} from 'common-tags';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
+import {getFeaturedImage} from '../utilities';
 
 class Exhibition extends React.Component {
   static async getInitialProps(ctx) {
     const {slug} = ctx.query;
-    const endpoint = `${config.apiUrl}/wp-json/wp/v2/exhibitions?slug=${slug}`;
+    const endpoint = `${
+      config.apiUrl
+    }/wp-json/wp/v2/exhibitions?slug=${slug}&_embed`;
     const data = await cachedFetch(endpoint);
     const isServer = !!ctx.req;
     return {data, endpoint, isServer};
@@ -49,6 +52,8 @@ class Exhibition extends React.Component {
       return;
     }
 
+    const featuredImage = getFeaturedImage(exhibition, 'img_medium');
+
     return (
       <ExhibitionSingle
         slug={exhibition.slug}
@@ -58,6 +63,7 @@ class Exhibition extends React.Component {
         opening={exhibition.acf.opening_reception}
         content={exhibition.content.rendered}
         works={exhibition.acf.work}
+        featuredImage={featuredImage}
       />
     );
   }

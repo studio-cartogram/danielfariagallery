@@ -4,9 +4,6 @@ import {StyledMenuText, StyledMenu} from './styles';
 
 function Menu({items, current}) {
   const itemsMarkup = items.map((item, index) => {
-    // console.log(getSlug(item.url));
-    console.log(current.includes(item.url) && item);
-
     return item.object === 'custom' ? (
       <StyledMenuText key={item.ID}>
         <Link
