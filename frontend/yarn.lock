@@ -712,6 +712,13 @@
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.6.tgz#004b98298d04c7ca3b4f50ca2035d4f60d2eed1b"
   integrity sha512-h4t4jFjtm1YV7UirAFuSuFGyLa+NNxjdkq6DpFLANNQY5rHueFZHVY+8Cu1HYVP6DrheB0kv4m5xPjo7eKT7yQ==
 
+"@shopify/react-shortcuts@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@shopify/react-shortcuts/-/react-shortcuts-2.1.0.tgz#f9bb56cf11d2c3bb5f825db36b2009929c6b9907"
+  integrity sha512-kjpxAXbFkxcdWYH25ib5P5KS1yAisL2PZ3RtGQkGBBclhAV5zv80/UZv6ym0cry2JLD0VsBSITJeIfH6+YmLFA==
+  dependencies:
+    prop-types "^15.6.2"
+
 "@webassemblyjs/ast@1.7.8":
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.8.tgz#f31f480debeef957f01b623f27eabc695fa4fe8f"

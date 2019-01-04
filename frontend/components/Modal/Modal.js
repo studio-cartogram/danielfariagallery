@@ -9,6 +9,7 @@ import {withRouter} from 'next/router';
 import {getFileNameFromPath} from '../../utilities';
 import Title from '../Title';
 import Link from '../Link';
+import {Shortcut} from '@shopify/react-shortcuts';
 
 class Modal extends React.Component {
   componentDidMount() {
@@ -65,6 +66,9 @@ class Modal extends React.Component {
 
     return (
       <StyledModal>
+        <Shortcut ordered={['ArrowRight']} onMatch={this.next(itemIndex)} />
+        <Shortcut ordered={['ArrowLeft']} onMatch={this.prev(itemIndex)} />
+        <Shortcut ordered={['Escape']} onMatch={this.dismiss} />
         <Link onClick={this.dismiss}>Close</Link>
         <StyledControls>
           <Link onClick={this.prev(itemIndex)}>Prev</Link>

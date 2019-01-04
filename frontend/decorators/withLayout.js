@@ -2,6 +2,7 @@ import React from 'react';
 import Router, {withRouter} from 'next/router';
 import Head from 'next/head';
 import NProgress from 'nprogress';
+import {ShortcutProvider} from '@shopify/react-shortcuts';
 import {ThemeProvider} from 'styled-components';
 import theme from '../styles/theme';
 import Layout from '../components/Layout';
@@ -68,7 +69,9 @@ function withLayout(Component) {
           phone={phone}
           items={this.props.globalData.navs.main.items}
         >
-          <Component {...this.props} />
+          <ShortcutProvider>
+            <Component {...this.props} />
+          </ShortcutProvider>
         </AppWithRouter>
       );
     }
