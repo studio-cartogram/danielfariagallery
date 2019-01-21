@@ -16,10 +16,6 @@ import cachedFetch from '../utilities/cached-fetch';
 function withLayout(Component) {
   return class extends React.Component {
     static async getInitialProps(args) {
-      // const main = await cachedFetch(endpoints.mainNav);
-      // const footer = await cachedFetch(endpoints.footerNav);
-      // const contactInfo = await cachedFetch(endpoints.contactInfo);
-
       const [main, footer, contactInfo] = await Promise.all([
         cachedFetch(endpoints.mainNav),
         cachedFetch(endpoints.footerNav),
