@@ -5,7 +5,7 @@ const StyledThumbnailImage = styled.img`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   width: 100%;
-  height: 100%;
+  height: 300px;
   object-fit: cover;
   transition: all 4s;
 `;
