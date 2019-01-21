@@ -38,8 +38,6 @@ class ExhibitionSingle extends React.Component {
         ? commaListsAnd`${artists}: <em>${title}</em>`
         : title;
 
-    console.log(featuredImage);
-
     function sectionMarkup(currentSection) {
       switch (currentSection) {
         case 'about':
@@ -74,7 +72,6 @@ class ExhibitionSingle extends React.Component {
           return (
             <React.Fragment>
               <FeaturedImage image={featuredImage} />
-
               {workImageMarkup}
             </React.Fragment>
           );

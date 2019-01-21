@@ -20,7 +20,6 @@ export function getPastExhibitions(exhibitions) {
 }
 
 export function getFeaturedImage(post, size = 'img_thumbnail') {
-  console.log(post);
   return post._embedded &&
     post._embedded['wp:featuredmedia'][0].media_details.sizes[size]
     ? post._embedded['wp:featuredmedia'][0].media_details.sizes[size].source_url
