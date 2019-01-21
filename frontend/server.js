@@ -121,8 +121,13 @@ function getCacheKey(req) {
   return `${req.url}`;
 }
 
-async function renderAndCache(req, res, pagePath, queryParams) {
+async function renderAndCache(req, res, pagePath, queryParams = {}) {
   const key = getCacheKey(req);
+  const {reset_cache} = queryParams;
+
+  if (reset_cache) {
+    ssrCache.reset();
+  }
 
   // If we have a page in the cache, let's serve it
   if (ssrCache.has(key)) {

@@ -11,16 +11,21 @@ import Footer from '../components/Footer';
 import Main from '../components/Main';
 import {endpoints} from '../config.js';
 import GlobalStyles from '../styles/global';
+import cachedFetch from '../utilities/cached-fetch';
 
 function withLayout(Component) {
   return class extends React.Component {
     static async getInitialProps(args) {
-      const mainNavRes = await fetch(endpoints.mainNav);
-      const main = await mainNavRes.json();
-      const footerNavRes = await fetch(endpoints.footerNav);
-      const footer = await footerNavRes.json();
-      const contactInfoRes = await fetch(endpoints.contactInfo);
-      const contactInfo = await contactInfoRes.json();
+      // const main = await cachedFetch(endpoints.mainNav);
+      // const footer = await cachedFetch(endpoints.footerNav);
+      // const contactInfo = await cachedFetch(endpoints.contactInfo);
+
+      const [main, footer, contactInfo] = await Promise.all([
+        cachedFetch(endpoints.mainNav),
+        cachedFetch(endpoints.footerNav),
+        cachedFetch(endpoints.contactInfo),
+      ]);
+
       const componentProps = Component.getInitialProps
         ? await Component.getInitialProps(args)
         : null;

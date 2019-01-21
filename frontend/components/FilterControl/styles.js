@@ -48,12 +48,13 @@ const StyledButton = styled.button`
   width: 100%;
   text-align: left;
   min-height: ${buttonHeight}px;
-  line-height: ${buttonHeight}px;
+  line-height: ${(props) => props.theme.pxScale[3]};
 `;
 
 const StyledLi = styled.li`
   list-style: none;
   display: block;
+  padding-bottom: ${(props) => props.theme.pxScale[1]};
 `;
 
 const StyledArrow = styled.span`

@@ -17,7 +17,11 @@ import {
 } from '../../utilities';
 import {commaListsAnd} from 'common-tags';
 
-const endpoint = `${
+const artistEndpoint = `${
+  config.apiUrl
+}/wp-json/wp/v2/artists?per_page=100&_embed=true`;
+
+const exhibitionEndpoint = `${
   config.apiUrl
 }/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
 
@@ -31,22 +35,27 @@ class ExhibitionIndex extends React.Component {
   };
 
   static async getInitialProps(ctx) {
-    const data = await cachedFetch(endpoint);
+    const [exhibitionData, artistData] = await Promise.all([
+      cachedFetch(exhibitionEndpoint),
+      cachedFetch(artistEndpoint),
+    ]);
+
     const isServer = !!ctx.req;
-    return {data, isServer};
+    return {exhibitionData, artistData, isServer};
   }
 
   componentDidMount() {
     if (this.props.isServer) {
-      overrideCache(endpoint, this.props.data);
+      overrideCache(exhibitionEndpoint, this.props.exhibitionData);
+      overrideCache(artistEndpoint, this.props.artistData);
     }
   }
 
   render() {
-    if (!this.props.data) {
+    if (!this.props.exhibitionData || !this.props.artistData) {
       return null;
     }
-    const exhibitions = this.props.data;
+    const {exhibitionData: exhibitions, artistData: artists} = this.props;
     const {filters, open} = this.state;
     const {asPath} = this.props.router;
 
@@ -61,11 +70,12 @@ class ExhibitionIndex extends React.Component {
       return getYearFromDateString(exhibition.acf.start_date);
     });
 
-    const exhibitionArtists = exhibitions.map((exhibition) => {
-      if (!exhibition.acf.artist[0]) {
+    const exhibitionArtists = artists.map((artist) => {
+      if (!artist.acf.representation) {
         return;
       }
-      return exhibition.acf.artist[0].post_title;
+
+      return artist.title.rendered;
     });
 
     const exhibitionsToShow = onCurrent
