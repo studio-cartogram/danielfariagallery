@@ -19,11 +19,12 @@ class Modal extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.router.query.id && !this.props.router.query.id) {
-      this.enableSrcoll();
-    } else {
+    if (!prevProps.router.query.id && this.props.router.query.id) {
       this.disableSrcoll();
+      return;
     }
+
+    this.enableSrcoll();
   }
 
   render() {

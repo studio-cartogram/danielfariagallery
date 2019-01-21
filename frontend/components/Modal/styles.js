@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {breakpoints} from '../../styles/breakpoints';
 
 export const StyledModal = styled.div`
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 1);
   position: fixed;
   top: 0;
   left: 0;
