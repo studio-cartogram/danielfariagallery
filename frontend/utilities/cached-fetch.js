@@ -1,12 +1,25 @@
 import lscache from 'lscache';
 import fetch from 'isomorphic-fetch';
 
-const TTL_MINUTES = 5;
+lscache.enableWarnings(true);
+
+function holdCacheForUrl(url) {
+  const shouldHold = url.match(/menus|contact-information/);
+  if (shouldHold) {
+    console.log('holding', url);
+  } else {
+    console.log('not holding', url);
+  }
+  return shouldHold;
+}
 
 export default async function(url, {disableCache, ...options} = {}) {
+  console.log(url);
   if (typeof window === 'undefined') {
     return fetch(url, options).then((response) => response.json());
   }
+
+  const ttlMinutes = holdCacheForUrl(url) ? 30 : 30;
 
   let cachedResponse = disableCache ? null : lscache.get(url);
 
@@ -15,7 +28,7 @@ export default async function(url, {disableCache, ...options} = {}) {
     cachedResponse = await fetch(url, options).then((response) =>
       response.json(),
     );
-    lscache.set(url, cachedResponse, TTL_MINUTES);
+    lscache.set(url, cachedResponse, ttlMinutes);
   } else {
     console.log(`${url} (loaded from cache)`);
   }
@@ -24,5 +37,7 @@ export default async function(url, {disableCache, ...options} = {}) {
 }
 
 export function overrideCache(key, val) {
-  lscache.set(key, val, TTL_MINUTES);
+  const ttlMinutes = holdCacheForUrl(key) ? 30 : 15;
+
+  lscache.set(key, val, ttlMinutes);
 }

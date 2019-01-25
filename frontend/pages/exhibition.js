@@ -7,25 +7,41 @@ import {commaListsAnd} from 'common-tags';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 import {getFeaturedImage} from '../utilities';
 
+const endpoint = `${
+  config.apiUrl
+}/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
+
 class Exhibition extends React.Component {
+  state = {loading: true};
   static async getInitialProps(ctx) {
     const {slug} = ctx.query;
-    const endpoint = `${
-      config.apiUrl
-    }/wp-json/wp/v2/exhibitions?slug=${slug}&_embed`;
+
     const data = await cachedFetch(endpoint);
     const isServer = !!ctx.req;
-    return {data, endpoint, isServer};
+    return {data, endpoint, isServer, slug};
   }
 
   componentDidMount() {
     if (this.props.isServer) {
       overrideCache(this.props.endpoint, this.props.data);
     }
+
+    const exhibition = this.props.data.filter(
+      (exhibition) => this.props.slug === exhibition.slug,
+    );
+
+    this.setState({
+      loading: false,
+      exhibition: exhibition.length > 0 ? exhibition[0] : null,
+    });
   }
 
   render() {
-    const exhibition = this.props.data[0];
+    const {exhibition, loading} = this.state;
+
+    if (loading) {
+      return 'loading...';
+    }
 
     if (!exhibition) {
       return <Error />;
@@ -43,14 +59,6 @@ class Exhibition extends React.Component {
       artists && artists.length
         ? commaListsAnd`${artists}: <em>${title}</em>`
         : title;
-
-    if (!exhibition) {
-      return <Error />;
-    }
-
-    if (!exhibition.acf.artist[0]) {
-      return;
-    }
 
     const featuredImage = getFeaturedImage(exhibition, 'img_medium');
 

@@ -126,6 +126,7 @@ async function renderAndCache(req, res, pagePath, queryParams = {}) {
   const {reset_cache} = queryParams;
 
   if (reset_cache) {
+    console.log('flushing entire cache');
     ssrCache.reset();
   }
 

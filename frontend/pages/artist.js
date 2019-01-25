@@ -5,23 +5,42 @@ import Error from '../components/Error';
 import ArtistSingle from '../components/ArtistSingle';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
+const endpoint = `${
+  config.apiUrl
+}/wp-json/wp/v2/artists?per_page=100&_embed=true`;
+
 class Artist extends React.Component {
+  state = {
+    loading: true,
+  };
   static async getInitialProps(ctx) {
     const {slug} = ctx.query;
-    const endpoint = `${config.apiUrl}/wp-json/wp/v2/artists?slug=${slug}`;
     const data = await cachedFetch(endpoint);
     const isServer = !!ctx.req;
-    return {data, endpoint, isServer};
+    return {data, endpoint, isServer, slug};
   }
 
   componentDidMount() {
     if (this.props.isServer) {
       overrideCache(this.props.endpoint, this.props.data);
     }
+
+    const artist = this.props.data.filter(
+      (artist) => this.props.slug === artist.slug,
+    );
+
+    this.setState({
+      loading: false,
+      artist: artist.length > 0 ? artist[0] : null,
+    });
   }
 
   render() {
-    const artist = this.props.data[0];
+    const {artist, loading} = this.state;
+
+    if (loading) {
+      return 'loading...';
+    }
 
     if (!artist) {
       return <Error />;

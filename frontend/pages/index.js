@@ -38,11 +38,14 @@ class Index extends React.Component {
     }
     const image = getFeaturedImage(currentExhibition[0], 'full');
 
+    const titleBeginning =
+      acf.artist && acf.artist.length && acf.artist[0].post_title;
+
     return (
       <CurrentExhibition
         slug={slug}
         url={`/exhibition/${slug}`}
-        title={`${acf.artist[0].post_title}: ${title.rendered}`}
+        title={`${titleBeginning}: ${title.rendered}`}
         image={image}
       />
     );

@@ -40,7 +40,10 @@ class Modal extends React.Component {
     }
 
     const itemIndex = collection.findIndex(
-      (item) => getFileNameFromPath(item.work_image.sizes.img_large) === id,
+      (item) =>
+        item.work_image.sizes
+          ? getFileNameFromPath(item.work_image.sizes.img_large) === id
+          : 0,
     );
     const item = collection[itemIndex];
 

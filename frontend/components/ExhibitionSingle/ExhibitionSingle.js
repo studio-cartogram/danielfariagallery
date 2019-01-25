@@ -42,33 +42,38 @@ class ExhibitionSingle extends React.Component {
       switch (currentSection) {
         case 'about':
           return (
-            <PageText>
-              <div dangerouslySetInnerHTML={{__html: content}} />
-            </PageText>
+            works &&
+            works.length > 0 && (
+              <PageText>
+                <div dangerouslySetInnerHTML={{__html: content}} />
+              </PageText>
+            )
           );
         case 'work':
-          const workImageMarkup = works.map((work) => {
-            const id = getFileNameFromPath(
-              work.work_image.sizes.img_large ||
-                work.work_image.sizes.img_medium,
-            );
-            const href = `/exhibition?slug=${slug}&id=${id}`;
-            const as = `/exhibition/${slug}?id=${id}`;
-            return (
-              <Thumbnail
-                url={work.work_image}
-                title={work.work_title}
-                image={
-                  work.work_image.sizes.img_large ||
-                  work.work_image.sizes.img_medium
-                }
-                key={id}
-                id={id}
-                as={as}
-                href={href}
-              />
-            );
-          });
+          const workImageMarkup =
+            works &&
+            works.map((work) => {
+              const id = getFileNameFromPath(
+                work.work_image.sizes.img_large ||
+                  work.work_image.sizes.img_medium,
+              );
+              const href = `/exhibition?slug=${slug}&id=${id}`;
+              const as = `/exhibition/${slug}?id=${id}`;
+              return (
+                <Thumbnail
+                  url={work.work_image}
+                  title={work.work_title}
+                  image={
+                    work.work_image.sizes.img_large ||
+                    work.work_image.sizes.img_medium
+                  }
+                  key={id}
+                  id={id}
+                  as={as}
+                  href={href}
+                />
+              );
+            });
           return (
             <React.Fragment>
               <FeaturedImage image={featuredImage} />
@@ -78,6 +83,27 @@ class ExhibitionSingle extends React.Component {
       }
     }
 
+    const pageNavMarkup = works &&
+      works.length > 0 && (
+        <PageNav>
+          <Link
+            current={currentSection === 'work'}
+            onClick={this.handleSectionChange('work')}
+            href="#"
+            variant="primary"
+          >
+            Work
+          </Link>
+          <Link
+            current={currentSection === 'about'}
+            onClick={this.handleSectionChange('about')}
+            href="#"
+            variant="primary"
+          >
+            About
+          </Link>
+        </PageNav>
+      );
     return (
       <React.Fragment>
         <Modal current collection={works} />
@@ -97,24 +123,7 @@ class ExhibitionSingle extends React.Component {
             <br />
             {openingReceptionMarkup}
           </p>
-          <PageNav>
-            <Link
-              current={currentSection === 'work'}
-              onClick={this.handleSectionChange('work')}
-              href="#"
-              variant="primary"
-            >
-              Work
-            </Link>
-            <Link
-              current={currentSection === 'about'}
-              onClick={this.handleSectionChange('about')}
-              href="#"
-              variant="primary"
-            >
-              About
-            </Link>
-          </PageNav>
+          {pageNavMarkup}
         </PageMast>
         {sectionMarkup(currentSection)}
       </React.Fragment>

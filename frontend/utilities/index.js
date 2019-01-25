@@ -2,13 +2,16 @@ import isWithinRange from 'date-fns/is_within_range';
 import {basename, extname} from 'path';
 
 export function getCurrentExhibition(exhibitions) {
-  return exhibitions.filter((exhibition) =>
-    isWithinRange(
+  if (!exhibitions || !exhibitions.length) {
+    return [];
+  }
+  return exhibitions.filter((exhibition) => {
+    return isWithinRange(
       new Date(),
       new Date(exhibition.acf.start_date),
       new Date(exhibition.acf.end_date),
-    ),
-  );
+    );
+  });
 }
 
 export function getYearFromDateString(date) {
