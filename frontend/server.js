@@ -128,7 +128,8 @@ function getCacheKey(req) {
 
 async function renderAndCache(req, res, pagePath, queryParams = {}) {
   const key = getCacheKey(req);
-  const {reset_cache} = queryParams;
+  // const {reset_cache} = queryParams;
+  const reset_cache = true;
 
   if (reset_cache) {
     console.log('flushing entire cache');

@@ -7,16 +7,14 @@ import {commaListsAnd} from 'common-tags';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 import {getFeaturedImage} from '../utilities';
 
-const endpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/exhibitions`;
 
 class Exhibition extends React.Component {
   state = {loading: true};
   static async getInitialProps(ctx) {
     const {slug} = ctx.query;
 
-    const data = await cachedFetch(endpoint);
+    const data = await cachedFetch(endpoint, {disableCache: true});
     const isServer = !!ctx.req;
     return {data, endpoint, isServer, slug};
   }
@@ -47,13 +45,13 @@ class Exhibition extends React.Component {
       return <Error />;
     }
 
-    const artists = exhibition.acf.artist
-      ? exhibition.acf.artist.map(
-          (artist) => (artist ? artist.post_title : 'no artist'),
-        )
+    console.log(exhibition);
+
+    const artists = exhibition.artists
+      ? exhibition.artists.map((artist) => (artist ? artist.name : 'no artist'))
       : [];
 
-    const title = exhibition.title.rendered;
+    const title = exhibition.title;
 
     const displayTitle =
       artists && artists.length
@@ -66,12 +64,12 @@ class Exhibition extends React.Component {
       <ExhibitionSingle
         slug={exhibition.slug}
         title={displayTitle}
-        startDate={exhibition.acf.start_date}
-        endDate={exhibition.acf.end_date}
-        opening={exhibition.acf.opening_reception}
-        content={exhibition.content.rendered}
-        works={exhibition.acf.work}
-        featuredImage={featuredImage}
+        startDate={exhibition.start_date}
+        endDate={exhibition.end_date}
+        opening={exhibition.opening_reception}
+        content={exhibition.content}
+        works={exhibition.works}
+        featuredImage={exhibition.featuredImage}
       />
     );
   }
