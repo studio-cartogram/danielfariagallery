@@ -53,6 +53,11 @@ app
       renderAndCache(req, res, actualPage, req.query);
     });
 
+    server.get('/exhibitions/upcoming', (req, res) => {
+      const actualPage = '/exhibitions/upcoming';
+      renderAndCache(req, res, actualPage, req.query);
+    });
+
     server.get('/news/:slug', (req, res) => {
       const actualPage = '/new';
       const queryParams = Object.assign({}, {slug: req.params.slug}, req.query);

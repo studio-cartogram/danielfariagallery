@@ -1,4 +1,6 @@
 import isWithinRange from 'date-fns/is_within_range';
+import isFuture from 'date-fns/is_future';
+
 import {basename, extname} from 'path';
 
 export function getCurrentExhibition(exhibitions) {
@@ -11,6 +13,15 @@ export function getCurrentExhibition(exhibitions) {
       new Date(exhibition.acf.start_date),
       new Date(exhibition.acf.end_date),
     );
+  });
+}
+
+export function getUpcomingExhibition(exhibitions) {
+  if (!exhibitions || !exhibitions.length) {
+    return [];
+  }
+  return exhibitions.filter((exhibition) => {
+    return isFuture(new Date(exhibition.acf.start_date));
   });
 }
 

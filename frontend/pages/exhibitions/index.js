@@ -11,6 +11,7 @@ import cachedFetch, {overrideCache} from '../../utilities/cached-fetch';
 
 import {
   getCurrentExhibition,
+  getUpcomingExhibition,
   getPastExhibitions,
   getYearFromDateString,
   isEquivalent,
@@ -59,8 +60,9 @@ class ExhibitionIndex extends React.Component {
     const {filters, open} = this.state;
     const {asPath} = this.props.router;
 
-    const onCurrent =
-      asPath.split('/').length === 2 && asPath.split('/')[2] !== 'past';
+    const currentPage = getCurrentPageFromPath(asPath);
+
+    console.log(currentPage);
 
     if (!exhibitions.length) {
       return null;
@@ -78,9 +80,21 @@ class ExhibitionIndex extends React.Component {
       return artist.title.rendered;
     });
 
-    const exhibitionsToShow = onCurrent
-      ? getCurrentExhibition(exhibitions)
-      : getPastExhibitions(exhibitions);
+    let exhibitionsToShow;
+
+    switch (currentPage) {
+      case 'current':
+        exhibitionsToShow = getCurrentExhibition(exhibitions);
+        break;
+      case 'past':
+        exhibitionsToShow = getPastExhibitions(exhibitions);
+        break;
+      case 'upcoming':
+        exhibitionsToShow = getUpcomingExhibition(exhibitions);
+        break;
+      default:
+        exhibitionsToShow = getCurrentExhibition(exhibitions);
+    }
 
     if (exhibitionsToShow.length === 0) {
       return (
@@ -100,53 +114,60 @@ class ExhibitionIndex extends React.Component {
       artistsToShow && artistsToShow.length
         ? commaListsAnd`${artistsToShow}: <em>${title}</em>`
         : title;
-    const pageMarkup = onCurrent ? (
-      <ExhibitionSingle
-        title={displayTitle}
-        slug={exhibitionsToShow[0].slug}
-        startDate={exhibitionsToShow[0].acf.start_date}
-        endDate={exhibitionsToShow[0].acf.end_date}
-        opening={exhibitionsToShow[0].acf.opening_reception}
-        content={exhibitionsToShow[0].content.rendered}
-        works={exhibitionsToShow[0].acf.work}
-        current={onCurrent}
-      />
-    ) : (
-      <ExhibitionList exhibitions={exhibitionsToShow} filters={filters} />
-    );
+    const pageMarkup =
+      currentPage === 'current' || currentPage === 'upcoming' ? (
+        <ExhibitionSingle
+          title={displayTitle}
+          slug={exhibitionsToShow[0].slug}
+          startDate={exhibitionsToShow[0].acf.start_date}
+          endDate={exhibitionsToShow[0].acf.end_date}
+          opening={exhibitionsToShow[0].acf.opening_reception}
+          content={exhibitionsToShow[0].content.rendered}
+          works={exhibitionsToShow[0].acf.work}
+          current={currentPage === 'current' || currentPage === 'upcoming'}
+        />
+      ) : (
+        <ExhibitionList exhibitions={exhibitionsToShow} filters={filters} />
+      );
 
-    const navigationMarkup = onCurrent ? null : (
-      <React.Fragment>
-        <FilterControl
-          open={open === 'year'}
-          onItemClick={this.handleFilterClick}
-          label={'All Years'}
-          selected={filters.year}
-          items={exhibitionYears}
-          filterKey="year"
-        />
-        <FilterControl
-          open={open === 'artist'}
-          onItemClick={this.handleFilterClick}
-          label={'All Artists'}
-          selected={filters.artist}
-          items={exhibitionArtists}
-          filterKey="artist"
-        />
-      </React.Fragment>
-    );
+    const navigationMarkup =
+      currentPage === 'current' || currentPage === 'upcoming' ? null : (
+        <React.Fragment>
+          <FilterControl
+            open={open === 'year'}
+            onItemClick={this.handleFilterClick}
+            label={'All Years'}
+            selected={filters.year}
+            items={exhibitionYears}
+            filterKey="year"
+          />
+          <FilterControl
+            open={open === 'artist'}
+            onItemClick={this.handleFilterClick}
+            label={'All Artists'}
+            selected={filters.artist}
+            items={exhibitionArtists}
+            filterKey="artist"
+          />
+        </React.Fragment>
+      );
 
     return (
       <React.Fragment>
         <PageNav>
           <FilterControl
             label="Current"
-            current={onCurrent}
+            current={currentPage === 'current'}
             href={'/exhibitions'}
           />
           <FilterControl
+            label="Upcoming"
+            current={currentPage === 'upcoming'}
+            href={'/exhibitions/upcoming'}
+          />
+          <FilterControl
             label="Past"
-            current={!onCurrent}
+            current={currentPage === 'past'}
             href={'/exhibitions/past'}
           />
           {navigationMarkup}
@@ -199,3 +220,10 @@ class ExhibitionIndex extends React.Component {
 }
 
 export default withRouter(withLayout(ExhibitionIndex));
+
+function getCurrentPageFromPath(path) {
+  const pathParts = path.split('/');
+  const lastPart = pathParts[pathParts.length - 1];
+  const result = lastPart === 'exhibitions' ? 'current' : lastPart;
+  return result;
+}
