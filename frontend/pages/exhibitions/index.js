@@ -82,6 +82,8 @@ class ExhibitionIndex extends React.Component {
 
     let exhibitionsToShow;
 
+    const upcomingExhibitionsToShow = getUpcomingExhibition(exhibitions);
+
     switch (currentPage) {
       case 'current':
         exhibitionsToShow = getCurrentExhibition(exhibitions);
@@ -90,7 +92,7 @@ class ExhibitionIndex extends React.Component {
         exhibitionsToShow = getPastExhibitions(exhibitions);
         break;
       case 'upcoming':
-        exhibitionsToShow = getUpcomingExhibition(exhibitions);
+        exhibitionsToShow = upcomingExhibitionsToShow;
         break;
       default:
         exhibitionsToShow = getCurrentExhibition(exhibitions);
@@ -98,7 +100,10 @@ class ExhibitionIndex extends React.Component {
 
     if (exhibitionsToShow.length === 0) {
       return (
-        <Error message="No exhibitions to show. Likely this means there is no current exhibitions" />
+        <Error
+          type="empty"
+          message="No exhibitions to show. Likely this means there is no current exhibitions"
+        />
       );
     }
 
@@ -152,6 +157,15 @@ class ExhibitionIndex extends React.Component {
         </React.Fragment>
       );
 
+    const upcomingLinkMarkup =
+      upcomingExhibitionsToShow.length > 0 ? (
+        <FilterControl
+          label="Upcoming"
+          current={currentPage === 'upcoming'}
+          href={'/exhibitions/upcoming'}
+        />
+      ) : null;
+
     return (
       <React.Fragment>
         <PageNav>
@@ -160,11 +174,7 @@ class ExhibitionIndex extends React.Component {
             current={currentPage === 'current'}
             href={'/exhibitions'}
           />
-          <FilterControl
-            label="Upcoming"
-            current={currentPage === 'upcoming'}
-            href={'/exhibitions/upcoming'}
-          />
+          {upcomingLinkMarkup}
           <FilterControl
             label="Past"
             current={currentPage === 'past'}

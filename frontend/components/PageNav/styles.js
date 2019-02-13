@@ -7,7 +7,6 @@ const StyledPageNav = styled.div`
   align-items: baseline;
   flex-wrap: wrap;
   margin-left: ${(props) => `-${props.theme.pxScale[2]}`};
-  z-index: 1;
   min-height: ${(props) => `${props.theme.pxScale[7]}`};
 
   ${breakpoints.bpM} {

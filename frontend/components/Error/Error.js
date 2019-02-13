@@ -5,9 +5,14 @@ function Error({type, message}) {
   console.log(message);
   switch (type) {
     case 'empty':
-      return <div>This is empty</div>;
+      return <div>There is no content to show.</div>;
     default:
-      return <div>default error</div>;
+      return (
+        <div>
+          You’ve encountered an error. We're sorry, use the navigationt to find
+          your way back.
+        </div>
+      );
   }
 }
 

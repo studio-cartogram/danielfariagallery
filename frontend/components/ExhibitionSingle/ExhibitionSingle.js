@@ -37,18 +37,21 @@ class ExhibitionSingle extends React.Component {
       artists && artists.length
         ? commaListsAnd`${artists}: <em>${title}</em>`
         : title;
+    const hasWork = works && works.length;
+    const hasAbout = content && content.length;
+
+    const forceAbout = currentSection === 'work' && !hasWork;
+
+    const aboutMarkup = (
+      <PageText>
+        <div dangerouslySetInnerHTML={{__html: content}} />
+      </PageText>
+    );
 
     function sectionMarkup(currentSection) {
       switch (currentSection) {
         case 'about':
-          return (
-            works &&
-            works.length > 0 && (
-              <PageText>
-                <div dangerouslySetInnerHTML={{__html: content}} />
-              </PageText>
-            )
-          );
+          return aboutMarkup;
         case 'work':
           const workImageMarkup =
             works &&
@@ -80,30 +83,53 @@ class ExhibitionSingle extends React.Component {
               {workImageMarkup}
             </React.Fragment>
           );
+        default:
+          return (
+            hasAbout && (
+              <PageText>
+                <div dangerouslySetInnerHTML={{__html: content}} />
+              </PageText>
+            )
+          );
       }
     }
 
-    const pageNavMarkup = works &&
-      works.length > 0 && (
+    const currentSectionMarkup = forceAbout
+      ? aboutMarkup
+      : sectionMarkup(currentSection);
+
+    debugger;
+
+    const workLinkMarkup = (
+      <Link
+        current={currentSection === 'work'}
+        onClick={this.handleSectionChange('work')}
+        href="#"
+        variant="primary"
+      >
+        Work
+      </Link>
+    );
+
+    const aboutLinkMarkup = (
+      <Link
+        current={currentSection === 'about'}
+        onClick={this.handleSectionChange('about')}
+        href="#"
+        variant="primary"
+      >
+        About
+      </Link>
+    );
+
+    const pageNavMarkup =
+      hasWork && hasAbout ? (
         <PageNav>
-          <Link
-            current={currentSection === 'work'}
-            onClick={this.handleSectionChange('work')}
-            href="#"
-            variant="primary"
-          >
-            Work
-          </Link>
-          <Link
-            current={currentSection === 'about'}
-            onClick={this.handleSectionChange('about')}
-            href="#"
-            variant="primary"
-          >
-            About
-          </Link>
+          {workLinkMarkup}
+          {aboutLinkMarkup}
         </PageNav>
-      );
+      ) : null;
+
     return (
       <React.Fragment>
         <Modal current collection={works} />
@@ -123,9 +149,9 @@ class ExhibitionSingle extends React.Component {
             <br />
             {openingReceptionMarkup}
           </p>
-          {pageNavMarkup}
         </PageMast>
-        {sectionMarkup(currentSection)}
+        {pageNavMarkup}
+        {currentSectionMarkup}
       </React.Fragment>
     );
   }

@@ -1,5 +1,5 @@
 import lscache from 'lscache';
-import fetch from 'isomorphic-fetch';
+import fetch from 'isomorphic-unfetch';
 
 lscache.enableWarnings(true);
 
