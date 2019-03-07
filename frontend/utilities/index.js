@@ -10,8 +10,8 @@ export function getCurrentExhibition(exhibitions) {
   return exhibitions.filter((exhibition) => {
     return isWithinRange(
       new Date(),
-      new Date(exhibition.acf.start_date),
-      new Date(exhibition.acf.end_date),
+      new Date(exhibition.start_date),
+      new Date(exhibition.end_date),
     );
   });
 }

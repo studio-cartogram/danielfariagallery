@@ -39,6 +39,7 @@ add_action(
         ] );
 
         // Register routes
+        // This route is not used because we are using the exhibitions route only
         register_rest_route( 'dfg/v1', '/exhibition', [
             'methods'  => 'GET',
             'callback' => 'rest_get_exhibition',
@@ -194,9 +195,10 @@ function get_content_for_list( $type = 'exhibition' ) {
      
     foreach( $items as $item) {
         $id = $item->ID;
+        $content = $item->post_content;
         $data = array(
             'id' => $id,
-            'content' => $item->post_content,
+            'content' => wpautop($content),
             'title' => $item->post_title,
             'slug' =>  $item->post_name,
             'start_date' => get_field('start_date', $id),
@@ -250,6 +252,7 @@ function get_artists_for_exhibition($id) {
                 'id' => $artist->ID,
                 'name'=> $artist->post_title,
                 'slug' => $artist->post_name,
+                'representation' => get_field('representation', $id),
             );
                 
             array_push($response, $data);
@@ -269,15 +272,12 @@ function get_works_for_exhibition($id) {
     if ($works) {
         foreach($works as $work) {
             $details = $work['work_details'];
-            $mattsucks = array();
 
             if ($details) {
                 foreach($details as $detail) {
                     $data = array(
-                        'detail'=> 'pooop',
-                    );
-                        
-                    array_push($mattsucks, $data);
+                        'detail'=> $detail['work_detail'],
+                    );    
                 }
             }
             $data = array(

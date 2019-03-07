@@ -45,8 +45,6 @@ class Exhibition extends React.Component {
       return <Error />;
     }
 
-    console.log(exhibition);
-
     const artists = exhibition.artists
       ? exhibition.artists.map((artist) => (artist ? artist.name : 'no artist'))
       : [];

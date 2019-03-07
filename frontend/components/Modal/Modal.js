@@ -41,8 +41,8 @@ class Modal extends React.Component {
 
     const itemIndex = collection.findIndex(
       (item) =>
-        item.work_image.sizes
-          ? getFileNameFromPath(item.work_image.sizes.img_large) === id
+        item.image.sizes
+          ? getFileNameFromPath(item.image.sizes.img_large) === id
           : 0,
     );
     const item = collection[itemIndex];
@@ -51,9 +51,9 @@ class Modal extends React.Component {
       return null;
     }
 
-    const workDetails =
-      item.work_details && item.work_details.length
-        ? item.work_details.map((detail, index) => {
+    const workDetailsMarkup =
+      item.details && item.details.length
+        ? item.details.map((detail, index) => {
             return (
               <React.Fragment key={index}>
                 {detail.work_detail}
@@ -62,11 +62,6 @@ class Modal extends React.Component {
             );
           })
         : null;
-
-    const workDetailsMarkup =
-      item.work_details && item.work_details.length ? (
-        <div>{workDetails}</div>
-      ) : null;
 
     return (
       <StyledModal>
@@ -79,19 +74,17 @@ class Modal extends React.Component {
           <Link onClick={this.next(itemIndex)}>Next</Link>
         </StyledControls>
         <StyledModalMast>
-          <Title>{item.work_title}</Title>
+          <Title>{item.title}</Title>
           <p>{workDetailsMarkup}</p>
           <p>
-            <Link target="_blank" href={item.work_image.url}>
+            <Link target="_blank" href={item.image.url}>
               Full image
             </Link>
           </p>
         </StyledModalMast>
         <StyledImage
-          alt={item.work_title}
-          src={
-            item.work_image.sizes.img_large || work.work_image.sizes.img_medium
-          }
+          alt={item.title}
+          src={item.image.sizes.img_large || work.image.sizes.img_medium}
         />
       </StyledModal>
     );
@@ -129,7 +122,7 @@ class Modal extends React.Component {
       return null;
     }
     const id = getFileNameFromPath(
-      item.work_image.sizes.img_large || work.work_image.sizes.img_medium,
+      item.image.sizes.img_large || work.image.sizes.img_medium,
     );
     router.push(...this.getPushUrl(id));
   };
