@@ -55,20 +55,22 @@ class ExhibitionSingle extends React.Component {
         case 'work':
           const workImageMarkup =
             works &&
+            works.length > 0 &&
             works.map((work) => {
+              if (!work.image) {
+                return null;
+              }
               const id = getFileNameFromPath(
-                work.work_image.sizes.img_large ||
-                  work.work_image.sizes.img_medium,
+                work.image.sizes.img_large || work.image.sizes.img_medium,
               );
               const href = `/exhibition?slug=${slug}&id=${id}`;
               const as = `/exhibition/${slug}?id=${id}`;
               return (
                 <Thumbnail
-                  url={work.work_image}
-                  title={work.work_title}
+                  url={work.image}
+                  title={work.title}
                   image={
-                    work.work_image.sizes.img_large ||
-                    work.work_image.sizes.img_medium
+                    work.image.sizes.img_large || work.image.sizes.img_medium
                   }
                   key={id}
                   id={id}

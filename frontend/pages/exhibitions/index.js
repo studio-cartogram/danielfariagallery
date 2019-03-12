@@ -18,13 +18,7 @@ import {
 } from '../../utilities';
 import {commaListsAnd} from 'common-tags';
 
-const artistEndpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/artists?per_page=100&_embed=true`;
-
-const exhibitionEndpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
+const exhibitionEndpoint = `${config.apiUrl}/wp-json/dfg/v1/exhibitions`;
 
 class ExhibitionIndex extends React.Component {
   state = {
@@ -36,27 +30,23 @@ class ExhibitionIndex extends React.Component {
   };
 
   static async getInitialProps(ctx) {
-    const [exhibitionData, artistData] = await Promise.all([
-      cachedFetch(exhibitionEndpoint),
-      cachedFetch(artistEndpoint),
-    ]);
+    const [data] = await Promise.all([cachedFetch(exhibitionEndpoint)]);
 
     const isServer = !!ctx.req;
-    return {exhibitionData, artistData, isServer};
+    return {data, isServer};
   }
 
   componentDidMount() {
     if (this.props.isServer) {
-      overrideCache(exhibitionEndpoint, this.props.exhibitionData);
-      overrideCache(artistEndpoint, this.props.artistData);
+      overrideCache(exhibitionEndpoint, this.props.data);
     }
   }
 
   render() {
-    if (!this.props.exhibitionData || !this.props.artistData) {
+    if (!this.props.data) {
       return null;
     }
-    const {exhibitionData: exhibitions, artistData: artists} = this.props;
+    const {artists, exhibitions} = this.props.data;
     const {filters, open} = this.state;
     const {asPath} = this.props.router;
 
@@ -69,15 +59,15 @@ class ExhibitionIndex extends React.Component {
     }
 
     const exhibitionYears = exhibitions.map((exhibition) => {
-      return getYearFromDateString(exhibition.acf.start_date);
+      return getYearFromDateString(exhibition.start_date);
     });
 
     const exhibitionArtists = artists.map((artist) => {
-      if (!artist.acf.representation) {
+      if (!artist.representation) {
         return;
       }
 
-      return artist.title.rendered;
+      return artist.name;
     });
 
     let exhibitionsToShow;
@@ -107,28 +97,29 @@ class ExhibitionIndex extends React.Component {
       );
     }
 
-    const artistsToShow = exhibitionsToShow[0].acf.artist
-      ? exhibitionsToShow[0].acf.artist.map(
-          (artist) => (artist ? artist.post_title : 'no artist'),
+    const artistsToShow = exhibitionsToShow[0].artists
+      ? exhibitionsToShow[0].artists.map(
+          (artist) => (artist ? artist.name : 'no artist'),
         )
       : [];
 
-    const title = exhibitionsToShow[0].title.rendered;
+    const title = exhibitionsToShow[0].title;
 
     const displayTitle =
       artistsToShow && artistsToShow.length
         ? commaListsAnd`${artistsToShow}: <em>${title}</em>`
         : title;
+
     const pageMarkup =
       currentPage === 'current' || currentPage === 'upcoming' ? (
         <ExhibitionSingle
           title={displayTitle}
           slug={exhibitionsToShow[0].slug}
-          startDate={exhibitionsToShow[0].acf.start_date}
-          endDate={exhibitionsToShow[0].acf.end_date}
-          opening={exhibitionsToShow[0].acf.opening_reception}
-          content={exhibitionsToShow[0].content.rendered}
-          works={exhibitionsToShow[0].acf.work}
+          startDate={exhibitionsToShow[0].start_date}
+          endDate={exhibitionsToShow[0].end_date}
+          opening={exhibitionsToShow[0].opening_reception}
+          content={exhibitionsToShow[0].content}
+          works={exhibitionsToShow[0].works}
           current={currentPage === 'current' || currentPage === 'upcoming'}
         />
       ) : (

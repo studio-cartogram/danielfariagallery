@@ -8,7 +8,7 @@ function ArtistDisplay({artists, filter}) {
   const currentArtist =
     filteredArtists.length === 0 ? artists[0] : filteredArtists[0];
 
-  const image = getFeaturedImage(currentArtist, 'full');
+  const image = currentArtist.featuredImage;
 
   return (
     <StyledArtistDisplay>

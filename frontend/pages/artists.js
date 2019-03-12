@@ -6,9 +6,11 @@ import ArtistList from '../components/ArtistList';
 import Error from '../components/Error';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-const endpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/artists?per_page=100&_embed=true`;
+// const endpoint = `${
+//   config.apiUrl
+// }/wp-json/wp/v2/artists?per_page=100&_embed=true`;
+
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/artists`;
 
 class ArtistIndex extends Component {
   state = {
@@ -30,12 +32,13 @@ class ArtistIndex extends Component {
     const artists = this.props.data;
     const {currentArtist} = this.state;
     const representedArtists = artists.filter((artist) => {
-      return artist.acf.representation;
+      return artist.representation;
     });
 
     if (representedArtists.length === 0) {
       return <Error />;
     }
+
     return (
       <React.Fragment>
         <ArtistList

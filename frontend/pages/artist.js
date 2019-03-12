@@ -5,9 +5,7 @@ import Error from '../components/Error';
 import ArtistSingle from '../components/ArtistSingle';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-const endpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/artists?per_page=100&_embed=true`;
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/artists`;
 
 class Artist extends React.Component {
   state = {
@@ -49,12 +47,12 @@ class Artist extends React.Component {
     return (
       <ArtistSingle
         slug={artist.slug}
-        title={artist.title.rendered}
-        content={artist.content.rendered}
-        works={artist.acf.work}
-        exhibitions={artist.acf.exhibitions}
-        press={artist.acf.press}
-        news={artist.acf.news}
+        title={artist.name}
+        content={artist.content}
+        works={artist.works}
+        exhibitions={artist.exhibitions}
+        press={artist.press}
+        news={artist.news}
       />
     );
   }

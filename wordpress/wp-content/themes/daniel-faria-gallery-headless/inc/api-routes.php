@@ -25,7 +25,7 @@ add_action(
         );
 
         // Register routes
-        register_rest_route( 'postlight/v1', '/post', [
+        register_rest_route( 'dfg/v1', '/post', [
             'methods'  => 'GET',
             'callback' => 'rest_get_post',
             'args' => [
@@ -38,7 +38,40 @@ add_action(
             ],
         ] );
 
-        register_rest_route( 'postlight/v1', '/page', [
+        // Register routes
+        // This route is not used because we are using the exhibitions route only
+        register_rest_route( 'dfg/v1', '/exhibition', [
+            'methods'  => 'GET',
+            'callback' => 'rest_get_exhibition',
+            'args' => [
+                'slug' => array_merge(
+                    $post_slug_arg,
+                    [
+                        'required' => true,
+                    ]
+                ),
+            ],
+        ] );
+
+        // Register routes
+        register_rest_route( 'dfg/v1', '/exhibitions', [
+            'methods'  => 'GET',
+            'callback' => 'rest_get_exhibitions',
+            'args' => [
+                
+            ],
+        ] );
+
+         // Register routes
+         register_rest_route( 'dfg/v1', '/artists', [
+            'methods'  => 'GET',
+            'callback' => 'rest_get_artists',
+            'args' => [
+                
+            ],
+        ] );
+
+        register_rest_route( 'dfg/v1', '/page', [
             'methods'  => 'GET',
             'callback' => 'rest_get_page',
             'args' => [
@@ -51,7 +84,7 @@ add_action(
             ],
         ] );
 
-        register_rest_route('postlight/v1', '/post/preview', [
+        register_rest_route('dfg/v1', '/post/preview', [
             'methods'  => 'GET',
             'callback' => 'rest_get_post_preview',
             'args' => [
@@ -91,6 +124,275 @@ function rest_get_page( WP_REST_Request $request ) {
 }
 
 /**
+ * Respond to a REST API request to get exhibition data.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response
+ */
+function rest_get_exhibition( WP_REST_Request $request ) {
+    return rest_get_content( $request, 'exhibition', __FUNCTION__ );
+}
+
+/**
+ * Respond to a REST API request to get exhibitions data.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response
+ */
+function rest_get_exhibitions( WP_REST_Request $request ) {
+    $response = rest_get_list( $request, 'exhibition', __FUNCTION__ );
+
+    return $response;
+}
+
+/**
+ * Respond to a REST API request to get artists data.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response
+ */
+function rest_get_artists( WP_REST_Request $request ) {
+    $response = rest_get_list( $request, 'artist', __FUNCTION__ );
+
+    return new WP_REST_Response( $response );
+
+}
+
+
+/**
+ * Respond to a REST API request to a list of post's data.
+ * * Handles changed slugs
+ * * Doesn't return posts whose status isn't published
+ * * Redirects to the admin when an edit parameter is present
+ *
+ * @param WP_REST_Request $request Request
+ * @param str             $type Type
+ * @param str             $function_name Function name
+ * @return WP_REST_Response
+ */
+function rest_get_list( WP_REST_Request $request, $type, $function_name ) {
+
+    $content_in_array = in_array(
+        $type,
+        [
+            'artist',
+            'exhibition',
+        ],
+        true
+    );
+    if ( ! $content_in_array ) {
+        $type = 'exhibition';
+    }
+
+
+    $response = get_content_for_list($type);
+
+    return $response;
+}
+
+
+function get_artist_list( $type = 'exhibition' ) {
+    $artists = get_posts([
+        'post_type'   => 'artist',
+        'post_status' => 'publish',
+        'numberposts' => 100, // change in production
+    ]);
+
+    $response = array();
+
+    if ($artists) {
+        foreach($artists as $artist) {
+            $id = $artist->ID;
+            $data = array(
+                'id' => $id,
+                'name'=> $artist->post_title,
+                'slug' => $artist->post_name,
+                'representation' => get_field('representation', $id),
+            );
+                
+            array_push($response, $data);
+        }
+    }
+
+    return $response;
+}
+
+/**
+ * Returns a list of exhibitions.
+ *
+ * @return Posts
+ */
+function get_content_for_list( $type = 'exhibition' ) {
+    $args = [
+        'post_type'   => $type,
+        'post_status' => 'publish',
+        'numberposts' => 100, // change in production
+    ];
+
+
+    $items = get_posts($args);
+
+    if ( ! $items ) {
+        return new WP_Error(
+            $function_name,
+            $slug . ' ' . $type . ' does not exist',
+            [
+                'status' => 404,
+            ]
+        );
+    };
+    
+    $response = array();
+     
+    foreach( $items as $item) {
+        $id = $item->ID;
+        $content = $item->post_content;
+        $additionalFields = array();
+
+        if ($type === 'exhibition') {
+            $artists = get_artist_list();
+            $additionalFields =  array(
+                'works' => get_works_for_post($id),
+                'artists' => get_artists_for_exhibition($id),
+                'start_date' => get_field('start_date', $id),
+                'end_date' => get_field('end_date', $id),
+                'opening_reception' => get_field('opening_reception', $id),
+            );
+        }
+
+        if ($type === 'artist') {
+            $artists = get_artist_list();
+            $additionalFields =  array(
+                'name'=> $item->post_title,
+                'representation' => get_field('representation', $item),
+                'works' => get_works_for_post($id),
+                'press' => get_press_for_post($id),
+            );
+        }
+
+
+        $data = array(
+            'id' => $id,
+            'title' => $item->post_title,
+            'content' => wpautop($content),
+            'slug' =>  $item->post_name,
+            'post_type' => $item->post_type,
+            'link' => get_permalink($id),
+            'featuredImage' => wp_get_attachment_url( get_post_thumbnail_id($id), 'img_medium' ),
+            
+
+            // 'time'			  => microtime(true),
+            // 'category' 		  => get_the_category($post['ID']),
+            // 'title'           => get_the_title( $post['ID'] ), // $post['post_title'],
+            // 'slug'            => $post['post_name'], // $post['post_title'],
+            // 'type'            => $post['post_type'],
+            // 'content'         => $content,
+            // 'htmlcontent'	  => wpautop( $content ),
+            // 'post_content' => $post_content,
+            // 'parent'          => (int) $post['post_parent'],
+            // 'link'            => get_permalink( $post['ID'] ),
+            // 'tags' 			  => $this->cartogram_prepare_tags($post['ID']),
+            // 'instagram_video'	      => $this->cartogram_prepare_instagram_video($this->cartogram_prepare_tags($post['ID']), get_the_content()),
+            // 'instagram_img'	      => $this->cartogram_prepare_instagram_img($this->cartogram_prepare_tags($post['ID']), get_the_content()),
+            // 'youtube_video_img'	      => $this->cartogram_prepare_video_img(get_the_category($post['ID']), get_the_content()),
+            // 'images'		  => $this->prepare_images(get_post_thumbnail_id($post['ID'])),
+            // 'previous'		  	  => $this->prepare_next($post['ID']),
+            // 'next'		  => $this->prepare_previous($post['ID']),
+            // 'info'			  => get_field('info'),
+            // 'external_link'			  => get_field('external_link'),
+            // 'extra'			  => $this->cartogram_prepare_extra($post['ID'])
+        );
+
+        $data = array_merge($data, $additionalFields);
+        array_push($response, $data);
+
+    }
+
+    if ($type === 'exhibition') {
+        $artists = get_artist_list();
+        return array('artists' => $artists, 'exhibitions' => $response);
+
+    }
+
+    return $response;
+}
+
+
+
+
+function get_artists_for_exhibition($id) {
+
+    $artists = get_field('artist', $id);
+    $response = array();
+
+    if ($artists) {
+        foreach($artists as $artist) {
+            $data = array(
+                'id' => $artist->ID,
+                'name'=> $artist->post_title,
+                'slug' => $artist->post_name,
+                'representation' => get_field('representation', $artist),
+            );
+                
+            array_push($response, $data);
+        }
+    }
+
+    return $response;
+}
+
+
+function get_works_for_post($id) {
+
+    $works = get_field('work', $id);
+    $response = array();
+
+
+    if ($works) {
+        foreach($works as $work) {
+            $details = $work['work_details'];
+
+            if ($details) {
+                foreach($details as $detail) {
+                    $data = array(
+                        'detail'=> $detail['work_detail'],
+                    );    
+                }
+            }
+            $data = array(
+                'title'=> $work['work_title'],
+                'image'=> $work['work_image'],
+                'details'=> $details,
+            );
+                
+            array_push($response, $data);
+        }
+    }
+
+    return $response;
+}
+
+function get_press_for_post($id) {
+
+    $press = get_field('press', $id);
+    $response = array();
+
+
+    if ($press) {
+        foreach($press as $press) {
+
+            $data = array(
+                'title'=> $press['press_title'],
+                'download'=> $press['press_download'],
+            );
+            array_push($response, $data);
+        }
+    }
+
+    return $response;
+}
+
+/**
  * Respond to a REST API request to get post or page data.
  * * Handles changed slugs
  * * Doesn't return posts whose status isn't published
@@ -107,6 +409,7 @@ function rest_get_content( WP_REST_Request $request, $type, $function_name ) {
         [
             'post',
             'page',
+            'exhibition',
         ],
         true
     );
@@ -151,8 +454,9 @@ function get_content_by_slug( $slug, $type = 'post' ) {
         [
             'post',
             'page',
+            'exhibition'
         ],
-        true
+        true    
     );
     if ( ! $content_in_array ) {
         $type = 'post';
