@@ -17,7 +17,7 @@ class ArtistList extends React.Component {
             href={`/artist?slug=${artist.slug}`}
             onMouseOver={this.onArtistHover(artist)}
           >
-            {artist.title.rendered}
+            {artist.name}
           </Link>
         </StyledArtistName>
       );
@@ -39,8 +39,8 @@ export default ArtistList;
 
 function sortArtistByLastName(artists) {
   artists.sort((a, b) => {
-    const aName = a.title.rendered.split(' ');
-    const bName = b.title.rendered.split(' ');
+    const aName = a.name.split(' ');
+    const bName = b.name.split(' ');
     const aLastName = aName[aName.length - 1];
     const bLastName = bName[bName.length - 1];
 

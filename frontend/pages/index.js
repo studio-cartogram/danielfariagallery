@@ -1,13 +1,12 @@
 import React from 'react';
 import CurrentExhibition from '../components/CurrentExhibition';
+import {commaListsAnd} from 'common-tags';
 import {config} from '../config.js';
 import withLayout from '../decorators/withLayout';
-import {getCurrentExhibition, getFeaturedImage} from '../utilities';
+import {getCurrentExhibition} from '../utilities';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-const endpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`;
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/exhibitions`;
 
 class Index extends React.Component {
   static async getInitialProps(ctx) {
@@ -24,29 +23,28 @@ class Index extends React.Component {
 
   render() {
     const exhibitions = this.props.data;
+    const currentExhibition = getCurrentExhibition(exhibitions.exhibitions);
 
-    const currentExhibition = getCurrentExhibition(exhibitions);
+    if (currentExhibition.length === 0) {
+      return null;
+    }
+    const {slug, title, artists, featuredImage} = currentExhibition[0];
+
+    const displayTitle =
+      artists && artists.length
+        ? commaListsAnd`${artists}: <em>${title}</em>`
+        : title;
 
     if (currentExhibition.length === 0) {
       return null;
     }
 
-    const {slug, title, acf} = currentExhibition[0];
-
-    if (!acf) {
-      return null;
-    }
-    const image = getFeaturedImage(currentExhibition[0], 'full');
-
-    const titleBeginning =
-      acf.artist && acf.artist.length && acf.artist[0].post_title;
-
     return (
       <CurrentExhibition
         slug={slug}
         url={`/exhibition/${slug}`}
-        title={`${titleBeginning}: ${title.rendered}`}
-        image={image}
+        title={displayTitle}
+        image={featuredImage}
       />
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyledExhibitionList, StyledExhibitionLi} from './styles';
 import Exhibition from '../Exhibition';
 import Empty from '../Empty';
-import {getYearFromDateString, getFeaturedImage} from '../../utilities';
+import {getYearFromDateString} from '../../utilities';
 
 function ExhibitionList({exhibitions, filters}) {
   const exhibitionsToShow = exhibitions.filter((exhibition) => {

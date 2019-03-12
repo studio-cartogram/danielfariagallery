@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 function Error({type, message}) {
   console.log(message);
@@ -16,8 +16,8 @@ function Error({type, message}) {
   }
 }
 
-Error.PropTypes = {
-  type: PropTypes.oneOf(['empty']),
+Error.propTypes = {
+  type: propTypes.oneOf(['empty']),
 };
 
 export default Error;

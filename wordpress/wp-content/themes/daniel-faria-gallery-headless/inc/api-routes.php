@@ -62,6 +62,15 @@ add_action(
             ],
         ] );
 
+         // Register routes
+         register_rest_route( 'dfg/v1', '/artists', [
+            'methods'  => 'GET',
+            'callback' => 'rest_get_artists',
+            'args' => [
+                
+            ],
+        ] );
+
         register_rest_route( 'dfg/v1', '/page', [
             'methods'  => 'GET',
             'callback' => 'rest_get_page',
@@ -131,7 +140,22 @@ function rest_get_exhibition( WP_REST_Request $request ) {
  * @return WP_REST_Response
  */
 function rest_get_exhibitions( WP_REST_Request $request ) {
-    return rest_get_list( $request, 'exhibition', __FUNCTION__ );
+    $response = rest_get_list( $request, 'exhibition', __FUNCTION__ );
+
+    return $response;
+}
+
+/**
+ * Respond to a REST API request to get artists data.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response
+ */
+function rest_get_artists( WP_REST_Request $request ) {
+    $response = rest_get_list( $request, 'artist', __FUNCTION__ );
+
+    return new WP_REST_Response( $response );
+
 }
 
 
@@ -151,7 +175,7 @@ function rest_get_list( WP_REST_Request $request, $type, $function_name ) {
     $content_in_array = in_array(
         $type,
         [
-            // 'artist',
+            'artist',
             'exhibition',
         ],
         true
@@ -161,13 +185,40 @@ function rest_get_list( WP_REST_Request $request, $type, $function_name ) {
     }
 
 
-    $response = get_content_for_list($type = 'exhibition');
-    
-    return new WP_REST_Response( $response );
+    $response = get_content_for_list($type);
+
+    return $response;
+}
+
+
+function get_artist_list( $type = 'exhibition' ) {
+    $artists = get_posts([
+        'post_type'   => 'artist',
+        'post_status' => 'publish',
+        'numberposts' => 100, // change in production
+    ]);
+
+    $response = array();
+
+    if ($artists) {
+        foreach($artists as $artist) {
+            $id = $artist->ID;
+            $data = array(
+                'id' => $id,
+                'name'=> $artist->post_title,
+                'slug' => $artist->post_name,
+                'representation' => get_field('representation', $id),
+            );
+                
+            array_push($response, $data);
+        }
+    }
+
+    return $response;
 }
 
 /**
- * Returns a list.
+ * Returns a list of exhibitions.
  *
  * @return Posts
  */
@@ -175,7 +226,7 @@ function get_content_for_list( $type = 'exhibition' ) {
     $args = [
         'post_type'   => $type,
         'post_status' => 'publish',
-        'numberposts' => 10,
+        'numberposts' => 100, // change in production
     ];
 
 
@@ -196,19 +247,38 @@ function get_content_for_list( $type = 'exhibition' ) {
     foreach( $items as $item) {
         $id = $item->ID;
         $content = $item->post_content;
+        $additionalFields = array();
+
+        if ($type === 'exhibition') {
+            $artists = get_artist_list();
+            $additionalFields =  array(
+                'works' => get_works_for_post($id),
+                'artists' => get_artists_for_exhibition($id),
+                'start_date' => get_field('start_date', $id),
+                'end_date' => get_field('end_date', $id),
+                'opening_reception' => get_field('opening_reception', $id),
+            );
+        }
+
+        if ($type === 'artist') {
+            $artists = get_artist_list();
+            $additionalFields =  array(
+                'name'=> $item->post_title,
+                'representation' => get_field('representation', $item),
+                'works' => get_works_for_post($id),
+                'press' => get_press_for_post($id),
+            );
+        }
+
+
         $data = array(
             'id' => $id,
-            'content' => wpautop($content),
             'title' => $item->post_title,
+            'content' => wpautop($content),
             'slug' =>  $item->post_name,
-            'start_date' => get_field('start_date', $id),
-            'end_date' => get_field('end_date', $id),
-            'opening_reception' => get_field('opening_reception', $id),
             'post_type' => $item->post_type,
             'link' => get_permalink($id),
-            'artists' => get_artists_for_exhibition($id),
             'featuredImage' => wp_get_attachment_url( get_post_thumbnail_id($id), 'img_medium' ),
-            'works' => get_works_for_exhibition($id),
             
 
             // 'time'			  => microtime(true),
@@ -233,12 +303,21 @@ function get_content_for_list( $type = 'exhibition' ) {
             // 'extra'			  => $this->cartogram_prepare_extra($post['ID'])
         );
 
+        $data = array_merge($data, $additionalFields);
         array_push($response, $data);
+
+    }
+
+    if ($type === 'exhibition') {
+        $artists = get_artist_list();
+        return array('artists' => $artists, 'exhibitions' => $response);
 
     }
 
     return $response;
 }
+
+
 
 
 function get_artists_for_exhibition($id) {
@@ -252,7 +331,7 @@ function get_artists_for_exhibition($id) {
                 'id' => $artist->ID,
                 'name'=> $artist->post_title,
                 'slug' => $artist->post_name,
-                'representation' => get_field('representation', $id),
+                'representation' => get_field('representation', $artist),
             );
                 
             array_push($response, $data);
@@ -263,7 +342,7 @@ function get_artists_for_exhibition($id) {
 }
 
 
-function get_works_for_exhibition($id) {
+function get_works_for_post($id) {
 
     $works = get_field('work', $id);
     $response = array();
@@ -293,6 +372,25 @@ function get_works_for_exhibition($id) {
     return $response;
 }
 
+function get_press_for_post($id) {
+
+    $press = get_field('press', $id);
+    $response = array();
+
+
+    if ($press) {
+        foreach($press as $press) {
+
+            $data = array(
+                'title'=> $press['press_title'],
+                'download'=> $press['press_download'],
+            );
+            array_push($response, $data);
+        }
+    }
+
+    return $response;
+}
 
 /**
  * Respond to a REST API request to get post or page data.

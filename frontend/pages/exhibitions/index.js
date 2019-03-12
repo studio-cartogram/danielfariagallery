@@ -18,10 +18,6 @@ import {
 } from '../../utilities';
 import {commaListsAnd} from 'common-tags';
 
-const artistEndpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/artists?per_page=100&_embed=true`;
-
 const exhibitionEndpoint = `${config.apiUrl}/wp-json/dfg/v1/exhibitions`;
 
 class ExhibitionIndex extends React.Component {
@@ -34,27 +30,23 @@ class ExhibitionIndex extends React.Component {
   };
 
   static async getInitialProps(ctx) {
-    const [exhibitionData, artistData] = await Promise.all([
-      cachedFetch(exhibitionEndpoint),
-      cachedFetch(artistEndpoint),
-    ]);
+    const [data] = await Promise.all([cachedFetch(exhibitionEndpoint)]);
 
     const isServer = !!ctx.req;
-    return {exhibitionData, artistData, isServer};
+    return {data, isServer};
   }
 
   componentDidMount() {
     if (this.props.isServer) {
-      overrideCache(exhibitionEndpoint, this.props.exhibitionData);
-      overrideCache(artistEndpoint, this.props.artistData);
+      overrideCache(exhibitionEndpoint, this.props.data);
     }
   }
 
   render() {
-    if (!this.props.exhibitionData || !this.props.artistData) {
+    if (!this.props.data) {
       return null;
     }
-    const {exhibitionData: exhibitions, artistData: artists} = this.props;
+    const {artists, exhibitions} = this.props.data;
     const {filters, open} = this.state;
     const {asPath} = this.props.router;
 

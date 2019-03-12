@@ -36,8 +36,7 @@ class ArtistSingle extends React.Component {
           }
           const workImageMarkup = works.map((work) => {
             const id = getFileNameFromPath(
-              work.work_image.sizes.img_large ||
-                work.work_image.sizes.img_medium,
+              work.image.sizes.img_large || work.image.sizes.img_medium,
             );
             const href = `/artist?slug=${slug}&id=${id}`;
             const as = `/artist/${slug}?id=${id}`;
@@ -47,10 +46,9 @@ class ArtistSingle extends React.Component {
                 id={id}
                 as={as}
                 href={href}
-                title={work.work_title}
+                title={work.title}
                 image={
-                  work.work_image.sizes.img_large ||
-                  work.work_image.sizes.img_medium
+                  work.image.sizes.img_large || work.image.sizes.img_medium
                 }
               />
             );
@@ -59,11 +57,7 @@ class ArtistSingle extends React.Component {
         case 'exhibitions':
           return (
             <React.Fragment>
-              <Fetcher
-                url={`${
-                  config.apiUrl
-                }/wp-json/wp/v2/exhibitions?per_page=100&_embed=true`}
-              >
+              <Fetcher url={`${config.apiUrl}/wp-json/dfg/v1/exhibitions`}>
                 {({loading, data, error}) => {
                   if (error) {
                     return <Error />;
@@ -74,7 +68,7 @@ class ArtistSingle extends React.Component {
                   return (
                     <ExhibitionList
                       filters={{artist: title}}
-                      exhibitions={data}
+                      exhibitions={data.exhibitions}
                     />
                   );
                 }}
@@ -107,9 +101,11 @@ class ArtistSingle extends React.Component {
           }
           const pressMarkup = press.map((press) => {
             return (
-              <li>
+              <li key={press.title}>
                 <p>
-                  <Link href={press.press_download}>{press.press_title}</Link>
+                  <Link href={press.download === false ? '' : press.download}>
+                    {press.title}
+                  </Link>
                 </p>
               </li>
             );

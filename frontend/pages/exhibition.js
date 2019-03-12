@@ -24,7 +24,7 @@ class Exhibition extends React.Component {
       overrideCache(this.props.endpoint, this.props.data);
     }
 
-    const exhibition = this.props.data.filter(
+    const exhibition = this.props.data.exhibitions.filter(
       (exhibition) => this.props.slug === exhibition.slug,
     );
 

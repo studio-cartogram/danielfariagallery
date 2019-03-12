@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import {StyledEmpty} from './styles';
 
 function Empty({type, message}) {
@@ -19,8 +19,8 @@ function Empty({type, message}) {
   }
 }
 
-Empty.PropTypes = {
-  type: PropTypes.oneOf(['empty']),
+Empty.propTypes = {
+  type: propTypes.oneOf(['empty']),
 };
 
 export default Empty;
