@@ -19,17 +19,18 @@ class FairSingle extends React.Component {
     const {title, works, content, startDate, endDate, slug} = this.props;
     const artists = flatten(
       works.map((work) => {
-        return work.work_artist ? work.work_artist : [];
+        return work.artist ? work.artist : [];
       }),
     );
-    const uniqueArtists = uniqBy(artists, 'post_name');
+    const uniqueArtists = uniqBy(artists, 'post_title');
+    console.log(uniqueArtists);
     const artistListMarkup = uniqueArtists.map((artist, index) => {
       return (
         <React.Fragment>
           <Link
             variant="tertiary"
-            as={`/artist/${artist.post_name}`}
-            href={`/artist?slug=${artist.post_name}`}
+            as={`/artist/${artist.post_title}`}
+            href={`/artist?slug=${artist.post_title}`}
           >
             {artist.post_title}
           </Link>
@@ -52,20 +53,18 @@ class FairSingle extends React.Component {
           }
           const workImageMarkup = works.map((work) => {
             const id = getFileNameFromPath(
-              work.work_image.sizes.img_large ||
-                work.work_image.sizes.img_medium,
+              work.image.sizes.img_large || work.image.sizes.img_medium,
             );
             const href = `/fair?slug=${slug}&id=${id}`;
             const as = `/fair/${slug}?id=${id}`;
             return (
               <Thumbnail
-                url={work.work_image}
-                title={work.work_title}
+                url={work.image}
+                title={work.title}
                 image={
-                  work.work_image.sizes.img_large ||
-                  work.work_image.sizes.img_medium
+                  work.image.sizes.img_large || work.image.sizes.img_medium
                 }
-                artist={work.work_artist}
+                artist={work.artist}
                 key={id}
                 id={id}
                 as={as}

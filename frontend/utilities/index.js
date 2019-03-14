@@ -21,7 +21,7 @@ export function getUpcomingExhibition(exhibitions) {
     return [];
   }
   return exhibitions.filter((exhibition) => {
-    return isFuture(new Date(exhibition.acf.start_date));
+    return isFuture(new Date(exhibition.start_date));
   });
 }
 

@@ -4,13 +4,12 @@ import Fair from '../Fair';
 import {getFeaturedImage} from '../../utilities';
 
 function FairList({fairs}) {
+  console.log(fairs);
   const fairlistMarkup = fairs.map((fair) => {
-    const image = getFeaturedImage(fair, 'medium_large');
+    const image = fair.featuredImage;
 
-    const artists = fair.acf.artist
-      ? fair.acf.artist.map(
-          (artist) => (artist ? artist.post_title : 'no artist'),
-        )
+    const artists = fair.artist
+      ? fair.artist.map((artist) => (artist ? artist.title : 'no artist'))
       : [];
 
     return (
@@ -18,12 +17,12 @@ function FairList({fairs}) {
         <Fair
           slug={fair.slug}
           url={`/fair/${fair.slug}`}
-          title={fair.title.rendered}
+          title={fair.title}
           fairImage={image}
           artists={artists}
-          startdate={fair.acf.start_date}
-          enddate={fair.acf.end_date}
-          location={fair.acf.location}
+          startdate={fair.start_date}
+          enddate={fair.end_date}
+          location={fair.location}
         />
       </StyledFairLi>
     );

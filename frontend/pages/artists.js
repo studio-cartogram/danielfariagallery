@@ -6,10 +6,6 @@ import ArtistList from '../components/ArtistList';
 import Error from '../components/Error';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-// const endpoint = `${
-//   config.apiUrl
-// }/wp-json/wp/v2/artists?per_page=100&_embed=true`;
-
 const endpoint = `${config.apiUrl}/wp-json/dfg/v1/artists`;
 
 class ArtistIndex extends Component {

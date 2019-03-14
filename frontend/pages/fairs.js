@@ -4,9 +4,7 @@ import withLayout from '../decorators/withLayout';
 import FairList from '../components/FairList';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-const endpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/fairs?per_page=100&_embed=true`;
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/fairs`;
 
 class FairIndex extends React.Component {
   static async getInitialProps(ctx) {

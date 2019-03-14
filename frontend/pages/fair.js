@@ -5,9 +5,7 @@ import Error from '../components/Error';
 import FairSingle from '../components/FairSingle';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-const endpoint = `${
-  config.apiUrl
-}/wp-json/wp/v2/fairs?per_page=100&_embed=true`;
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/fairs`;
 
 class Fair extends React.Component {
   state = {loading: true};
@@ -43,17 +41,17 @@ class Fair extends React.Component {
       return <Error />;
     }
 
-    const displayTitle = `${fair.title.rendered}, ${fair.acf.location}`;
+    const displayTitle = `${fair.title}, ${fair.location}`;
 
     return (
       <FairSingle
         slug={fair.slug}
         title={displayTitle}
-        content={fair.content.rendered}
-        works={fair.acf.work}
-        startDate={fair.acf.start_date}
-        endDate={fair.acf.end_date}
-        location={fair.acf.location}
+        content={fair.content}
+        works={fair.works}
+        startDate={fair.start_date}
+        endDate={fair.end_date}
+        location={fair.location}
       />
     );
   }

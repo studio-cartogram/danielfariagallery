@@ -62,7 +62,6 @@ add_action(
             ],
         ] );
 
-         // Register routes
          register_rest_route( 'dfg/v1', '/artists', [
             'methods'  => 'GET',
             'callback' => 'rest_get_artists',
@@ -70,6 +69,31 @@ add_action(
                 
             ],
         ] );
+
+        register_rest_route( 'dfg/v1', '/fairs', [
+            'methods'  => 'GET',
+            'callback' => 'rest_get_fairs',
+            'args' => [
+                
+            ],
+        ] );
+
+        register_rest_route( 'dfg/v1', '/publications', [
+            'methods'  => 'GET',
+            'callback' => 'rest_get_publications',
+            'args' => [
+                
+            ],
+        ] );
+
+        register_rest_route( 'dfg/v1', '/news', [
+            'methods'  => 'GET',
+            'callback' => 'rest_get_news',
+            'args' => [
+                
+            ],
+        ] );
+
 
         register_rest_route( 'dfg/v1', '/page', [
             'methods'  => 'GET',
@@ -146,6 +170,42 @@ function rest_get_exhibitions( WP_REST_Request $request ) {
 }
 
 /**
+ * Respond to a REST API request to get exhibitions data.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response
+ */
+function rest_get_fairs( WP_REST_Request $request ) {
+    $response = rest_get_list( $request, 'fair', __FUNCTION__ );
+
+    return $response;
+}
+
+/**
+ * Respond to a REST API request to get exhibitions data.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response
+ */
+function rest_get_publications( WP_REST_Request $request ) {
+    $response = rest_get_list( $request, 'publication', __FUNCTION__ );
+
+    return $response;
+}
+
+/**
+ * Respond to a REST API request to get exhibitions data.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return WP_REST_Response
+ */
+function rest_get_news( WP_REST_Request $request ) {
+    $response = rest_get_list( $request, 'new', __FUNCTION__ );
+
+    return $response;
+}
+
+/**
  * Respond to a REST API request to get artists data.
  *
  * @param WP_REST_Request $request Request.
@@ -177,13 +237,15 @@ function rest_get_list( WP_REST_Request $request, $type, $function_name ) {
         [
             'artist',
             'exhibition',
+            'fair',
+            'publication',
+            'new',
         ],
         true
     );
     if ( ! $content_in_array ) {
-        $type = 'exhibition';
+        $type = 'exhibition'; // why just exhibitions here?
     }
-
 
     $response = get_content_for_list($type);
 
@@ -253,7 +315,7 @@ function get_content_for_list( $type = 'exhibition' ) {
             $artists = get_artist_list();
             $additionalFields =  array(
                 'works' => get_works_for_post($id),
-                'artists' => get_artists_for_exhibition($id),
+                'artists' => get_artists_for_post($id),
                 'start_date' => get_field('start_date', $id),
                 'end_date' => get_field('end_date', $id),
                 'opening_reception' => get_field('opening_reception', $id),
@@ -270,6 +332,17 @@ function get_content_for_list( $type = 'exhibition' ) {
             );
         }
 
+        if ($type === 'fair') {
+            // $artists = get_artists_from_work();
+            $additionalFields =  array(
+                'title'=> $item->post_title,
+                'works' => get_works_for_post($id),
+                'artists' => get_artists_for_post($id),
+                'start_date' => get_field('start_date', $id),
+                'end_date' => get_field('end_date', $id),
+                'location' => get_field('location', $id),
+            );
+        }
 
         $data = array(
             'id' => $id,
@@ -320,7 +393,7 @@ function get_content_for_list( $type = 'exhibition' ) {
 
 
 
-function get_artists_for_exhibition($id) {
+function get_artists_for_post($id) {
 
     $artists = get_field('artist', $id);
     $response = array();
@@ -362,6 +435,7 @@ function get_works_for_post($id) {
             $data = array(
                 'title'=> $work['work_title'],
                 'image'=> $work['work_image'],
+                'artist'=> $work['work_artist'],
                 'details'=> $details,
             );
                 
@@ -371,6 +445,34 @@ function get_works_for_post($id) {
 
     return $response;
 }
+
+// function get_artist_for_works($id) {
+
+//     $works = get_field('work', $id);
+//     $response = array();
+
+
+//     if ($works) {
+//         foreach($works as $work) {
+//             $details = $work['work_details'];
+
+//             if ($details) {
+//                 foreach($details as $detail) {
+//                     $data = array(
+//                         'detail'=> $detail['work_detail'],
+//                     );    
+//                 }
+//             }
+//             $data = array(
+//                 'artist'=> $work['work_artist'],
+//             );
+                
+//             array_push($response, $data);
+//         }
+//     }
+
+//     return $response;
+// }
 
 function get_press_for_post($id) {
 

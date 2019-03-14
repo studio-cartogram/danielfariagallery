@@ -52,8 +52,6 @@ class ExhibitionIndex extends React.Component {
 
     const currentPage = getCurrentPageFromPath(asPath);
 
-    console.log(currentPage);
-
     if (!exhibitions.length) {
       return null;
     }
