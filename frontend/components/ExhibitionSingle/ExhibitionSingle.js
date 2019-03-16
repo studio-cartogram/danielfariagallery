@@ -100,8 +100,6 @@ class ExhibitionSingle extends React.Component {
       ? aboutMarkup
       : sectionMarkup(currentSection);
 
-    debugger;
-
     const workLinkMarkup = (
       <Link
         current={currentSection === 'work'}
@@ -152,6 +150,12 @@ class ExhibitionSingle extends React.Component {
             {openingReceptionMarkup}
           </p>
         </PageMast>
+        <Link
+          as={`/exhibition/bomb-shell`}
+          href={`/exhibition?slug=bomb-shell`}
+        >
+          Test BS
+        </Link>
         {pageNavMarkup}
         {currentSectionMarkup}
       </React.Fragment>

@@ -12,7 +12,6 @@ class ArtistList extends React.Component {
         <StyledArtistName key={artist.id}>
           <Link
             variant="primary"
-            slug={artist.slug}
             as={`/artist/${artist.slug}`}
             href={`/artist?slug=${artist.slug}`}
             onMouseOver={this.onArtistHover(artist)}

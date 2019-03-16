@@ -78,11 +78,7 @@ class ArtistSingle extends React.Component {
         case 'news':
           return (
             <React.Fragment>
-              <Fetcher
-                url={`${
-                  config.apiUrl
-                }/wp-json/wp/v2/news?per_page=100&_embed=true`}
-              >
+              <Fetcher url={`${config.apiUrl}/wp-json/dfg/v1/news`}>
                 {({loading, data, error}) => {
                   if (error) {
                     return <Error />;

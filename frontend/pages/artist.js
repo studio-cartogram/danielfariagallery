@@ -18,6 +18,15 @@ class Artist extends React.Component {
     return {data, endpoint, isServer, slug};
   }
 
+  static getDerivedStateFromProps(props) {
+    const artist = props.data.filter((artist) => props.slug === artist.slug);
+
+    return {
+      loading: false,
+      artist: artist.length > 0 ? artist[0] : null,
+    };
+  }
+
   componentDidMount() {
     if (this.props.isServer) {
       overrideCache(this.props.endpoint, this.props.data);

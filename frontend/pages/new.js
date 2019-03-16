@@ -5,7 +5,7 @@ import Error from '../components/Error';
 import NewsSingle from '../components/NewsSingle';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-const endpoint = `${config.apiUrl}/wp-json/wp/v2/news?per_page=100&_embed=true`;
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/news`;
 
 class SingleNew extends React.Component {
   state = {loading: true};
@@ -42,9 +42,9 @@ class SingleNew extends React.Component {
 
     return (
       <NewsSingle
-        title={news.title.rendered}
-        content={news.content.rendered}
-        artists={news.acf.artist}
+        title={news.title}
+        content={news.content}
+        artists={news.artists}
       />
     );
   }

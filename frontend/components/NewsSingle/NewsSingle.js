@@ -11,10 +11,10 @@ function NewsSingle({url, slug, title, artists, content}) {
       <StyledArtistLink key={artist.post_name}>
         <Link
           variant="tertiary"
-          as={`/artist/${artist.post_name}`}
-          href={`/artist?slug=${artist.post_name}`}
+          as={`/artist/${artist.slug}`}
+          href={`/artist?slug=${artist.slug}`}
         >
-          {artist.post_title}
+          {artist.name}
         </Link>
       </StyledArtistLink>
     );

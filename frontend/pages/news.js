@@ -8,7 +8,7 @@ import PageNav from '../components/PageNav';
 import {isEquivalent} from '../utilities';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
-const endpoint = `${config.apiUrl}/wp-json/wp/v2/news?per_page=100&_embed=true`;
+const endpoint = `${config.apiUrl}/wp-json/dfg/v1/news`;
 
 class NewsIndex extends React.Component {
   state = {
@@ -34,8 +34,8 @@ class NewsIndex extends React.Component {
     const news = this.props.data;
     const {filters, open} = this.state;
     const newsArtists = news.reduce((acc, news) => {
-      const currentNewsArtists = news.acf.artist.map(
-        (artist) => artist && artist.post_title,
+      const currentNewsArtists = news.artists.map(
+        (artist) => artist && artist.name,
       );
 
       return [...acc, ...currentNewsArtists];

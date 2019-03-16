@@ -12,11 +12,11 @@ import PageText from '../PageText';
 function NewsList({news, filters}) {
   const {artist} = filters;
   const newsForArtist = news.filter((news) => {
-    if (!news.acf.artist[0]) {
+    if (!news.artists[0]) {
       return false;
     }
 
-    const artistNames = news.acf.artist.map((artist) => artist.post_title);
+    const artistNames = news.artists.map((artist) => artist.name);
 
     if (artist) {
       return artistNames.includes(artist);
@@ -28,21 +28,19 @@ function NewsList({news, filters}) {
     return <PageText>No news for {artist}</PageText>;
   }
   const newsListMarkup = newsForArtist.map((news) => {
-    const artists = news.acf.artist
-      ? news.acf.artist.map(
-          (artist) => (artist ? artist.post_title : 'no artist'),
-        )
+    const artists = news.artists
+      ? news.artists.map((artist) => (artist ? artist.name : 'no artist'))
       : [];
 
-    const artistListMarkup = news.acf.artist.map((artist) => {
+    const artistListMarkup = news.artists.map((artist) => {
       return (
-        <StyledArtistLink key={artist.post_name}>
+        <StyledArtistLink key={artist.name}>
           <Link
             variant="tertiary"
-            as={`/artist/${artist.post_name}`}
-            href={`/artist?slug=${artist.post_name}`}
+            as={`/artist/${artist.slug}`}
+            href={`/artist?slug=${artist.slug}`}
           >
-            {artist.post_title}
+            {artist.name}
           </Link>
         </StyledArtistLink>
       );
@@ -57,7 +55,7 @@ function NewsList({news, filters}) {
             href={`/new?slug=${news.slug}`}
             artists={artists}
           >
-            <div dangerouslySetInnerHTML={{__html: news.title.rendered}} />
+            <div dangerouslySetInnerHTML={{__html: news.title}} />
           </Link>
         </StyledNewsLink>
         <StyledArtistLinkList>{artistListMarkup}</StyledArtistLinkList>
