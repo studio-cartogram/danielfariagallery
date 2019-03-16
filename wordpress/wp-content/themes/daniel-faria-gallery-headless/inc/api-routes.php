@@ -200,7 +200,7 @@ function rest_get_publications( WP_REST_Request $request ) {
  * @return WP_REST_Response
  */
 function rest_get_news( WP_REST_Request $request ) {
-    $response = rest_get_list( $request, 'new', __FUNCTION__ );
+    $response = rest_get_list( $request, 'news', __FUNCTION__ );
 
     return $response;
 }
@@ -239,7 +239,7 @@ function rest_get_list( WP_REST_Request $request, $type, $function_name ) {
             'exhibition',
             'fair',
             'publication',
-            'new',
+            'news',
         ],
         true
     );
@@ -329,6 +329,21 @@ function get_content_for_list( $type = 'exhibition' ) {
                 'representation' => get_field('representation', $item),
                 'works' => get_works_for_post($id),
                 'press' => get_press_for_post($id),
+            );
+        }
+
+        if ($type === 'publication') {
+            $additionalFields =  array(
+                'title'=> $item->post_title,
+                'images' => get_images_for_post($id),
+                'artists' => get_artists_for_post($id),
+            );
+        }
+
+        if ($type === 'news') {
+            $additionalFields =  array(
+                'title'=> $item->post_title,
+                'artists' => get_artists_for_post($id),
             );
         }
 
@@ -437,6 +452,26 @@ function get_works_for_post($id) {
                 'image'=> $work['work_image'],
                 'artist'=> $work['work_artist'],
                 'details'=> $details,
+            );
+                
+            array_push($response, $data);
+        }
+    }
+
+    return $response;
+}
+
+function get_images_for_post($id) {
+
+    $images = get_field('images', $id);
+    $response = array();
+
+
+    if ($images) {
+        foreach($images as $image) {
+            $data = array(
+                'title'=> $image['work_title'],
+                'image'=> $image['work_image'],
             );
                 
             array_push($response, $data);
