@@ -12,28 +12,45 @@ import Link from '../Link';
 import {Shortcut} from '@shopify/react-shortcuts';
 
 class Modal extends React.Component {
+  state = {
+    itemIndex: null,
+  };
+
   componentDidMount() {
     if (this.props.router.query.id) {
-      this.disableSrcoll();
+      this.show();
     }
   }
+
+  show = () => {
+    this.disableSrcoll();
+    const itemIndex = this.getItemIndex();
+    this.setState({
+      itemIndex,
+    });
+  };
 
   componentDidUpdate(prevProps) {
     // navigating from exhinition single to an single image,
     // we are looking at an image and want to disable scroll
     if (!prevProps.router.query.id && this.props.router.query.id) {
-      this.disableSrcoll();
+      this.show();
+
       return;
+    }
+    if (prevProps.router.query.id !== this.props.router.query.id) {
+      this.show();
     }
 
     // if we don't have an id, we are on the exhibition single
     // and want to disable the scroll.
-    if (!prevProps.router.query.id) {
+    if (!this.props.router.query.id) {
       this.enableSrcoll();
     }
   }
 
   render() {
+    // debugger;
     const {
       collection,
       router: {
@@ -45,12 +62,8 @@ class Modal extends React.Component {
       return null;
     }
 
-    const itemIndex = collection.findIndex(
-      (item) =>
-        item.image.sizes
-          ? getFileNameFromPath(item.image.sizes.img_large) === id
-          : 0,
-    );
+    const {itemIndex} = this.state;
+
     const item = collection[itemIndex];
 
     if (!item) {
@@ -71,13 +84,13 @@ class Modal extends React.Component {
 
     return (
       <StyledModal>
-        <Shortcut ordered={['ArrowRight']} onMatch={this.next(itemIndex)} />
-        <Shortcut ordered={['ArrowLeft']} onMatch={this.prev(itemIndex)} />
+        <Shortcut ordered={['ArrowRight']} onMatch={this.next} />
+        <Shortcut ordered={['ArrowLeft']} onMatch={this.prev} />
         <Shortcut ordered={['Escape']} onMatch={this.dismiss} />
         <Link onClick={this.dismiss}>Close</Link>
         <StyledControls>
-          <Link onClick={this.prev(itemIndex)}>Prev</Link>
-          <Link onClick={this.next(itemIndex)}>Next</Link>
+          <Link onClick={this.prev}>Prev</Link>
+          <Link onClick={this.next}>Next</Link>
         </StyledControls>
         <StyledModalMast>
           <Title>{item.title}</Title>
@@ -105,18 +118,28 @@ class Modal extends React.Component {
     );
   };
 
-  next = (itemIndex) => {
-    return () => {
-      const nextItemIndex = itemIndex + 1;
+  next = () => {
+    this.setState((state) => {
+      const nextItemIndex = state.itemIndex + 1;
+
       this.goToImage(nextItemIndex);
-    };
+
+      return {
+        itemIndex: nextItemIndex,
+      };
+    });
   };
 
-  prev = (itemIndex) => {
-    return () => {
-      const nextItemIndex = itemIndex - 1;
+  prev = () => {
+    this.setState((state) => {
+      const nextItemIndex = state.itemIndex - 1;
+
       this.goToImage(nextItemIndex);
-    };
+
+      return {
+        itemIndex: nextItemIndex,
+      };
+    });
   };
 
   goToImage = (index) => {
@@ -146,6 +169,19 @@ class Modal extends React.Component {
       `${router.pathname}?slug=${router.query.slug}&id=${id}`,
       `${router.pathname}/${router.query.slug}?id=${id}`,
     ];
+  }
+
+  getItemIndex() {
+    return (
+      this.props.router.query.id &&
+      this.props.collection.findIndex(
+        (item) =>
+          item.image.sizes
+            ? getFileNameFromPath(item.image.sizes.img_large) ===
+              this.props.router.query.id
+            : 0,
+      )
+    );
   }
 
   disableSrcoll() {
