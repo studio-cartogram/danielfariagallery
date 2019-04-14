@@ -5,7 +5,7 @@ import withLayout from '../decorators/withLayout';
 import NewsList from '../components/NewsList';
 import FilterControl from '../components/FilterControl';
 import PageNav from '../components/PageNav';
-import {isEquivalent} from '../utilities';
+import {isEquivalent, sortArtistByLastName} from '../utilities';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
 
 const endpoint = `${config.apiUrl}/wp-json/dfg/v1/news`;
@@ -41,6 +41,8 @@ class NewsIndex extends React.Component {
       return [...acc, ...currentNewsArtists];
     }, []);
 
+    const sortedArtists = newsArtists && sortArtistByLastName(newsArtists);
+
     const navigationMarkup = (
       <React.Fragment>
         <FilterControl
@@ -48,7 +50,7 @@ class NewsIndex extends React.Component {
           onItemClick={this.handleFilterClick}
           label={'All Artists'}
           selected={filters.artist}
-          items={newsArtists}
+          items={sortedArtists}
           filterKey="artist"
         />
       </React.Fragment>

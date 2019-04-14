@@ -69,3 +69,22 @@ export function isEquivalent(a, b) {
   // are considered equivalent
   return true;
 }
+
+export function sortArtistByLastName(artists, keypath) {
+  artists.sort((a, b) => {
+    const aName = keypath ? a[keypath].split(' ') : a.split(' ');
+    const bName = keypath ? b[keypath].split(' ') : b.split(' ');
+    const aLastName = aName[aName.length - 1];
+    const bLastName = bName[bName.length - 1];
+
+    if (aLastName < bLastName) {
+      return -1;
+    }
+    if (aLastName > bLastName) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return artists;
+}
