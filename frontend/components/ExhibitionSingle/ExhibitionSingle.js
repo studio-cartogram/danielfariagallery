@@ -150,12 +150,6 @@ class ExhibitionSingle extends React.Component {
             {openingReceptionMarkup}
           </p>
         </PageMast>
-        <Link
-          as={`/exhibition/bomb-shell`}
-          href={`/exhibition?slug=bomb-shell`}
-        >
-          Test BS
-        </Link>
         {pageNavMarkup}
         {currentSectionMarkup}
       </React.Fragment>

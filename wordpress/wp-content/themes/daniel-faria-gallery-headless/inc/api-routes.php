@@ -288,7 +288,7 @@ function get_content_for_list( $type = 'exhibition' ) {
     $args = [
         'post_type'   => $type,
         'post_status' => 'publish',
-        'numberposts' => 100, // change in production
+        'numberposts' => 900, // change in production
     ];
 
 
