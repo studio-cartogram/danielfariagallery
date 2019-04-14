@@ -19,12 +19,18 @@ class Modal extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    // navigating from exhinition single to an single image,
+    // we are looking at an image and want to disable scroll
     if (!prevProps.router.query.id && this.props.router.query.id) {
       this.disableSrcoll();
       return;
     }
 
-    this.enableSrcoll();
+    // if we don't have an id, we are on the exhibition single
+    // and want to disable the scroll.
+    if (!prevProps.router.query.id) {
+      this.enableSrcoll();
+    }
   }
 
   render() {
