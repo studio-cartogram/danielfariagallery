@@ -257,7 +257,7 @@ function get_artist_list( $type = 'exhibition' ) {
     $artists = get_posts([
         'post_type'   => 'artist',
         'post_status' => 'publish',
-        'numberposts' => 100, // change in production
+        'numberposts' => 900, // change in production
     ]);
 
     $response = array();
@@ -447,9 +447,13 @@ function get_works_for_post($id) {
                     );    
                 }
             }
+
+            $image = sanitize_image($work['work_image']);
+            
             $data = array(
                 'title'=> $work['work_title'],
-                'image'=> $work['work_image'],
+                'image'=> $image,
+                // 'original' => $work['work_image'],
                 'artist'=> $work['work_artist'],
                 'details'=> $details,
             );
@@ -479,6 +483,21 @@ function get_images_for_post($id) {
     }
 
     return $response;
+}
+
+
+function sanitize_image($image) {
+
+
+    $data = array(
+        'title' => $image['title'],
+        'url' => $image['url'],
+        'medium' => $image['sizes']['img_medium'],
+        'large' => $image['sizes']['img_large'],
+        'filename' => $image['filename']
+    );
+
+    return $data;
 }
 
 // function get_artist_for_works($id) {

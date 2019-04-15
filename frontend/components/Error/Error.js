@@ -9,7 +9,7 @@ function Error({type, message}) {
     default:
       return (
         <div>
-          You’ve encountered an error. We're sorry, use the navigationt to find
+          You’ve encountered an error. We're sorry, use the navigation to find
           your way back.
         </div>
       );

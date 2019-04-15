@@ -61,7 +61,7 @@ class ExhibitionSingle extends React.Component {
                 return null;
               }
               const id = getFileNameFromPath(
-                work.image.sizes.img_large || work.image.sizes.img_medium,
+                work.image.large || work.image.medium,
               );
               const href = `/exhibition?slug=${slug}&id=${id}`;
               const as = `/exhibition/${slug}?id=${id}`;
@@ -69,9 +69,7 @@ class ExhibitionSingle extends React.Component {
                 <Thumbnail
                   url={work.image}
                   title={work.title}
-                  image={
-                    work.image.sizes.img_large || work.image.sizes.img_medium
-                  }
+                  image={work.image.large || work.image.medium}
                   key={id}
                   id={id}
                   as={as}

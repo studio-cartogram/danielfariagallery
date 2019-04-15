@@ -36,7 +36,7 @@ class ArtistSingle extends React.Component {
           }
           const workImageMarkup = works.map((work) => {
             const id = getFileNameFromPath(
-              work.image.sizes.img_large || work.image.sizes.img_medium,
+              work.image.large || work.image.medium,
             );
             const href = `/artist?slug=${slug}&id=${id}`;
             const as = `/artist/${slug}?id=${id}`;
@@ -47,9 +47,7 @@ class ArtistSingle extends React.Component {
                 as={as}
                 href={href}
                 title={work.title}
-                image={
-                  work.image.sizes.img_large || work.image.sizes.img_medium
-                }
+                image={work.image.large || work.image.medium}
               />
             );
           });

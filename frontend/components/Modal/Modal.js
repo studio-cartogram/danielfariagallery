@@ -23,7 +23,6 @@ class Modal extends React.Component {
   }
 
   show = () => {
-    this.disableSrcoll();
     const itemIndex = this.getItemIndex();
     this.setState({
       itemIndex,
@@ -34,6 +33,8 @@ class Modal extends React.Component {
     // navigating from exhinition single to an single image,
     // we are looking at an image and want to disable scroll
     if (!prevProps.router.query.id && this.props.router.query.id) {
+      this.disableSrcoll();
+
       this.show();
 
       return;
@@ -103,7 +104,7 @@ class Modal extends React.Component {
         </StyledModalMast>
         <StyledImage
           alt={item.title}
-          src={item.image.sizes.img_large || work.image.sizes.img_medium}
+          src={item.image.large || work.image.medium}
         />
       </StyledModal>
     );
@@ -150,9 +151,7 @@ class Modal extends React.Component {
       this.dismiss();
       return null;
     }
-    const id = getFileNameFromPath(
-      item.image.sizes.img_large || work.image.sizes.img_medium,
-    );
+    const id = getFileNameFromPath(item.image.large || work.image.medium);
     router.push(...this.getPushUrl(id));
   };
 
@@ -176,8 +175,8 @@ class Modal extends React.Component {
       this.props.router.query.id &&
       this.props.collection.findIndex(
         (item) =>
-          item.image.sizes
-            ? getFileNameFromPath(item.image.sizes.img_large) ===
+          item.image
+            ? getFileNameFromPath(item.image.large) ===
               this.props.router.query.id
             : 0,
       )
