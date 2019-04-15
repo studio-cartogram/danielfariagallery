@@ -8,6 +8,7 @@ import FilterControl from '../../components/FilterControl';
 import ExhibitionSingle from '../../components/ExhibitionSingle';
 import Error from '../../components/Error';
 import cachedFetch, {overrideCache} from '../../utilities/cached-fetch';
+import {sortArtistByLastName} from '../../utilities';
 
 import {
   getCurrentExhibition,
@@ -60,13 +61,15 @@ class ExhibitionIndex extends React.Component {
       return getYearFromDateString(exhibition.start_date);
     });
 
-    const exhibitionArtists = artists.map((artist) => {
-      if (!artist.representation) {
-        return;
-      }
+    const exhibitionArtists = sortArtistByLastName(
+      artists.map((artist) => {
+        if (!artist.representation) {
+          return;
+        }
 
-      return artist.name;
-    });
+        return artist.name;
+      }),
+    );
 
     let exhibitionsToShow;
 
