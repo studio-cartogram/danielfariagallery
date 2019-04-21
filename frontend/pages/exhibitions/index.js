@@ -49,9 +49,9 @@ class ExhibitionIndex extends React.Component {
     }
     const {artists, exhibitions} = this.props.data;
     const {filters, open} = this.state;
-    const {asPath} = this.props.router;
+    const {pathname} = this.props.router;
 
-    const currentPage = getCurrentPageFromPath(asPath);
+    const currentPage = getCurrentPageFromPath(pathname);
 
     if (!exhibitions.length) {
       return null;

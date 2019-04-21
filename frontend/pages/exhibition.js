@@ -14,7 +14,7 @@ class Exhibition extends React.Component {
   static async getInitialProps(ctx) {
     const {slug} = ctx.query;
 
-    const data = await cachedFetch(endpoint, {disableCache: true});
+    const data = await cachedFetch(endpoint);
     const isServer = !!ctx.req;
     return {data, endpoint, isServer, slug};
   }

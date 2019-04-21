@@ -41,7 +41,7 @@ function withLayout(Component) {
     componentDidMount() {
       const currentRoute = Router.pathname;
       Router.onRouteChangeStart = (newRoute) => {
-        if (newRoute !== currentRoute) {
+        if (!/id=/.test(newRoute) && newRoute !== currentRoute) {
           NProgress.start();
         }
       };
