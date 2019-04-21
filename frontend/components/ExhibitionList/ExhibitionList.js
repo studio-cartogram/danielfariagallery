@@ -7,7 +7,9 @@ import {getYearFromDateString} from '../../utilities';
 function ExhibitionList({exhibitions, filters}) {
   const exhibitionsToShow = exhibitions.filter((exhibition) => {
     const {artist, year} = filters;
+
     if (!exhibition.artists[0]) {
+      console.log('no artists in the exhibtions?');
       return false;
     }
 

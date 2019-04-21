@@ -22,6 +22,7 @@ export default async function(url, {disableCache, ...options} = {}) {
     cachedResponse = await fetch(url, options).then((response) =>
       response.json(),
     );
+  }
 
   lscache.set(url, cachedResponse, ttlMinutes);
 
