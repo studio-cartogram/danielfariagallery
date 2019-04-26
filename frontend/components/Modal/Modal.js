@@ -51,7 +51,6 @@ class Modal extends React.Component {
   }
 
   render() {
-    // debugger;
     const {
       collection,
       router: {

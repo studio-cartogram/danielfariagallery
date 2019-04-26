@@ -4,7 +4,6 @@ import Fair from '../Fair';
 import {getFeaturedImage} from '../../utilities';
 
 function FairList({fairs}) {
-  console.log(fairs);
   const fairlistMarkup = fairs.map((fair) => {
     const image = fair.featuredImage;
 

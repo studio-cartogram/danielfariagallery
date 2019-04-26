@@ -6,6 +6,7 @@ import PageMast from '../PageMast';
 import Thumbnail from '../Thumbnail';
 import Title from '../Title';
 import Fetcher from '../Fetcher';
+import Empty from '../Empty';
 import Error from '../Error';
 import PageNav from '../PageNav';
 import Link from '../Link';
@@ -66,7 +67,9 @@ class ArtistSingle extends React.Component {
                   return (
                     <ExhibitionList
                       filters={{artist: title}}
-                      exhibitions={data.exhibitions}
+                      exhibitions={
+                        Array.isArray(data) ? data : data.exhibitions
+                      }
                     />
                   );
                 }}
@@ -84,7 +87,13 @@ class ArtistSingle extends React.Component {
                   if (loading) {
                     return 'loading';
                   }
-                  return <NewsList filters={{artist: title}} news={data} />;
+
+                  return (
+                    <NewsList
+                      filters={{artist: title}}
+                      news={Array.isArray(data) ? data : data.exhibitions}
+                    />
+                  );
                 }}
               </Fetcher>
             </React.Fragment>
