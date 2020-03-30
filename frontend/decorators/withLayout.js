@@ -58,6 +58,7 @@ function withLayout(Component) {
         facebook,
         instagram,
         phone,
+        newsletter,
       } = this.props.globalData.contactInfo.acf;
       return (
         <AppWithRouter
@@ -67,6 +68,7 @@ function withLayout(Component) {
           twitter={twitter}
           facebook={facebook}
           instagram={instagram}
+          newsletter={newsletter}
           phone={phone}
           items={this.props.globalData.navs.main.items}
         >
@@ -88,6 +90,7 @@ function App({
   twitter,
   facebook,
   instagram,
+  newsletter,
   phone,
   router,
   items,
@@ -139,6 +142,7 @@ function App({
             facebook={facebook}
             instagram={instagram}
             phone={phone}
+            newsletter={newsletter}
           />
         </Layout>
       </ThemeProvider>

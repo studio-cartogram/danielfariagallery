@@ -11,14 +11,16 @@ const StyledExhibitionList = styled.ul`
   height: auto;
 
   ${breakpoints.bpM} {
-    grid-column: span 3;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(
+      ${(props) => (props.cols ? props.cols : 3)},
+      1fr
+    );
     grid-gap: ${(props) => props.theme.pxScale[6]};
   }
 `;
 
 const StyledExhibitionLi = styled.li`
-  grid-column: span 3;
+  grid-column: span ${(props) => (props.cols ? props.cols : 3)};
 
   ${breakpoints.bpM} {
     grid-column: span 1;

@@ -5,7 +5,6 @@ import ExhibitionSingle from '../components/ExhibitionSingle';
 import Error from '../components/Error';
 import {commaListsAnd} from 'common-tags';
 import cachedFetch, {overrideCache} from '../utilities/cached-fetch';
-import {getFeaturedImage} from '../utilities';
 
 const endpoint = `${config.apiUrl}/wp-json/dfg/v1/exhibitions`;
 
@@ -56,8 +55,6 @@ class Exhibition extends React.Component {
         ? commaListsAnd`${artists}: <em>${title}</em>`
         : title;
 
-    const featuredImage = getFeaturedImage(exhibition, 'img_medium');
-
     return (
       <ExhibitionSingle
         slug={exhibition.slug}
@@ -68,6 +65,7 @@ class Exhibition extends React.Component {
         content={exhibition.content}
         works={exhibition.works}
         featuredImage={exhibition.featuredImage}
+        video={exhibition.video}
       />
     );
   }

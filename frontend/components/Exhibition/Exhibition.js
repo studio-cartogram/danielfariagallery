@@ -16,15 +16,17 @@ function Exhibition({
   title,
   startdate,
   enddate,
+  virtual,
 }) {
   const imageMarkup = exhibitionImage ? (
     <StyledExhibitionThumb src={exhibitionImage} alt={title} />
   ) : null;
 
+  const virtualLabelMarkup = virtual ? ' (virtual)' : '';
   const displayTitle =
     artists && artists.length
-      ? commaListsAnd`${artists}: <em>${title}</em>`
-      : title;
+      ? commaListsAnd`${artists}: <em>${title}${virtualLabelMarkup}</em>`
+      : `${title}${virtualLabelMarkup}`;
 
   return (
     <StyledExhibition>

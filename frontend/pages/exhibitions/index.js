@@ -112,7 +112,9 @@ class ExhibitionIndex extends React.Component {
         : title;
 
     const pageMarkup =
-      currentPage === 'current' || currentPage === 'upcoming' ? (
+      exhibitionsToShow.length > 1 ? (
+        <ExhibitionList exhibitions={exhibitionsToShow} filters={filters} />
+      ) : (
         <ExhibitionSingle
           title={displayTitle}
           slug={exhibitionsToShow[0].slug}
@@ -123,8 +125,6 @@ class ExhibitionIndex extends React.Component {
           works={exhibitionsToShow[0].works}
           current={currentPage === 'current' || currentPage === 'upcoming'}
         />
-      ) : (
-        <ExhibitionList exhibitions={exhibitionsToShow} filters={filters} />
       );
 
     const navigationMarkup =

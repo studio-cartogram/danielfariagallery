@@ -32,3 +32,4 @@ export {default as ArtistList} from './ArtistList';
 export {default as ArtistDisplay} from './ArtistDisplay';
 export {default as Button} from './Button';
 export {default as NewsList} from './NewsList';
+export {default as Video} from './Video';

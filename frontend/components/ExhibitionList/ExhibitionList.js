@@ -42,7 +42,10 @@ function ExhibitionList({exhibitions, filters}) {
       : [];
 
     return (
-      <StyledExhibitionLi key={exhibition.id}>
+      <StyledExhibitionLi
+        key={exhibition.id}
+        cols={exhibitionsToShow.length > 6 ? 3 : 2}
+      >
         <Exhibition
           slug={exhibition.slug}
           url={`/exhibition/${exhibition.slug}`}
@@ -58,7 +61,9 @@ function ExhibitionList({exhibitions, filters}) {
 
   return (
     <React.Fragment>
-      <StyledExhibitionList>{exhibitionlistMarkup}</StyledExhibitionList>
+      <StyledExhibitionList cols={exhibitionsToShow.length > 6 ? 3 : 2}>
+        {exhibitionlistMarkup}
+      </StyledExhibitionList>
     </React.Fragment>
   );
 }

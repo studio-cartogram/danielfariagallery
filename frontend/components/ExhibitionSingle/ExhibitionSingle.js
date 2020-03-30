@@ -7,8 +7,10 @@ import Thumbnail from '../Thumbnail';
 import Title from '../Title';
 import Link from '../Link';
 import FeaturedImage from '../FeaturedImage';
+import Video from '../Video';
 import Modal from '../../components/Modal';
 import {getFileNameFromPath} from '../../utilities';
+import {StyledBackLink} from './styles';
 
 class ExhibitionSingle extends React.Component {
   state = {
@@ -27,6 +29,7 @@ class ExhibitionSingle extends React.Component {
       slug,
       current,
       featuredImage,
+      video,
     } = this.props;
 
     const openingReceptionMarkup = opening
@@ -77,9 +80,15 @@ class ExhibitionSingle extends React.Component {
                 />
               );
             });
+
+          const featuredImageMarkup = video ? (
+            <Video video={video} />
+          ) : (
+            <FeaturedImage image={featuredImage} />
+          );
           return (
             <React.Fragment>
-              <FeaturedImage image={featuredImage} />
+              {featuredImageMarkup}
               {workImageMarkup}
             </React.Fragment>
           );
@@ -132,11 +141,11 @@ class ExhibitionSingle extends React.Component {
       <React.Fragment>
         <Modal current collection={works} />
         {!current && (
-          <div>
+          <StyledBackLink>
             <Link as="/exhibitions/past" href="/exhibitions/past">
               All exhibitions
             </Link>
-          </div>
+          </StyledBackLink>
         )}
         <PageMast>
           <Title>

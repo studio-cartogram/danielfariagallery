@@ -319,6 +319,8 @@ function get_content_for_list( $type = 'exhibition' ) {
                 'start_date' => get_field('start_date', $id),
                 'end_date' => get_field('end_date', $id),
                 'opening_reception' => get_field('opening_reception', $id),
+                'video' => get_field('video', $id),
+                'virtual' => get_field('virtual', $id),
             );
         }
 

@@ -3,7 +3,16 @@ import {StyledFooter, StyledFooterItem, StyledFooterItemFull} from './styles';
 import Link from '../../components/Link';
 import PageNav from '../../components/PageNav';
 
-function Footer({phone, email, address, map, facebook, twitter, instagram}) {
+function Footer({
+  phone,
+  email,
+  address,
+  map,
+  facebook,
+  twitter,
+  instagram,
+  newsletter,
+}) {
   return (
     <StyledFooter>
       <StyledFooterItem>
@@ -40,7 +49,7 @@ function Footer({phone, email, address, map, facebook, twitter, instagram}) {
         <Link variant="tertiary" target="_blank" href={instagram}>
           Instagram
         </Link>
-        <Link variant="tertiary" href="/">
+        <Link variant="tertiary" target="_blank" href={newsletter}>
           Subscribe
         </Link>
       </StyledFooterItem>

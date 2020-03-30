@@ -3,17 +3,23 @@ import isFuture from 'date-fns/is_future';
 
 import {basename, extname} from 'path';
 
+function exhibitionIsCurrent(exhibition) {
+  return isWithinRange(
+    new Date(),
+    new Date(exhibition.start_date),
+    new Date(exhibition.end_date),
+  );
+}
+
+function exhibitionIsPast(exhibition) {
+  return !exhibitionIsCurrent(exhibition);
+}
+
 export function getCurrentExhibition(exhibitions) {
   if (!exhibitions || !exhibitions.length) {
     return [];
   }
-  return exhibitions.filter((exhibition) => {
-    return isWithinRange(
-      new Date(),
-      new Date(exhibition.start_date),
-      new Date(exhibition.end_date),
-    );
-  });
+  return exhibitions.filter(exhibitionIsCurrent);
 }
 
 export function getUpcomingExhibition(exhibitions) {
@@ -30,7 +36,8 @@ export function getYearFromDateString(date) {
 }
 
 export function getPastExhibitions(exhibitions) {
-  return exhibitions.slice(1);
+  const currentExhibitions = getCurrentExhibition(exhibitions);
+  return exhibitions.slice(currentExhibitions.length + 1);
 }
 
 export function getFeaturedImage(post, size = 'img_thumbnail') {
@@ -41,6 +48,9 @@ export function getFeaturedImage(post, size = 'img_thumbnail') {
 }
 
 export function getFileNameFromPath(path) {
+  if (!path) {
+    return '';
+  }
   const filename = basename(path, extname(path));
   return filename;
 }
