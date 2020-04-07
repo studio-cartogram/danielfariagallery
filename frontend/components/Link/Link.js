@@ -23,53 +23,49 @@ function Link({href, variant, as, children, current, onClick, ...aprops}) {
     );
   }
 
+  const content = href ? (
+    <NextLink as={as} href={href}>
+      <a {...aprops}>{children}</a>
+    </NextLink>
+  ) : (
+    children
+  );
+
   switch (variant) {
     case 'invisible':
       return (
         <StyledInvisibleLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
-            <a {...aprops}>{children}</a>
-          </NextLink>
+          {content}
         </StyledInvisibleLink>
       );
     case 'secondary':
       return (
         <StyledSecondaryLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
-            <a {...aprops}>{children}</a>
-          </NextLink>
+          {content}
         </StyledSecondaryLink>
       );
     case 'tertiary':
       return (
         <StyledTertiaryLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
-            <a {...aprops}>{children}</a>
-          </NextLink>
+          {content}
         </StyledTertiaryLink>
       );
     case 'hybrid':
       return (
         <StyledHybridLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
-            <a {...aprops}>{children}</a>
-          </NextLink>
+          {content}
         </StyledHybridLink>
       );
     case 'zoom':
       return (
         <StyledZoomLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
-            <a {...aprops}>{children}</a>
-          </NextLink>
+          {content}
         </StyledZoomLink>
       );
     default:
       return (
         <StyledPrimaryLink variant={variant} current={current}>
-          <NextLink as={as} href={href}>
-            <a {...aprops}>{children}</a>
-          </NextLink>
+          {content}
         </StyledPrimaryLink>
       );
   }

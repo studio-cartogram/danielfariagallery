@@ -5,6 +5,11 @@ const LRUCache = require('lru-cache');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
+const Sentry = require('@sentry/node');
+
+Sentry.init({
+  dsn: 'https://8a2bf55a79a94688a4d0f5fd95c1b3bb@sentry.io/5189731',
+});
 
 const ssrCache = new LRUCache({
   max: 100,
@@ -15,9 +20,12 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(Sentry.Handlers.requestHandler());
 
     server.get('/', (req, res) => {
       const actualPage = '/';
+      throw new Error('My first Sentry error!');
+
       renderAndCache(req, res, actualPage, req.query);
     });
 
@@ -107,6 +115,16 @@ app
       return handle(req, res);
     });
 
+    server.get('/debug-sentry', function mainHandler(req, res) {
+      throw new Error('My first Sentry error!');
+    });
+    server.use(Sentry.Handlers.errorHandler());
+    app.use(function onError(err, req, res, next) {
+      // The error id is attached to `res.sentry` to be returned
+      // and optionally displayed to the user for support.
+      res.statusCode = 500;
+      res.end(res.sentry + '\n');
+    });
     server.listen(3000, (err) => {
       if (err) throw err;
       console.log('> Ready on http://localhost:3000');

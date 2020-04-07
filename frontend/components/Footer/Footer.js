@@ -20,8 +20,10 @@ function Footer({
           <p>
             {address}
             <br />
-            <Link variant="tertiary" target="_blank" href={map}>
-              Directions
+            <Link variant="tertiary">
+              <a target="_blank" href={map}>
+                Directions
+              </a>
             </Link>
           </p>
         </StyledFooterItemFull>
@@ -29,28 +31,36 @@ function Footer({
       <StyledFooterItem>
         <StyledFooterItemFull>
           <p>
-            <Link variant="tertiary" href={`mailto:${email}`}>
-              {email}
+            <Link variant="tertiary">
+              <a href={`mailto:${email}`}>{email}</a>
             </Link>
             <br />
-            <Link variant="tertiary" href={`tel:${phone}`}>
-              {phone}
+            <Link variant="tertiary">
+              <a href={`tel:${phone}`}>{phone}</a>
             </Link>
           </p>
         </StyledFooterItemFull>
       </StyledFooterItem>
       <StyledFooterItem>
-        <Link variant="tertiary" target="_blank" href={twitter}>
-          Twitter
+        <Link variant="tertiary">
+          <a target="_blank" href={twitter}>
+            Twitter
+          </a>
         </Link>
-        <Link variant="tertiary" target="_blank" href={facebook}>
-          Facebook
+        <Link variant="tertiary">
+          <a target="_blank" href={facebook}>
+            Facebook
+          </a>
         </Link>
-        <Link variant="tertiary" target="_blank" href={instagram}>
-          Instagram
+        <Link variant="tertiary">
+          <a target="_blank" href={instagram}>
+            Instagram
+          </a>
         </Link>
-        <Link variant="tertiary" target="_blank" href={newsletter}>
-          Subscribe
+        <Link variant="tertiary">
+          <a target="_blank" href={newsletter}>
+            Subscribe
+          </a>
         </Link>
       </StyledFooterItem>
     </StyledFooter>
