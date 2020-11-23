@@ -99,8 +99,8 @@ class ExhibitionIndex extends React.Component {
     }
 
     const artistsToShow = exhibitionsToShow[0].artists
-      ? exhibitionsToShow[0].artists.map(
-          (artist) => (artist ? artist.name : 'no artist'),
+      ? exhibitionsToShow[0].artists.map((artist) =>
+          artist ? artist.name : 'no artist',
         )
       : [];
 
@@ -123,6 +123,7 @@ class ExhibitionIndex extends React.Component {
           opening={exhibitionsToShow[0].opening_reception}
           content={exhibitionsToShow[0].content}
           works={exhibitionsToShow[0].works}
+          video={exhibitionsToShow[0].video}
           current={currentPage === 'current' || currentPage === 'upcoming'}
         />
       );

@@ -24,7 +24,6 @@ app
 
     server.get('/', (req, res) => {
       const actualPage = '/';
-      throw new Error('My first Sentry error!');
 
       renderAndCache(req, res, actualPage, req.query);
     });
@@ -119,12 +118,6 @@ app
       throw new Error('My first Sentry error!');
     });
     server.use(Sentry.Handlers.errorHandler());
-    app.use(function onError(err, req, res, next) {
-      // The error id is attached to `res.sentry` to be returned
-      // and optionally displayed to the user for support.
-      res.statusCode = 500;
-      res.end(res.sentry + '\n');
-    });
     server.listen(3000, (err) => {
       if (err) throw err;
       console.log('> Ready on http://localhost:3000');

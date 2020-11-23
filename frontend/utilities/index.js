@@ -1,5 +1,6 @@
 import isWithinRange from 'date-fns/is_within_range';
 import isFuture from 'date-fns/is_future';
+import isPast from 'date-fns/is_past';
 
 import {basename, extname} from 'path';
 
@@ -36,8 +37,12 @@ export function getYearFromDateString(date) {
 }
 
 export function getPastExhibitions(exhibitions) {
-  const currentExhibitions = getCurrentExhibition(exhibitions);
-  return exhibitions.slice(currentExhibitions.length + 1);
+  if (!exhibitions || !exhibitions.length) {
+    return [];
+  }
+  return exhibitions.filter((exhibition) => {
+    return isPast(new Date(exhibition.end_date));
+  });
 }
 
 export function getFeaturedImage(post, size = 'img_thumbnail') {
