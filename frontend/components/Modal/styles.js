@@ -15,52 +15,53 @@ export const StyledModal = styled.div`
   padding: ${(props) => props.theme.pxScale[3]};
   overflow-y: scroll;
   justify-items: start;
-
-  ${breakpoints.bpM} {
-    display: grid;
-    padding-top: 0;
-    padding: ${(props) => props.theme.pxScale[6]};
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: ${(props) => props.theme.pxScale[6]};
-    grid-auto-rows: min-content;
-    height: 100vh;
-    grid-template-rows: auto auto 1fr;
-  }
+  padding-top: ${(props) => props.theme.pxScale[1]};
+  height: 100vh;
 `;
 
 export const StyledControls = styled.div`
-  padding-bottom: ${(props) => props.theme.pxScale[3]};
+  margin-left: ${(props) => props.theme.pxScale[4]};
+  display: flex;
 
   > * {
     margin-right: ${(props) => props.theme.pxScale[2]};
   }
-
-  ${breakpoints.bpM} {
-    padding-bottom: ${(props) => props.theme.pxScale[0]};
+`;
+export const StyledTitle = styled.div`
+  align-items: baseline;
+  width: 100%;
+  order: 1;
+  > * {
+    margin-right: ${(props) => props.theme.pxScale[2]};
   }
 `;
 
 export const StyledModalMast = styled.div`
-  grid-column: span 3;
+  position: absolute;
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  flex-wrap: wrap;
 
   ${breakpoints.bpM} {
-    grid-column: span 2;
-    grid-column-start: 2;
-    grid-column-end: 4;
+    flex-wrap: no-wrap;
+  }
+
+  > * {
+    margin-right: ${(props) => props.theme.pxScale[2]};
   }
 `;
 
 export const StyledImage = styled.img`
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  right: 0;
   max-height: 100%;
   width: auto;
   max-width: 100%;
   min-height: 200px;
-  height: auto;
-  margin-bottom: ${(props) => props.theme.pxScale[3]};
-  grid-column: span 3;
-
-  ${breakpoints.bpM} {
-    margin: 0 auto;
-    margin-bottom: ${(props) => props.theme.pxScale[6]};
-  }
+  padding: ${(props) => props.theme.pxScale[9]} 0 0 0;
+  margin: 0 auto;
 `;

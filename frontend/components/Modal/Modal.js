@@ -4,6 +4,7 @@ import {
   StyledControls,
   StyledModalMast,
   StyledImage,
+  StyledTitle,
 } from './styles';
 import {withRouter} from 'next/router';
 import {getFileNameFromPath} from '../../utilities';
@@ -81,30 +82,27 @@ class Modal extends React.Component {
             );
           })
         : null;
-
     return (
       <StyledModal>
         <Shortcut ordered={['ArrowRight']} onMatch={this.next} />
         <Shortcut ordered={['ArrowLeft']} onMatch={this.prev} />
         <Shortcut ordered={['Escape']} onMatch={this.dismiss} />
-        <Link onClick={this.dismiss}>Close</Link>
-        <StyledControls>
-          <Link onClick={this.prev}>Prev</Link>
-          <Link onClick={this.next}>Next</Link>
-        </StyledControls>
-        <StyledModalMast>
-          <Title>{item.title}</Title>
-          <p>{workDetailsMarkup}</p>
-          <p>
-            <Link target="_blank" href={item.image.url}>
-              Full image
-            </Link>
-          </p>
-        </StyledModalMast>
+
         <StyledImage
           alt={item.title}
-          src={item.image.large || work.image.medium}
+          src={item.image.url || work.image.medium}
         />
+        <StyledModalMast>
+          <Link onClick={this.dismiss}>Close</Link>
+          <StyledTitle>
+            <Title>{item.title}</Title>
+            <span>{workDetailsMarkup}</span>
+          </StyledTitle>
+          <StyledControls>
+            <Link onClick={this.prev}>Prev</Link>
+            <Link onClick={this.next}>Next</Link>
+          </StyledControls>
+        </StyledModalMast>
       </StyledModal>
     );
   }
@@ -172,12 +170,10 @@ class Modal extends React.Component {
   getItemIndex() {
     return (
       this.props.router.query.id &&
-      this.props.collection.findIndex(
-        (item) =>
-          item.image
-            ? getFileNameFromPath(item.image.large) ===
-              this.props.router.query.id
-            : 0,
+      this.props.collection.findIndex((item) =>
+        item.image
+          ? getFileNameFromPath(item.image.large) === this.props.router.query.id
+          : 0,
       )
     );
   }

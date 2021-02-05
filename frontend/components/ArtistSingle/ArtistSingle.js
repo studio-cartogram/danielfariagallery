@@ -19,6 +19,7 @@ class ArtistSingle extends React.Component {
   state = {
     currentSection: 'work',
   };
+
   render() {
     const {currentSection} = this.state;
     const {title, works, content, press, slug} = this.props;
@@ -52,10 +53,10 @@ class ArtistSingle extends React.Component {
               />
             );
           });
-          return <React.Fragment>{workImageMarkup}</React.Fragment>;
+          return <>{workImageMarkup}</>;
         case 'exhibitions':
           return (
-            <React.Fragment>
+            <>
               <Fetcher url={`${config.apiUrl}/wp-json/dfg/v1/exhibitions`}>
                 {({loading, data, error}) => {
                   if (error) {
@@ -74,11 +75,11 @@ class ArtistSingle extends React.Component {
                   );
                 }}
               </Fetcher>
-            </React.Fragment>
+            </>
           );
         case 'news':
           return (
-            <React.Fragment>
+            <>
               <Fetcher url={`${config.apiUrl}/wp-json/dfg/v1/news`}>
                 {({loading, data, error}) => {
                   if (error) {
@@ -96,7 +97,7 @@ class ArtistSingle extends React.Component {
                   );
                 }}
               </Fetcher>
-            </React.Fragment>
+            </>
           );
         case 'press':
           if (!press) {

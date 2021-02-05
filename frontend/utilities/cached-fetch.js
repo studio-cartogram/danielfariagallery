@@ -9,7 +9,10 @@ function holdCacheForUrl(url) {
   return shouldHold;
 }
 
-export default async function(url, {disableCache, ...options} = {}) {
+export default async function cachedFetch(
+  url,
+  {disableCache, ...options} = {},
+) {
   if (typeof window === 'undefined') {
     return fetch(url, options).then((response) => response.json());
   }

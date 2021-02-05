@@ -1,5 +1,3 @@
-import reset from './reset'
+import reset from './reset';
 
-export {
-  reset,
-}
+export {reset};

@@ -1,5 +1,6 @@
 import React from 'react';
-import {config} from '../config.js';
+
+import {config} from '../config';
 import withLayout from '../decorators/withLayout';
 import Error from '../components/Error';
 import ArtistSingle from '../components/ArtistSingle';
@@ -19,7 +20,7 @@ class Artist extends React.Component {
   }
 
   static getDerivedStateFromProps(props) {
-    const artist = props.data.filter((artist) => props.slug === artist.slug);
+    const artist = props.data.filter((art) => props.slug === art.slug);
 
     return {
       loading: false,
