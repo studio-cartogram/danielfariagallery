@@ -56,6 +56,25 @@
             "first_day": 1
         },
         {
+            "key": "field_5e81631d51254",
+            "label": "Video",
+            "name": "video",
+            "type": "text",
+            "instructions": "Upload your video to YouTube or Vimeo then copy & paste the iframe embed code of the video you wish to show.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5b27f4204ccfb",
             "label": "Artist(s)",
             "name": "artist",
@@ -208,5 +227,7 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1541120882
+    "show_in_graphql": 1,
+    "graphql_field_name": "custom",
+    "modified": 1612699920
 }

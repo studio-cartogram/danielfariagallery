@@ -276,6 +276,22 @@
             },
             "default_value": "",
             "placeholder": ""
+        },
+        {
+            "key": "field_5bf08b7f0abed",
+            "label": "Subscribe",
+            "name": "newsletter",
+            "type": "url",
+            "instructions": "The link to the Campaign Monitor newsletter signup form",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -295,5 +311,7 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1531168787
+    "show_in_graphql": 1,
+    "graphql_field_name": "globalInfo",
+    "modified": 1612699802
 }

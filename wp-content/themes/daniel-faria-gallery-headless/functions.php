@@ -53,7 +53,11 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'show_in_rest' => true,
       'rest_base' => 'exhibitions',
       'rewrite' => array( 'slug' => 'exhibition' ),
-      'supports' => array( 'title', 'thumbnail', 'editor')
+      'supports' => array( 'title', 'thumbnail', 'editor'),
+      'show_in_graphql' => true,
+      'hierarchical' => true,
+      'graphql_single_name' => 'exhibition',
+      'graphql_plural_name' => 'exhibitions',
     );
 
     register_post_type( 'exhibition', $exhibition_args );
