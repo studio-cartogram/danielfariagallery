@@ -12,9 +12,16 @@ jobs:
       with:
         fetch-depth: 2
     - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.0.0
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        ftp-server: s185472.gridserver.com
-        ftp-username: new-danielfariagallery.com
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: "domains/api.danielfariagallery.com/html/"
+        server: s185472.gridserver.com
+        username: new-danielfariagallery.com
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: domains/api.danielfariagallery.com/html/
+        exclude: .git*
+          - .git*/**
+          -  **/.git*/**
+          - node_modules/**
+          - node_modules/**/*
+          - content/uploads/**/
+          - content/uploads/**/*
