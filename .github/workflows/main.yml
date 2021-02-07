@@ -17,4 +17,4 @@ jobs:
         ftp-server: s185472.gridserver.com
         ftp-username: new-danielfariagallery.com
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        dist_target_dir: "domains/api.danielfariagallery.com/html"
+        server-dir: "domains/api.danielfariagallery.com/html/"
