@@ -23,5 +23,7 @@ jobs:
           -  **/.git*/**
           - node_modules/**
           - node_modules/**/*
-          - content/uploads/**/
-          - content/uploads/**/*
+          - wp-content/uploads/**/
+          - wp-content/uploads/**/*
+          - wp-content/plugins/**/
+          - wp-content/plugins/**/*
