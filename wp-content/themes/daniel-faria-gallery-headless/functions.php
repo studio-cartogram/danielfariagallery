@@ -85,7 +85,11 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'show_in_rest' => true,
       'rest_base'             => 'fairs',
       'rewrite' => array( 'slug' => 'fair' ),
-      'supports' => array( 'title', 'thumbnail', 'editor')
+      'supports' => array( 'title', 'thumbnail', 'editor'),
+      'show_in_graphql' => true,
+      'hierarchical' => true,
+      'graphql_single_name' => 'fair',
+      'graphql_plural_name' => 'fairs',
     );
 
     register_post_type( 'fair', $fair_args );
@@ -97,7 +101,11 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'show_in_rest' => true,
       'rest_base'             => 'publications',
       'rewrite' => array( 'slug' => 'publication' ),
-      'supports' => array( 'title', 'thumbnail', 'editor')
+      'supports' => array( 'title', 'thumbnail', 'editor'),
+      'show_in_graphql' => true,
+      'hierarchical' => true,
+      'graphql_single_name' => 'publication',
+      'graphql_plural_name' => 'publications',
     );
 
     register_post_type( 'publication', $publication_args );
@@ -109,7 +117,11 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'show_in_rest' => true,
       'rest_base'             => 'news',
       'rewrite' => array( 'slug' => 'news' ),
-      'supports' => array( 'title', 'thumbnail', 'editor')
+      'supports' => array( 'title', 'thumbnail', 'editor'),
+      'show_in_graphql' => true,
+      'hierarchical' => true,
+      'graphql_single_name' => 'newsItem',
+      'graphql_plural_name' => 'news',
     );
 
     register_post_type( 'news', $news_args );

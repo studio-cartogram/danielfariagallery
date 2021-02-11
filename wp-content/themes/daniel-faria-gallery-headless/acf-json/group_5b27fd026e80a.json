@@ -230,6 +230,6 @@
     "active": 1,
     "description": "",
     "show_in_graphql": 1,
-    "graphql_field_name": "acf",
-    "modified": 1612699436
+    "graphql_field_name": "custom",
+    "modified": 1612717615
 }

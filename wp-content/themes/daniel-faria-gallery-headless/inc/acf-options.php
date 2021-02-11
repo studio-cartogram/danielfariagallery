@@ -8,6 +8,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
         'menu_slug'  => 'contact-information',
         'capability' => 'manage_options',
         'post_id'    => 'contact-information',
+        'show_in_graphql' => true,
         'redirect'   => false,
     ] );
 
@@ -17,6 +18,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
         'menu_slug'  => 'homepage-information',
         'capability' => 'manage_options',
         'post_id'    => 'homepage-information',
+        'show_in_graphql' => true,
         'redirect'   => false,
     ] );
 }
