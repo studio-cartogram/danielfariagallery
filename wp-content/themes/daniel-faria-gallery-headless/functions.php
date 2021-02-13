@@ -58,6 +58,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'hierarchical' => true,
       'graphql_single_name' => 'exhibition',
       'graphql_plural_name' => 'exhibitions',
+      'menu_icon' => 'dashicons-format-gallery'
     );
 
     register_post_type( 'exhibition', $exhibition_args );
@@ -74,6 +75,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'hierarchical' => true,
       'graphql_single_name' => 'artist',
       'graphql_plural_name' => 'artists',
+      'menu_icon' => 'dashicons-admin-customizer'
     );
 
     register_post_type( 'artist', $artist_args );
@@ -90,6 +92,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'hierarchical' => true,
       'graphql_single_name' => 'fair',
       'graphql_plural_name' => 'fairs',
+      'menu_icon' => 'dashicons-tickets-alt'
     );
 
     register_post_type( 'fair', $fair_args );
@@ -106,6 +109,7 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'hierarchical' => true,
       'graphql_single_name' => 'publication',
       'graphql_plural_name' => 'publications',
+      'menu_icon' => 'dashicons-book'
     );
 
     register_post_type( 'publication', $publication_args );
@@ -122,6 +126,8 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'hierarchical' => true,
       'graphql_single_name' => 'newsItem',
       'graphql_plural_name' => 'news',
+      'menu_icon' => 'dashicons-admin-site'
+
     );
 
     register_post_type( 'news', $news_args );
@@ -138,9 +144,10 @@ if ( ! function_exists( 'create_post_types' ) ) {
       'hierarchical' => true,
       'graphql_single_name' => 'video',
       'graphql_plural_name' => 'videos',
+      'menu_icon' => 'dashicons-format-video'
     );
 
-    register_post_type( 'walkthrough', $video_args );
+    register_post_type( 'video', $video_args );
 
     $walkthrough_args = array(
       'public' => true,
