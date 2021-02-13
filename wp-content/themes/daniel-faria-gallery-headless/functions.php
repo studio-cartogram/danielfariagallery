@@ -126,6 +126,38 @@ if ( ! function_exists( 'create_post_types' ) ) {
 
     register_post_type( 'news', $news_args );
 
+    $video_args = array(
+      'public' => true,
+      'label' => 'Videos',
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'rest_base'             => 'videos',
+      'rewrite' => array( 'slug' => 'video' ),
+      'supports' => array( 'title', 'thumbnail'),
+      'show_in_graphql' => true,
+      'hierarchical' => true,
+      'graphql_single_name' => 'video',
+      'graphql_plural_name' => 'videos',
+    );
+
+    register_post_type( 'walkthrough', $video_args );
+
+    $walkthrough_args = array(
+      'public' => true,
+      'label' => 'Walkthroughs',
+      'has_archive' => true,
+      'show_in_rest' => true,
+      'rest_base'             => 'walkthroughs',
+      'rewrite' => array( 'slug' => 'walkthrough' ),
+      'supports' => array( 'title', 'thumbnail', 'editor'),
+      'show_in_graphql' => true,
+      'hierarchical' => true,
+      'graphql_single_name' => 'walkthrough',
+      'graphql_plural_name' => 'walkthroughs',
+    );
+
+    register_post_type( 'walkthrough', $walkthrough_args );
+
     // flush_rewrite_rules( false );
 
   }
