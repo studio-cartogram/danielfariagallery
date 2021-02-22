@@ -37,6 +37,9 @@ add_image_size('img_medium',800, 800, false);
 add_image_size('img_large',1200, 800, false);
 add_image_size('img_xlarge',1600, 1000, false);
 
+// remove gallery css
+add_filter( 'use_default_gallery_style', '__return_false' );
+
 
 // Custom post types with REST API support
 
@@ -149,23 +152,23 @@ if ( ! function_exists( 'create_post_types' ) ) {
 
     register_post_type( 'video', $video_args );
 
-    $walkthrough_args = array(
+    $room_args = array(
       'public' => true,
-      'label' => 'Walkthroughs',
+      'label' => 'Viewing rooms',
       'has_archive' => true,
       'show_in_rest' => true,
-      'rest_base'             => 'walkthroughs',
-      'rewrite' => array( 'slug' => 'walkthrough' ),
+      'rest_base'             => 'rooms',
+      'rewrite' => array( 'slug' => 'room' ),
       'supports' => array( 'title', 'thumbnail', 'editor'),
       'show_in_graphql' => true,
       'hierarchical' => true,
-      'graphql_single_name' => 'walkthrough',
-      'graphql_plural_name' => 'walkthroughs',
+      'graphql_single_name' => 'room',
+      'graphql_plural_name' => 'rooms',
     );
 
-    register_post_type( 'walkthrough', $walkthrough_args );
+    register_post_type( 'room', $room_args );
 
-    // flush_rewrite_rules( false );
+    flush_rewrite_rules( false );
 
   }
 
