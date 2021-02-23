@@ -24,6 +24,13 @@ require_once 'inc/acf-options.php';
 // Add custom API endpoints
 require_once 'inc/api-routes.php';
 
+function setup_theme(  ) {
+  // Theme setup code...
+  
+  // Filters the oEmbed process to run the responsive_embed() function
+  add_filter('embed_oembed_html', 'responsive_embed', 10, 3);
+}
+
 // Add featured image
 add_theme_support('post-thumbnails');
 
@@ -40,6 +47,20 @@ add_image_size('img_xlarge',1600, 1000, false);
 // remove gallery css
 add_filter( 'use_default_gallery_style', '__return_false' );
 
+
+
+add_action('after_setup_theme', 'setup_theme');
+
+/**
+ * Adds a responsive embed wrapper around oEmbed content
+ * @param  string $html The oEmbed markup
+ * @param  string $url  The URL being embedded
+ * @param  array  $attr An array of attributes
+ * @return string       Updated embed markup
+ */
+function responsive_embed($html, $url, $attr) {
+    return $html!=='' ? '<div class="embed-container">'.$html.'</div>' : '';
+}
 
 // Custom post types with REST API support
 
